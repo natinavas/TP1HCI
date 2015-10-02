@@ -21,14 +21,6 @@ body {
   margin: 20px 0;
 }
 
-.containerNav{
-
-		background-color: #292c2f;
-		width: 100%;
-		text-align: left;
-		overflow: hidden;
-
-}
 
 .panel-empty{
     padding-left:15px;
@@ -49,6 +41,8 @@ body {
 #logo{
 	font-size:40px;
 }
+
+
 
 
 
