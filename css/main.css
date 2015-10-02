@@ -21,6 +21,14 @@ body {
   margin: 20px 0;
 }
 
+.containerNav{
+
+		background-color: #292c2f;
+		width: 100%;
+		text-align: left;
+		overflow: hidden;
+
+}
 
 .panel-empty{
     padding-left:15px;
@@ -38,9 +46,9 @@ body {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-
-
-
+#logo{
+	font-size:40px;
+}
 
 
 
@@ -324,10 +332,19 @@ code {
 	}
 }
 
+.botonConfig {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #000000;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
 
-.breadcrumb {background: rgba(245, 245, 245, 1); border: 0px solid rgba(245, 245, 245, 1); border-radius: 4px; display: block;}
-.breadcrumb li {font-size: 19px;}
-.breadcrumb a {color: rgba(66, 139, 202, 1);}
-.breadcrumb a:hover {color: rgba(42, 100, 150, 1);}
-.breadcrumb>.active {color: rgba(153, 153, 153, 1);}
-.breadcrumb>li+li:before {color: rgba(204, 204, 204, 1); content: "\002F\00a0";}
+.botonConfig:hover {
+  background: #70787d;
+  text-decoration: none;
+}
