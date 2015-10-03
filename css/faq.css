@@ -16,7 +16,7 @@ body {
 .nav-tabs li a:focus,
 .panel-heading a:focus {
     outline: none;
-	background-color:#ff00ff;
+	background-color:#99db76;
 }
 
 .panel-heading a,
@@ -28,7 +28,7 @@ body {
 
 
 .active-faq {
-    border-left: 15px solid #ff00ff;
+    border-left: 15px solid #99db76;
 }
 
 .panel-faq .panel-heading .panel-title span {
