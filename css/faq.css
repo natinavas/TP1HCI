@@ -1,0 +1,37 @@
+body {
+    padding-top: 40px;
+}
+
+.faq-cat-content {
+    margin-top: 25px;
+}
+
+.faq-cat-tabs li a {
+    padding: 15px 10px 15px 10px;
+    background-color: #292c2f;
+    border: 0px;
+    color: #ffffff;
+}
+
+.nav-tabs li a:focus,
+.panel-heading a:focus {
+    outline: none;
+	background-color:#ff00ff;
+}
+
+.panel-heading a,
+.panel-heading a:hover,
+.panel-heading a:focus {
+    text-decoration: none;
+    color: #292c2f;
+}
+
+
+.active-faq {
+    border-left: 15px solid #ff00ff;
+}
+
+.panel-faq .panel-heading .panel-title span {
+    font-size: 13px;
+    font-weight: normal;
+}
