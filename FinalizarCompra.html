@@ -257,24 +257,24 @@
 																	<div class='form-group required'>
 																		<div class='error form-group hide'>
 																			<div class='alert-danger alert'>
-																				Please correct the errors and try again.
+																				Por favor arregle los errores e intente de nuevo.
               
 																			</div>
 																		</div>
-																		<label class='control-label'>Name on Card</label>
+																		<label class='control-label'>Nombre en la tarjeta</label>
 																		<input class='form-control' size='4' type='text'>
 																	</div>
                     
 																</div>
 																<div class='form-row'>
 																	<div class='form-group card required'>
-																		<label class='control-label'>Card Number</label>
+																		<label class='control-label'>Número de Tarjeta</label>
 																		<input autocomplete='off' class='form-control card-number' size='20' type='text'>
 																	</div>
 																</div>
 																<div class='form-row'>
 																	<div class='form-group card required'>
-																		<label class='control-label'>Billing Address</label>
+																		<label class='control-label'>Dirección de Tarjeta</label>
 																		<input autocomplete='off' class='form-control' size='20' type='text'>
 																	</div>
 																</div>
@@ -284,11 +284,11 @@
 																		<input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
 																	</div>
 																	<div class='form-group expiration required'>
-																		<label class='control-label'>Expiration</label>
+																		<label class='control-label'>Vencimiento</label>
 																		<input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
 																	</div>
 																	<div class='form-group expiration required'>
-																		<label class='control-label'>Year</label>
+																		<label class='control-label'>Año</label>
 																		<input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
 																	</div>
 																</div>
@@ -319,20 +319,20 @@
 												</div>
 				
 												<div class="col-sm-6">
-													<div class="alert alert-info">Please choose your method of payment and hit continue. You will then be sent down to pay using your selected payment option.</div>
+													<div class="alert alert-info">Por favor elija su metodo de pago y aprete continuar.</div>
 													<label class='control-label'></label><!-- spacing -->
     
 													
 													<br>
 													<div class="btn-group-vertical btn-block">
-														<a class="btn btn-default" style="text-align: left;" data-toggle="tab" href="#stripe">Stripe/Credit Card</a>
-														<a class="btn btn-default" style="text-align: left;" data-toggle="tab" href="#paypal">PayPal</a>
+														<a class="btn btn-default" style="text-align: left;" data-toggle="tab" href="#stripe">Tarjeta de Credito/Debito</a>
+														<a class="btn btn-default" style="text-align: left;" data-toggle="tab" href="#paypal">MercadoPago</a>
 													</div>
       
 													<br><br><br>
      
 													<div class="jumbotron jumbotron-flat">
-														<div class="center"><h2><i>BALANCE DUE:</i></h2></div>
+														<div class="center"><h2><i>TOTAL A PAGAR:</i></h2></div>
 														<div class="paymentAmt">$100</div>
 													</div>
 													<ul class="list-inline pull-right">
@@ -344,18 +344,116 @@
 											</div>
 										</div>
 									</div>
-        
-							
-							
-							
 							
 								<div class="tab-pane" role="tabpanel" id="step3">
-									<h3>REVISE SU INFORMACION</h3>
-									<p>This is step 3</p>
+									<div class="container">
+									    <div class="row">
+									        <div class="col-xs-12">
+									    		<div class="invoice-title">
+									    			<h2>RESUMEN DE COMPRA</h2><h3 class="pull-right">Pedido # 12345</h3>
+									    		</div>
+									    		<hr>
+									    		<div class="row">
+									    			<div class="col-xs-6">
+									    				<address>
+									    				<strong>CARGADO A:</strong><br>
+									    					John Smith<br>
+									    					1234 Main<br>
+									    					Apt. 4B<br>
+									    					Springfield, ST 54321
+									    				</address>
+									    			</div>
+									    			<div class="col-xs-6 text-right">
+									    				<address>
+									        			<strong>ENVIADO A:</strong><br>
+									    					Jane Smith<br>
+									    					1234 Main<br>
+									    					Apt. 4B<br>
+									    					Springfield, ST 54321
+									    				</address>
+									    			</div>
+									    		</div>
+									    		<div class="row">
+									    			<div class="col-xs-6">
+									    				<address>
+									    					<strong>METODO DE PAGO:</strong><br>
+									    					Visa ending **** 4242<br>
+									    					jsmith@email.com
+									    				</address>
+									    			</div>
+									    			<div class="col-xs-6 text-right">
+									    				<address>
+									    					<strong>FECHA DE ORDEN:</strong><br>
+									    					Marzo 7, 2015<br><br>
+									    				</address>
+									    			</div>
+									    		</div>
+									    	</div>
+									    </div>
+    
+									    <div class="row">
+									    		<div class="panel panel-default">
+									    			<div class="panel-heading">
+									    				<h3 class="panel-title"><strong>RESUMEN DE COMPRA</strong></h3>
+									    			</div>
+									    			<div class="panel-body">
+									    				<div class="table-responsive">
+									    					<table class="table table-condensed">
+									    						<thead>
+									                                <tr>
+									        							<td><strong>ITEM</strong></td>
+									        							<td class="text-center"><strong>PRECIO</strong></td>
+									        							<td class="text-center"><strong>CANTIDAD</strong></td>
+									        							<td class="text-right"><strong>TOTAL</strong></td>
+									                                </tr>
+									    						</thead>
+									    						<tbody>
+									    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
+									    							<tr>
+									    								<td>BS-200</td>
+									    								<td class="text-center">$10.99</td>
+									    								<td class="text-center">1</td>
+									    								<td class="text-right">$10.99</td>
+									    							</tr>
+									                                <tr>
+									        							<td>BS-400</td>
+									    								<td class="text-center">$20.00</td>
+									    								<td class="text-center">3</td>
+									    								<td class="text-right">$60.00</td>
+									    							</tr>
+									                                <tr>
+									            						<td>BS-1000</td>
+									    								<td class="text-center">$600.00</td>
+									    								<td class="text-center">1</td>
+									    								<td class="text-right">$600.00</td>
+									    							</tr>
+									    							<tr>
+									    								<td class="thick-line"></td>
+									    								<td class="thick-line"></td>
+									    								<td class="thick-line text-center"><strong>Subtotal</strong></td>
+									    								<td class="thick-line text-right">$670.99</td>
+									    							</tr>
+									    							<tr>
+									    								<td class="no-line"></td>
+									    								<td class="no-line"></td>
+									    								<td class="no-line text-center"><strong>Costo de envio</strong></td>
+									    								<td class="no-line text-right">$15</td>
+									    							</tr>
+									    							<tr>
+									    								<td class="no-line"></td>
+									    								<td class="no-line"></td>
+									    								<td class="no-line text-center"><strong>Total</strong></td>
+									    								<td class="no-line text-right">$685.99</td>
+									    							</tr>
+									    						</tbody>
+									    					</table>
+									    				</div>
+									    			</div>
+									    		</div>
+									    	</div>
+									    </div>
 									<ul class="list-inline pull-right">
-										<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-										<li><button type="button" class="btn btn-default next-step">Skip</button></li>
-										<li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+										<li><button type="button" class="btn btn-primary btn-info-full next-step">FINALIZAR</button></li>
 									</ul>
 								</div>
 								<div class="tab-pane" role="tabpanel" id="complete">
