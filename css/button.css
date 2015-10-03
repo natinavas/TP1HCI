@@ -26,6 +26,9 @@
     text-decoration: none;
 }
 
+.smallButton:focus {
+    color: #ffffff;
+}
 
 
 .smallButton:active {
