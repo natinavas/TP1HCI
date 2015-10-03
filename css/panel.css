@@ -1,0 +1,16 @@
+.panel-default > .panel-heading-custom {
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #ffffff;
+	background: #000000;
+  	padding: 10px 20px 10px 20px;
+ }
+ 
+ 
+ .panel-heading-custom:hover {
+     background: #99db76;
+     color: #ffffff;
+     text-decoration: none;
+ }

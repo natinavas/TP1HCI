@@ -13,6 +13,7 @@
 	 <link href="css/bootstrap-theme.css" rel="stylesheet">
 	 <link href="css/main.css" rel="stylesheet">
 	 <link href="css/breadcrumb.css" rel="stylesheet">
+	<link href="css/button.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -200,8 +201,8 @@
               <div class="col-md-6">
                 <div class=text-left>
                   <div class="btn-group btn-input clearfix">
-                    <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
-                      <span data-bind="label">Talle</span> <span class="caret"></span>
+                    <button type="button" class="btn smallButton btn-default dropdown-toggle form-control" data-toggle="dropdown">
+                      <span data-bind="label">TALLE</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="#">XS</a></li>
@@ -224,13 +225,13 @@
               <div class="col-md-6">
                 <div class=text-left>
                   <div class="btn-group btn-input clearfix">
-                    <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
-                      <span data-bind="label">Color</span> <span class="caret"></span>
+                    <button type="button" class="btn btn-default smallButton dropdown-toggle form-control" data-toggle="dropdown">
+                      <span data-bind="label">COLOR</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Negro</a></li>
-                      <li><a href="#">Blanco</a></li>
-                      <li><a href="#">Azul</a></li>
+                      <li><a href="#">NEGRO</a></li>
+                      <li><a href="#">BLANCO</a></li>
+                      <li><a href="#">AZUL</a></li>
                     </ul>
                   </div>
                 </div>
@@ -244,11 +245,11 @@
             <br>
             <div class="row">
               <div class="col-md-6">
-                <span class="label label-success">Disponible</span>
+                <span class="label label-success">DISPONIBLE</span>
               </div>
               <div class="col-md-6">
                 <div class="btn-group" role="group" aria-label="...">
-                  <button type="button" class="btn btn-default">Comprar</button>
+                  <button type="button" class="botonConfig">COMPRAR</button>
                 </div>
               </div>
             <br>
@@ -257,29 +258,7 @@
           </div>
         </div>
         <br>
-        <div class="row">
-          <div class="well well-sm">
-            <div class="text-right">
-                <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Deje su reseña</a>
-            </div>
         
-            <div class="row" id="post-review-box" style="display:none;">
-                <div class="col-md-12">
-                    <form accept-charset="UTF-8" action="" method="post">
-                        <input id="ratings-hidden" name="rating" type="hidden"> 
-                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Deje su reseña aquí..." rows="5"></textarea>
-        
-                        <div class="text-right">
-                            <div class="stars starrr" data-rating="0"></div>
-                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                            <span class="glyphicon glyphicon-remove"></span>Cancelar</a>
-                            <button class="btn btn-success btn-lg" type="submit">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-          </div> 
-        </div>
       </div>
   </div>
 </div>

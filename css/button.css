@@ -1,0 +1,71 @@
+
+.smallButton {
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #ffffff;
+	background: #000000;
+}
+
+
+.smallButton:hover {
+    background: #99db76;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.smallButton:before {
+    background: #99db76;
+    color: #ffffff;
+    text-decoration: none;
+}
+.smallButton:after {
+    background: #99db76;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+
+.smallButton:active {
+    background: #99db76;
+    text-color: #ffffff;
+    text-decoration: none;
+}
+
+.botonConfig {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #000000;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.botonConfig:hover {
+  background: #99db76;
+  text-decoration: none;
+}
+
+.wideButton {
+
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #000000;
+    text-decoration: none;
+}
+
+
+.wideButton:hover {
+  background: #000000;
+    color: #ffffff;
+  text-decoration: none;
+}
