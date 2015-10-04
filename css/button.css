@@ -6,6 +6,7 @@
     font-family: Arial;
     color: #ffffff;
 	background: #000000;
+  border: #99db76;
 }
 
 
@@ -27,7 +28,9 @@
 }
 
 .smallButton:focus {
+  background: #000000;
     color: #ffffff;
+  border: #99db76;
 }
 
 
@@ -35,6 +38,7 @@
     background: #99db76;
     text-color: #ffffff;
     text-decoration: none;
+  border: #000000;
 }
 
 .botonConfig {
@@ -47,6 +51,7 @@
   background: #000000;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
+  border: #99db76;
 }
 
 .botonConfig:hover {
@@ -76,4 +81,5 @@
 
 .wideButton:focus {
     color: #ffffff;
+  background: #99db76;
 }
