@@ -30,3 +30,11 @@ div.panel-heading-custom {
     padding: 20px 30px 20px 30px;
     position: relative;
 }
+
+
+/* This will style any <img> element in .parent div */
+div.imgWrapper img {
+   vertical-align: middle;
+   width: 144px; /* I took the width from your post and placed it in css */
+   height: 197px;
+}
