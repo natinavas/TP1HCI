@@ -185,15 +185,26 @@
 								</h4>
 							</div>
 							<div id="collapse4" class="panel-collapse collapse">
-								<div data-role="page">
-									<div data-role="main" class="ui-content">
-										<form method="post" action="demoform.asp">
-											<div data-role="rangeslider">
-												<input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">	
-											</div>
-										</form>
+								<form name="myWebForm" action="mailto:youremail@email.com" method="post">
+									<div class="radioWrapper">
+										<input type="radio" name="precio" checked="checked"/>Cualquier precio<br />
 									</div>
-								</div>
+									<div class="radioWrapper">
+										<input type="radio" name="precio" />Menos de 50<br />
+									</div>
+									<div class="radioWrapper">
+										<input type="radio" name="precio" />50 - 150<br />
+									</div>
+									<div class="radioWrapper">
+										<input type="radio" name="precio" />150 - 250<br />
+									</div>
+									<div class="radioWrapper">
+										<input type="radio" name="precio" />250 - 350<br />
+									</div>
+									<div class="radioWrapper">
+										<input type="radio" name="precio" />Más de 350<br />
+									</div>
+									</form>
 							</div>
 						</div>
 						<div class="panel panel-default">
@@ -315,16 +326,8 @@
 				
 				<div class="col-xs-10">
 					<div class= "row">
-						<div class="col-xs-9"></div>
-						<div class="col-xs-3">
-							<ul class="pagination">
-								<li><a href="#">&laquo;</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
+						<div class="page-header">
+							<h1>REMERAS</h1>
 						</div>
 					</div>
 					<table style="width:100%">
@@ -728,10 +731,7 @@
 						</tr>
 						
 					</table>
-					<ul class="pager">
-						<li class="previous disabled"><a href="# style="color:black"">&larr; Previous</a></li>
-						<li class="next"><a href="# style="color:black"">Next &rarr;</a></li>
-					</ul>
+					
                     <button type="button" class="btn wideButton btn-sm btn-block">
                         CARGAR MÁS
                     </button>
