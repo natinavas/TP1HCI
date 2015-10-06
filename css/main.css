@@ -17,6 +17,15 @@ a:link {
 	text-decoration: none;
 }
 
+ul li:hover ul.dropdown2 {
+    display: block;
+    /* Display the dropdown */
+}
+
+ul li ul.dropdown2 li {
+    display: block;
+}
+
 .row {
 	margin-right: 0px;
 }
