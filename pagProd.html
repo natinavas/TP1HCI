@@ -1,316 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
     <title>Irui - Producto</title>
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	 <link href="css/bootstrap-theme.css" rel="stylesheet">
-	 <link href="css/main.css" rel="stylesheet">
-	 <link href="css/breadcrumb.css" rel="stylesheet">
-	<link href="css/button.css" rel="stylesheet">
-
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/breadcrumb.css" rel="stylesheet">
+    <link href="css/button.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link href="css/panel.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-
-
-
-  <body>
-
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Nombre Pagina</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-          
-         <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mujeres <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-               <li><a href="#">Calzado</a></li>
-               <li><a href="#">Accesorios</a></li>
-               <li><a href="#">Remeras</a></li>
-          <li><a href="#">Camisas</a></li>
-          <li><a href="#">Vestidos</a></li>
-          <li><a href="#">Polleras y Shorts</a></li>
-          <li><a href="#">Pantalones</a></li>
-          <li><a href="#">Buzos y Camperas</a></li>
-          <li><a href="#">Ropa Interior</a></li>
-
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header"></li>
-                <li><a href="#">Novedades</a></li>
-                <li><a href="#">Descuentos</a></li>
-              </ul>
-            </li>
-
-
-      <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-       expanded="false">Hombres <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-               <li><a href="#">Calzado</a></li>
-               <li><a href="#">Accesorios</a></li>
-               <li><a href="#">Remeras</a></li>
-          <li><a href="#">Camisas</a></li>
-          <li><a href="#">Bermudas</a></li>
-          <li><a href="#">Pantalones</a></li>
-          <li><a href="#">Buzos y Camperas</a></li>
-          <li><a href="#">Ropa Interior</a></li>
-
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header"></li>
-                <li><a href="#">Novedades</a></li>
-                <li><a href="#">Descuentos</a></li>
-              </ul>
-            </li>
-
-<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Descuentos <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-               <li><a href="hombres.html">Hombres</a></li>
-               <li><a href="#">Mujeres</a></li>
-
-
-              </ul>
-            </li>           
-         </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-
-<div class="container">
-        
-    </div>
-        <div class="col-md-4 col-md-offset-3">
-            <form action="" class="search-form">
-                <div class="form-group has-feedback">
-                <label for="search" class="sr-only">Search</label>
-                <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-              </div>
-            </form>
-    </div>
-
-      <a class="nav-icon" href="#">
-         <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-      </a>
-      <a class="nav-icon" href="#">
-         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-      </a>
-
-          <li><a href="/signup">Sign Up</a></li>
-                    <li class="divider-vertical"></li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 9px;">
-              <form method="post" action="login" accept-charset="UTF-8">
-                <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
-                <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
-                <input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
-                <label class="string optional" for="user_remember_me"> Remember me</label>
-                <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
-              </form>
+<body>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mujeres <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown2">
+                                <li><a href="resultadosBusqueda.html">Calzado</a></li>
+                                <li><a href="resultadosBusqueda.html">Accesorios</a></li>
+                                <li><a href="resultadosBusqueda.html">Remeras</a></li>
+                                <li><a href="resultadosBusqueda.html">Camisas</a></li>
+                                <li><a href="resultadosBusqueda.html">Vestidos</a></li>
+                                <li><a href="resultadosBusqueda.html">Polleras y Shorts</a></li>
+                                <li><a href="resultadosBusqueda.html">Pantalones</a></li>
+                                <li><a href="resultadosBusqueda.html">Buzos y Camperas</a></li>
+                                <li><a href="resultadosBusqueda.html">Ropa Interior</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header"></li>
+                                <li><a href="resultadosBusqueda.html">Novedades</a></li>
+                                <li><a href="resultadosBusqueda.html">Descuentos</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria- expanded="false">Hombres <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown2">
+                                <li><a href="resultadosBusqueda.html">Calzado</a></li>
+                                <li><a href="resultadosBusqueda.html">Accesorios</a></li>
+                                <li><a href="resultadosBusqueda.html">Remeras</a></li>
+                                <li><a href="resultadosBusqueda.html">Camisas</a></li>
+                                <li><a href="resultadosBusqueda.html">Bermudas</a></li>
+                                <li><a href="resultadosBusqueda.html">Pantalones</a></li>
+                                <li><a href="resultadosBusqueda.html">Buzos y Camperas</a></li>
+                                <li><a href="resultadosBusqueda.html">Ropa Interior</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header"></li>
+                                <li><a href="resultadosBusqueda.html">Novedades</a></li>
+                                <li><a href="resultadosBusqueda.html">Descuentos</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Descuentos <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown2">
+                                <li><a href="resultadosBusqueda.html">Hombres</a></li>
+                                <li><a href="resultadosBusqueda.html">Mujeres</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="navbar-header logoNav">
+                        <span class="logoName"><a class="" href="pagPrincipal.html">衣類 </a></span>
+                        <span id="translate"><a href="pagPrincipal.html" style= "color:#337ab7">irui</a></span>
+                    </div>
+                    <div class="rightNav">
+                        <div class="col-md-4 search">
+                            <form action="" class="search-form">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Buscar</label>
+                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="shopIcons">
+                            <a class="nav-icon" href="#">
+                                <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                            </a>
+                            <a class="nav-icon" href="#">
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="registrarse.html">Registrarse</a></li>
+                            <li class="divider-vertical"></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Iniciar Sesión<strong class="caret"></strong></a>
+                                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 9px;">
+                                    <form method="post" action="login" accept-charset="UTF-8">
+                                        <input style="margin-bottom: 15px;" type="text" placeholder="Usuario" id="username" name="username">
+                                        <input style="margin-bottom: 15px;" type="password" placeholder="Contraseña" id="password" name="password">
+                                        <input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
+                                        <label class="string optional" for="user_remember_me"> Recordarme</label>
+                                        <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-          </li>
-        </ul>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-<!--como hago lindo esto?? -->
-<br>
-<br>
-
-	
-
-<!--aca empieza -->
-<div class="row">
-  <div class="container">
-<br>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <br>
+    <br>
+    <!--aca empieza -->
     <div class="row">
-		
-	
-		<ul id="breadcrumbs-two">
-			<li><a href="pagPrincipal.html">INICIO</a></li>
-			<li><a href="hombres.html">HOMBRES</a></li>
-			<li><a href="resultadosBusqueda.html">REMERAS</a></li>
-			<li><a href="">Remera The X-Files I Want To Believe</a></li>
-		</ul><br>
-		
-		
-		
+        <div class="container">
+            <br>
+            <div class="row">
+                <ul id="breadcrumbs-two">
+                    <li><a href="pagPrincipal.html">INICIO</a></li>
+                    <li><a href="hombres.html">HOMBRES</a></li>
+                    <li><a href="resultadosBusqueda.html">REMERAS</a></li>
+                    <li><a href="">Remera The X-Files I Want To Believe</a></li>
+                </ul>
+                <br>
+            </div>
+            <div class="product col-sm-6">
+                <a href="#"><img class="img-responsive" src="remeraXfiles1.jpg"><i class="btn btn-product fa fa-star"></i></a>
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="right-block text-right">
+                        <h1>Remera The X-Files I Want To Believe</h1>
+                        <p class="lead">$24</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--mini fotos -->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="remeraXfiles2.jpg">
+                            </div>
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="remeraXfiles3.jpg">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="remeraXfiles4.jpg">
+                            </div>
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="remeraXfiles5.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <!--descripciones -->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="left-block text-left" style="color:grey">
+                                <h5>Descripción: Una remera canchera, pero no tanto.</h5>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class=text-left>
+                                    <div class="btn-group btn-input clearfix">
+                                        <button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">
+                                            <span data-bind="label">TALLE</span> <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">XS</a></li>
+                                            <li><a href="#">S</a></li>
+                                            <li><a href="#">M</a></li>
+                                            <li><a href="#">L</a></li>
+                                            <li><a href="#">XL</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="nav-icon" href="#">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class=text-left>
+                                    <div class="btn-group btn-input clearfix">
+                                        <button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">
+                                            <span data-bind="label">COLOR</span> <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">NEGRO</a></li>
+                                            <li><a href="#">BLANCO</a></li>
+                                            <li><a href="#">AZUL</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="nav-icon" href="#">
+                                    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true" style="color:black"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="label label-success">DISPONIBLE</span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="botonConfig">COMPRAR</button>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
     </div>
-      <div class="product col-sm-6">
-          <a href="#"><img class="img-responsive" src="remeraXfiles1.jpg"><i class="btn btn-product fa fa-star"></i></a>
-            <hr>   
-      </div>
-      <div class="col-md-6">
-        <div class="row">
-          <div class="right-block text-right">
-              <h1>Remera The X-Files I Want To Believe</h1>
-              <p class="lead">$24</p>
-          </div>
-        </div>
-        <div class="row">
-          <!--mini fotos -->
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-6">
-                <img class="img-responsive" src="remeraXfiles2.jpg">
-              </div>
-              <div class="col-md-6">
-                <img class="img-responsive" src="remeraXfiles3.jpg">
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-6">
-                <img class="img-responsive" src="remeraXfiles4.jpg">
-              </div>
-              <div class="col-md-6">
-                <img class="img-responsive" src="remeraXfiles5.jpg">
-              </div>
-            </div>
-          </div>
-          <!--descripciones -->
-          <div class="col-md-6">
-            <div class="row">
-              <div class="left-block text-left" style="color:grey">
-              <h5>Descripción: Una remera canchera, pero no tanto.</h5>
-              <br><br><br>
-          </div> 
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-6">
-                <div class=text-left>
-                  <div class="btn-group btn-input clearfix">
-                    <button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">
-                      <span data-bind="label">TALLE</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">XS</a></li>
-                      <li><a href="#">S</a></li>
-                      <li><a href="#">M</a></li>
-                      <li><a href="#">L</a></li>
-                      <li><a href="#">XL</a></li>
-                    </ul>
-                  </div>
+    <hr>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Log In</h4>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <a class="nav-icon" href="#">
-                  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span>
-                </a>
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-6">
-                <div class=text-left>
-                  <div class="btn-group btn-input clearfix">
-                    <button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">
-                      <span data-bind="label">COLOR</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">NEGRO</a></li>
-                      <li><a href="#">BLANCO</a></li>
-                      <li><a href="#">AZUL</a></li>
-                    </ul>
-                  </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
+                    </div>
+                    <p class="text-right"><a href="#">Forgot password?</a></p>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <a class="nav-icon" href="#">
-                  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true" style="color:black"></span>
-                </a>
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-6">
-                <span class="label label-success">DISPONIBLE</span>
-              </div>
-              <div class="col-md-6">
-                <div class="btn-group" role="group" aria-label="...">
-                  <button type="button" class="botonConfig">COMPRAR</button>
+                <div class="modal-footer">
+                    <a href="#" data-dismiss="modal" class="btn">Close</a>
+                    <a href="#" class="btn btn-primary">Log-in</a>
                 </div>
-              </div>
-            <br>
             </div>
-            
-          </div>
         </div>
-        <br>
-        
-      </div>
-  </div>
-</div>
-<hr>
-
-
-
-<div class="modal fade" id="myModal">
-	<div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title">Log In</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-    		<label for="exampleInputEmail1">Email address</label>
-    		<input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email">
-  		  </div>
-		  <div class="form-group">
-		  	<label for="exampleInputPassword1">Password</label>
-			<input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
-		  </div>
-          <p class="text-right"><a href="#">Forgot password?</a></p>
-        </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal" class="btn">Close</a>
-          <a href="#" class="btn btn-primary">Log-in</a>
-        </div>
-      </div>
     </div>
-</div>
-
-
-
-
     <div class="container">
-
-    </div> <!-- /container -->
-
-	<footer class="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-      </div>
+    </div>
+    <!-- /container -->
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <h3>衣類<span> (irui)</span></h3>
+            <p class="footer-links">
+                <a href="pagPrincipal.html">Inicio</a> ·
+                <a href="faq.html">Preguntas Frecuentes</a> ·
+                <a href="contacto.html">Contacto</a>
+            </p>
+            <p class="footer-company-name">衣類(irui) &copy; 2015</p>
+        </div>
+        <div class="footer-right">
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
+            </div>
+        </div>
     </footer>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-  </body>
+</body>
+
 </html>
