@@ -269,7 +269,6 @@
 
 
                                 <div class="col-md-8">
-    								<!-- Trigger the modal with a button -->
     	
     								<!-- Trigger the modal with a button -->
     								<button type="button" class="btnInfo" data-toggle="modal" data-target="#myModalTalles" aria-label="Left Align">
@@ -321,11 +320,51 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-    								<button type="button" class="botonConfig"> <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color:black"></span>Agregar a Lista de Deseos</button>
+    								<button type="button" class="botonConfig" data-toggle="modal" data-target="#AgregoWishList" aria-label="Left Align"> 
+                                        <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color:black"></span>Agregar a Lista de Deseos
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div id="AgregoWishList" class="modal fade" role="dialog">
+                                    <!-- Modal content-->
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              
+                                              <div class="modal-body"><h3>
+                                                Has agregado a la lista de deseos.</h3>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                              </div>
+                                            </div>
+                                        </div>
+
+                                  
+                                    </div>
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="botonConfig"> <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span>Agregar a Carrito<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span></button>
+                                        <button type="button" class="botonConfig" data-toggle="modal" data-target="#AgregoCart" aria-label="Left Align"> 
+                                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span>Agregar a Carrito<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span>
+                                        </button>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div id="AgregoCart" class="modal fade" role="dialog">
+                                    <!-- Modal content-->
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              
+                                              <div class="modal-body"><h3>
+                                                Has agregado al carrito.</h3>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                              </div>
+                                            </div>
+                                        </div>
+
+                                  
                                     </div>
                                 </div>
                                 <br>
