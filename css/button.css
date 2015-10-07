@@ -83,3 +83,24 @@
     color: #ffffff;
   background: #99db76;
 }
+
+.btnInfo {
+  -webkit-border-radius: 55;
+  -moz-border-radius: 55;
+  border-radius: 55px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 12px;
+  background:  #000000;
+  padding: 1px 0px 1px 0px;
+  text-decoration: none;
+}
+
+.btnInfo:hover {
+  background: #99db76;
+  text-decoration: none;
+}
+
+
+
+
