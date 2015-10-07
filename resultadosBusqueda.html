@@ -105,7 +105,7 @@
                             </a>
                         </div>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="registrarse.html">Registrarse</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#myModal" >Registrarse</a></li>
                             <li class="divider-vertical"></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">Iniciar Sesión<strong class="caret"></strong></a>
@@ -127,6 +127,74 @@
             <!-- /.container-fluid -->
         </nav>
     </header>
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">REGISTRESE!</h4>
+		      </div>
+		   <form class="form-horizontal" action='' method="POST">
+		     <fieldset>
+		       <div id="legend">
+		         <legend class="">Register</legend>
+		       </div>
+		       <div class="control-group">
+		         <!-- Username -->
+		         <label class="control-label"  for="username">Username</label>
+		         <div class="controls">
+		           <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+		           <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+		         </div>
+		       </div>
+ 
+		       <div class="control-group">
+		         <!-- E-mail -->
+		         <label class="control-label" for="email">E-mail</label>
+		         <div class="controls">
+		           <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+		           <p class="help-block">Please provide your E-mail</p>
+		         </div>
+		       </div>
+ 
+		       <div class="control-group">
+		         <!-- Password-->
+		         <label class="control-label" for="password">Password</label>
+		         <div class="controls">
+		           <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+		           <p class="help-block">Password should be at least 4 characters</p>
+		         </div>
+		       </div>
+ 
+		       <div class="control-group">
+		         <!-- Password -->
+		         <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+		         <div class="controls">
+		           <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+		           <p class="help-block">Please confirm password</p>
+		         </div>
+		       </div>
+ 
+		       <div class="control-group">
+		         <!-- Button -->
+		         <div class="controls">
+		           <button class="btn btn-success">Register</button>
+		         </div>
+		       </div>
+		     </fieldset>
+		   </form>
+		   
+			        </div>
+			    </div>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+    </div>
         <ul id="breadcrumbs-two">
             <li><a href="pagPrincipal.html">INICIO</a></li>
             <li><a href="hombres.html">HOMBRES</a></li>
