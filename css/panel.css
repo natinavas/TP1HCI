@@ -38,3 +38,26 @@ div.imgWrapper img {
    width: 144px; /* I took the width from your post and placed it in css */
    height: 197px;
 }
+
+.buttonPanel {
+
+    padding: 10px 30px 10px 30px;
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #FFF;
+    background: #337ab7;
+  border: #99db76;
+}
+.buttonPanel:hover{
+
+    padding: 10px 30px 10px 30px;
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #FFF;
+    background: #99db76;
+  border: #99db76;
+}
