@@ -13,7 +13,7 @@ body {
     color: #ffffff;
 }
 
-.nav-tabs li a:focus,
+.nav-tabs li a:hover,
 .panel-heading a:focus {
     outline: none;
 	background-color:#99db76;
