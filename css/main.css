@@ -27,6 +27,7 @@ ul li:hover ul.dropdown2 {
 .olvidoC{
   display: block;
   margin-top: 5px;
+  font-size:11px;
   color: blue;
 }
 
