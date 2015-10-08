@@ -114,7 +114,7 @@
                                      <input style="margin-bottom: 15px;" type="password" placeholder="Contraseña" id="password" name="password">
                                      <input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
                                      <label class="string optional" for="user_remember_me"> Recordarme</label>
-                                     <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Iniciar Sesión">
+                                     <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Iniciar Sesión"> <a data-toggle="modal" data-target="#cont" href="#"><span class="olvidoC">¿Olvidaste tu contraseña?</span></a>
                                  </form>
                              </div>
                          </li>
@@ -126,7 +126,30 @@
          <!-- /.container-fluid -->
      </nav>
  </header>
-
+<!-- olvido su contraseña -->
+    <div id="cont" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ingrese su E-mail para reestablecer la contraseña</h4>
+                </div>
+                <div class="modal-body">
+                    <label class="control-label" for="email">E-mail</label>
+                    <div class="controls">
+                        <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                        <p class="help-block">Por favor ingrese su E-mail</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn smallButton btn-primary" data-dismiss="modal">Enviar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
