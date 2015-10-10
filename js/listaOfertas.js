@@ -6,7 +6,7 @@
 
 var request = new Object();
 request.timeout = 7000;
-request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts&Id=5";
+request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts&id=1&page_size=18";
 
 
 
@@ -23,7 +23,7 @@ $.ajax(request).done( function(data) {
 function addOffers(data){
 
 	var i  = 0;
-	for (i = 0; i < data.pageSize; i++) { 
+	for (i = 0; i < data.total; i++) { 
 		if(i % 6 == 0){
 
 		document.getElementById('ofertas').innerHTML += '<div class="container">'+
