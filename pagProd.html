@@ -228,15 +228,15 @@
         <div class="container">
             <br>
             <div class="product col-sm-6">
-                <a href="#"><img id="mainPicture" class="img-responsive" src="img/remeraXfiles1.jpg"><i class="btn btn-product"></i></a>
+                  <img id="mainPicture" class="img-responsive">
                 <hr>
             </div>
             <div class="col-md-6">
                 <div class="row">
                     <div class="row">
                         <div class="right-block text-right">
-                            <h1>Remera The X-Files I Want To Believe</h1>
-                            <p class="lead">$24</p>
+                            <h1 id="nameProd" onclick="cambiar()"></h1>
+                            <p id="price" class="lead"></p>
                         </div>
                     </div>
             
@@ -246,19 +246,19 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-6">
-                                <img id="picture2" class="img-responsive" src="img/remeraXfiles2.jpg">
+                                <img id="picture2" class="img-responsive">
                             </div>
                             <div class="col-md-6">
-                                <img id="picture3" class="img-responsive" src="img/remeraXfiles3.jpg">
+                                <img id="picture3" class="img-responsive">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <img id="picture4" class="img-responsive" src="img/remeraXfiles4.jpg">
+                                <img id="picture4" class="img-responsive">
                             </div>
                             <div class="col-md-6">
-                                <img id="picture5" class="img-responsive" src="img/remeraXfiles5.jpg">
+                                <img id="picture5" class="img-responsive">
                             </div>
                         </div>
                     </div>
@@ -281,12 +281,8 @@
                                         <button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">
                                             <span data-bind="label">TALLE</span> <span class="caret"></span>
                                         </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">XS</a></li>
-                                            <li><a href="#">S</a></li>
-                                            <li><a href="#">M</a></li>
-                                            <li><a href="#">L</a></li>
-                                            <li><a href="#">XL</a></li>
+                                        <ul id="Talles" class="dropdown-menu" role="menu">
+                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -330,10 +326,8 @@
                                             <button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">
                                                 <span data-bind="label">COLOR</span> <span class="caret"></span>
                                             </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">NEGRO</a></li>
-                                                <li><a href="#">BLANCO</a></li>
-                                                <li><a href="#">AZUL</a></li>
+                                            <ul id="Color" class="dropdown-menu" role="menu">
+                                                
                                             </ul>
                                         </div>
                                     </div>

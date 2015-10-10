@@ -5,7 +5,6 @@
 
 
 var request = new Object();
-request.timeout = 7000;
 request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts&id=1&page_size=18";
 
 
@@ -14,13 +13,16 @@ request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAll
 request.dataType="jsonp";
 console.log(request.url);
 $.ajax(request).done( function(data) {
-		sessionStorage.setItem("calzados",data);
-		addOffers(data);
+		sessionStorage.setItem("ofertas",JSON.stringify(data));
+		addOffers();
 });
 
 
 
-function addOffers(data){
+function addOffers(){
+
+
+	var data = JSON.parse(sessionStorage.getItem("ofertas"));
 
 	var i  = 0;
 	for (i = 0; i < data.total; i++) { 
@@ -29,8 +31,11 @@ function addOffers(data){
 		document.getElementById('ofertas').innerHTML += '<div class="container">'+
 														'<div class="row">';
 		}
+
+		var ID = "pagProd.html?" + "=" + data.products[i].id;
+
 		var prod = '<div class="col-md-2 col-sm-6 col-xs-6">'+
-				'<a href="pagProd.html">'+
+				'<a onclick="loadProduct(data.products[i].name)" href='+ID+'>'+
 					'<div class="panel panel-default">'+
 						'<div class="panel-body">'+
 							'<div class="imgWrapper">'+
@@ -57,9 +62,5 @@ function addOffers(data){
 		}
 	}
 
-
-
-
-
-
 }
+
