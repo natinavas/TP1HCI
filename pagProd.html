@@ -218,11 +218,11 @@
    
   
     <!--aca empieza -->
-    <ul id="breadcrumbs-two">
+    <ul id="breadcrumbs-two" ng-controller="StoreController as breadcrumbs">
                     <li><a href="pagPrincipal.html">INICIO</a></li>
-                    <li><a href="hombres.html">HOMBRES</a></li>
-                    <li><a href="resultadosBusqueda.html">REMERAS</a></li>
-                    <li><a href="">Remera The X-Files I Want To Believe</a></li>
+                    <li><a href="hombres.html">{{breadcrumbs.first}}</a></li>
+                    <li><a href="resultadosBusqueda.html">{{breadcrumbs.second}}</a></li>
+                    <li><a href="">{{breadcrumbs.prod}}</a></li>
                 </ul>
     <div class="row">
         <div class="container">
