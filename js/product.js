@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 
 
 document.getElementById("addCarrito").addEventListener("click", function(){addCarrito()});
 
-
-=======
->>>>>>> origin/master
 document.getElementById("picture2").addEventListener("mouseover", function(){hover("picture2")});
 document.getElementById("picture2").addEventListener("mouseout", function(){hover("picture2")});
 document.getElementById("picture3").addEventListener("mouseover", function(){hover("picture3")});
@@ -59,11 +55,11 @@ function addCarrito(){
 	var carrito = localStorage.getItem("carrito");
 	var prod = localStorage.getItem("product");
 	if(carrito.products == undefined){
-		
-	alert("agrego al carrito");
-		carrito.products = new Array();
+		carrito.products = [prod];
 	}
-	carrito.products[products.lenght](prod);
+	else{
+		carrito.products[products.lenght](prod);		
+	}
 	console.log(carrito.products);
 }
 

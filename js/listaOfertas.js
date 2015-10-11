@@ -89,10 +89,3 @@ function mySaveBreadcrumb(info){
 	var bh = sessionStorage.getItem("breadcrumbHandler");
 	bh.saveBreadcrumb(info);
 }
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> origin/master
