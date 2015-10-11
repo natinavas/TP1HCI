@@ -218,16 +218,22 @@
    
   
     <!--aca empieza -->
+<<<<<<< HEAD
+    <ul id="myBreadcrumbs" ng-controller="StoreController as breadcrumbs">
+       
+    </ul>
+=======
     <ul id="breadcrumbs-two" ng-controller="StoreController as breadcrumbs">
                     <li><a href="pagPrincipal.html">INICIO</a></li>
-                    <li><a href="hombres.html">{{breadcrumbs.first}}</a></li>
-                    <li><a href="resultadosBusqueda.html">{{breadcrumbs.second}}</a></li>
+                    <li><a href="hombres.html">HOMBRES</a></li>
+                    <li><a href="resultadosBusqueda.html">REMERAS</a></li>
                     <li><a href="">{{breadcrumbs.prod}}</a></li>
-                </ul>
+                </ul><br/>
+>>>>>>> origin/master
     <div class="row">
         <div class="container">
             <br>
-            <div class="product col-sm-6">
+            <div class="product col-sm-4" "col-sm-offset-2">
                   <img id="mainPicture" class="img-responsive">
                 <hr>
             </div>
@@ -445,6 +451,16 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/product.js"></script>
+    <script src="js/breadcrumbs.js"></script>
+    <script>
+      var cant = sessionStorage.getItem("cantBreadcrumb");
+  var i = 1;
+  var name;
+  for(i = 1; i < cant; i ++){
+    name = sessionStorage.getItem("breadcrumb" + i);
+    document.getElementById("myBreadcrumbs").innerHTML += '<li><a href="pagPrincipal.html">' + name + '</a></li>';
+  }
+    </script>
 </body>
 
 </html>
