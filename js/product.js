@@ -1,5 +1,7 @@
 
 
+document.getElementById("addCarrito").addEventListener("click", function(){addCarrito()});
+
 
 document.getElementById("picture2").addEventListener("mouseover", function(){hover("picture2")});
 document.getElementById("picture2").addEventListener("mouseout", function(){hover("picture2")});
@@ -20,6 +22,7 @@ request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetPro
 request.dataType="jsonp";
 console.log(request.url);
 $.ajax(request).done( function(data) {
+	localStorage.setItem("product", data);
 	document.getElementById("nameProd").innerHTML = data.product.name;
 	document.getElementById("mainPicture").src = data.product.imageUrl[0];
 	document.getElementById("price").innerHTML = "$" + data.product.price;
@@ -49,7 +52,17 @@ $.ajax(request).done( function(data) {
 });
 
 
-
+function addCarrito(){
+	var carrito = localStorage.getItem("carrito");
+	var prod = localStorage.getItem("product");
+	if(carrito.products == undefined){
+		
+	alert("agrego al carrito");
+		carrito.products = new Array();
+	}
+	carrito.products[products.lenght](prod);
+	console.log(carrito.products);
+}
 
 
 function hover(picture) {

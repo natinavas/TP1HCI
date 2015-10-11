@@ -1,7 +1,12 @@
 
 
 
+if(carrito == undefined){
+	alert("creo carrito");
+	var carrito = new Object();
 
+	localStorage.setItem("carrito", carrito);
+}
 
 
 var request = new Object();
@@ -63,4 +68,3 @@ function addOffers(){
 	}
 
 }
-
