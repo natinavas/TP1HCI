@@ -1,6 +1,3 @@
-
-
-
 document.getElementById("picture2").addEventListener("mouseover", function(){hover("picture2")});
 document.getElementById("picture2").addEventListener("mouseout", function(){hover("picture2")});
 document.getElementById("picture3").addEventListener("mouseover", function(){hover("picture3")});
