@@ -219,7 +219,7 @@
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-2">
                         <div class="page-header">
-                            <h1>REMERAS</h1>
+                            <h1>BÚSQUEDA</h1>
                         </div>
                         <div id="cantResultados" />
                     </div>
@@ -503,11 +503,30 @@
                                         </div>
                                     </form>
                                 </div>
+
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading-custom">
+                                    <h5 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                                            <font size="1">OFERTAS Y NOVEDADES</font>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse6" class="panel-collapse collapse">
+                                    <form id="ocassion" role="form">
+                                        <div class="checkbox text-left">
+                                            <label><input id="inputOfertas" type="checkbox" value="">Ofertas</label>
+                                        </div>
+                                        <div class="checkbox text-left">
+                                            <label><input id="inputNuevo" type="checkbox" value="">Nuevo</label>
+                                        </div>
+                                    </form>
+                                </div>
+                                
                             </div>
                         </div>
-                        <label for="default" class="btn btn-default">Ofertas   <input type="checkbox" id="default" class="badgebox">
-                            <span class="badge"></span>
-                        </label>
+                        
                         <button id="applyFilterButton" onclick="applyFilter()" type="button" class="buttonPanel">
                             APLICAR FILTROS
                         </button>

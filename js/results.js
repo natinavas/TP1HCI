@@ -73,6 +73,12 @@ function applyFilter(){
 	for(i=0; i<ocassions.length; i++){
 		jsonFilters += '{	"id": ' + 3 + ',	"value": "' + ocassions[i] + '"},';
 	}
+	if(document.getElementById('inputOfertas').checked == true){
+		jsonFilters += '{	"id": ' + 5 + ',	"value": "Oferta"},';
+	}
+	if(document.getElementById('inputNuevo').checked == true){
+		jsonFilters += '{	"id": ' + 6 + ',	"value": "Nuevo"},';
+	}
 	jsonFilters = jsonFilters.slice(0,jsonFilters.length - 1);
 	jsonFilters += ']';
 
