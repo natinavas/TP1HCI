@@ -50,7 +50,68 @@ function applyFilter(){
 	jsonFilters = jsonFilters.slice(0,jsonFilters.length - 1);
 	jsonFilters += ']';
 
+	reloadWithFilters(jsonFilters);
+
 	alert(jsonFilters);
+}
+
+function reloadWithFilters(filt){
+
+	var request = new Object();
+	request.timeout = 7000;
+	request.url = sessionStorage.getItem("ultimaBusqueda");
+	request.url += "&filters=" + filt;
+	request.dataType="jsonp";
+
+	//alert(request.url);
+	document.getElementById('products').innerHTML = "";
+	console.log(request.url);
+	$.ajax(request).done( function(data) {
+
+		var i  = 0;
+		for (i = 0; i < data.total; i++) { 
+			if(i % 4 == 0){
+
+			document.getElementById('products').innerHTML += '<div class="container">'+
+															'<div class="row">';
+			}
+
+
+
+			var ID = "pagProd.html?product" + "=" + data.products[i].id;
+
+
+			var prod = 
+		        '<div class="col-xs-3">'+
+		            '<div class="panel panel-default">'+
+	                    '<a  href='+ID+'>'+
+			                '<div class="panel-body">'+
+			                    '<div class="imgWrapper">'+
+									'<img src='+data.products[i].imageUrl[0]+'>'+
+			                    '</div>'+
+			                    '<br>'+
+								'<font size="3" style="color:black"><b>'+data.products[i].name+'</b></font>'+
+			                    '<br>'+
+								'<font size="2" style="color:grey">$'+data.products[i].price+'</font>'+
+			                '</div>'+
+			            '</a>'+
+		            '</div>'+
+		        '</div>';
+		   
+
+
+
+
+			document.getElementById('products').innerHTML += prod;
+
+			if(i % 4 == 3){
+
+				document.getElementById('products').innerHTML += '</tr>';
+			}
+		}
+	});
+
+
 }
 
 function getFilterColors(){
