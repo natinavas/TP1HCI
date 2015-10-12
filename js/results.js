@@ -176,6 +176,8 @@ function load(){
 
 		$.ajax(request).done( function(data) {
 
+			document.getElementById('cantResultados').innerHTML = "Se encontraron <b>" + JSON.stringify(data.total) + "</b> resultados.";
+
 		var i  = 0;
 		for (i = 0; i < data.total && data.products[i] != undefined; i++) { 
 			if(i % 4 == 0){
