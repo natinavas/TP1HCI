@@ -1,3 +1,7 @@
+//no hay filtros
+sessionStorage.setItem("actualFilters", "");
+sessionStorage.setItem("prevFilters", "");
+
 
 var search = window.location.search.split("?")[1];
 
@@ -10,24 +14,30 @@ loadMore();
 
 
 
-function loadMore(){
+function load(){
 
 		document.getElementById('loadMoreButton').innerHTML = "Cargando...";	
 
 		var request = new Object();
 		request.timeout = 7000;
-		request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name="+input+"&page_size=24"+"&page=" + ++pageNum;
+		request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name="+input+"&page_size=24"+"&page=";
 		request.dataType="jsonp";
 
-		sessionStorage.setItem("ultimaBusqueda", request.url);
+		sessionStorage.setItem("lastSearch", request.url);
 
+		if(sessionStorage.getItem("actualFilters") != sessionStorage.getItem("prevFilters")){
+			request.url += sessionStorage.getItem("prevFilters");
+			alert("aca estoy");
+			pageNum = 0;
+		}
+		request.url +=  ++pageNum;
 
 		console.log(request.url);
 
 		$.ajax(request).done( function(data) {
 
 		var i  = 0;
-		for (i = 0; i < data.total; i++) { 
+		for (i = 0; i < data.total && data.products[i] != undefined; i++) { 
 			if(i % 4 == 0){
 
 			document.getElementById('products').innerHTML += '<div class="container">'+
@@ -75,4 +85,11 @@ function loadMore(){
 
 	
 	document.getElementById('loadMoreButton').innerHTML = "CARGAR MAS";
+}
+
+function loadMore(){
+	sessionStorage.setItem("prevFilters", sessionStorage.getItem("actualFilters"));
+	//sessionStorage.setItem("actualFilters", "");
+
+	load();
 }

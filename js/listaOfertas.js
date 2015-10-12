@@ -31,7 +31,7 @@ function addOffers(){
 	var data = JSON.parse(sessionStorage.getItem("ofertas"));
 
 	var i  = 0;
-	for (i = 0; i < data.total; i++) { 
+	for (i = 0; i < data.total && data.products[i] != undefined; i++) { 
 		if(i % 6 == 0){
 
 		document.getElementById('ofertas').innerHTML += '<div class="container">'+

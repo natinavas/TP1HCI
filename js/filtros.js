@@ -1,6 +1,10 @@
 var request = new Object();
 request.timeout = 7000;
 
+//no hay filtros
+sessionStorage.setItem("actualFilters", "");
+sessionStorage.setItem("prevFilters", "");
+
 //Subo colores
 
 request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=4";
@@ -56,11 +60,18 @@ function applyFilter(){
 }
 
 function reloadWithFilters(filt){
+	
+	sessionStorage.setItem("prevFilters", sessionStorage.getItem("actualFilters"));
+	sessionStorage.setItem("actualFilters", "");
 
 	var request = new Object();
 	request.timeout = 7000;
-	request.url = sessionStorage.getItem("ultimaBusqueda");
-	request.url += "&filters=" + filt;
+	request.url = sessionStorage.getItem("lastSearch");
+	if(filt.length != 1){
+		request.url += "&filters=" + filt;
+		sessionStorage.setItem("prevFilters", sessionStorage.getItem("actualFilters"));
+		sessionStorage.setItem("actualFilters", "&filters=" + filt);
+	}
 	request.dataType="jsonp";
 
 	//alert(request.url);
@@ -68,14 +79,14 @@ function reloadWithFilters(filt){
 	console.log(request.url);
 	$.ajax(request).done( function(data) {
 
+			alert (JSON.stringify(data.total));
 		var i  = 0;
-		for (i = 0; i < data.total; i++) { 
+		for (i = 0; i < data.total && data.products[i] != undefined; i++) { 
 			if(i % 4 == 0){
 
 			document.getElementById('products').innerHTML += '<div class="container">'+
 															'<div class="row">';
 			}
-
 
 
 			var params = window.location.href.split("?")[1];
