@@ -1,11 +1,12 @@
 
+localStorage.removeItem("carrito");
 
-
-if(carrito == undefined){
+var carro = JSON.parse(localStorage.getItem("carrito"));
+if(carro == undefined){
 	alert("creo carrito");
-	var carrito = new Object();
+	var carrito = [];
 
-	localStorage.setItem("carrito", carrito);
+	localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 

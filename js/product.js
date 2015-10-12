@@ -21,7 +21,7 @@ request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetPro
 request.dataType="jsonp";
 console.log(request.url);
 $.ajax(request).done( function(data) {
-	localStorage.setItem("product", data);
+	localStorage.setItem("product", JSON.stringify(data));
 	document.getElementById("nameProd").innerHTML = data.product.name;
 	document.getElementById("mainPicture").src = data.product.imageUrl[0];
 	document.getElementById("price").innerHTML = "$" + data.product.price;
@@ -52,15 +52,12 @@ $.ajax(request).done( function(data) {
 
 
 function addCarrito(){
-	var carrito = localStorage.getItem("carrito");
-	var prod = localStorage.getItem("product");
-	if(carrito.products == undefined){
-		carrito.products = [prod];
-	}
-	else{
-		carrito.products[products.lenght](prod);		
-	}
-	console.log(carrito.products);
+	var carrito = JSON.parse(localStorage.getItem("carrito"));
+	var prod = JSON.parse(localStorage.getItem("product"));
+	alert(JSON.stringify(prod));
+	carrito[length] = prod;
+
+	console.log(JSON.stringify(carrito[0]));
 }
 
 
