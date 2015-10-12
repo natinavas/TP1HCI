@@ -7,5 +7,5 @@ document.getElementById("input").addEventListener("keypress", function(){
 
 function search(){
 	var input =  document.getElementById("input").value;
-	window.location.href = 'resultadosBusqueda.html?Search=' + input;
+	window.location.href = 'resultadosBusqueda.html?search=' + input;
 }

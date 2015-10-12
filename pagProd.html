@@ -218,18 +218,19 @@
    
   
     <!--aca empieza -->
-<<<<<<< HEAD
     <ul id="myBreadcrumbs" ng-controller="StoreController as breadcrumbs">
        
     </ul>
-=======
+
+    <ul id="myBreadcrumbs" ng-controller="StoreController as breadcrumbs">
+       
+    </ul>
     <ul id="breadcrumbs-two" ng-controller="StoreController as breadcrumbs">
                     <li><a href="pagPrincipal.html">INICIO</a></li>
                     <li><a href="hombres.html">HOMBRES</a></li>
                     <li><a href="resultadosBusqueda.html">REMERAS</a></li>
                     <li><a href="">{{breadcrumbs.prod}}</a></li>
                 </ul><br/>
->>>>>>> origin/master
     <div class="row">
         <div class="container">
             <br>
@@ -241,7 +242,7 @@
                 <div class="row">
                     <div class="row">
                         <div class="right-block text-right">
-                            <h1 id="nameProd" onclick="cambiar()"></h1>
+                            <h1 id="nameProd"></h1>
                             <p id="price" class="lead"></p>
                         </div>
                     </div>
@@ -370,7 +371,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="btn-group" role="group" aria-label="...">
-                                        <button type="button" class="botonConfig" data-toggle="modal" data-target="#AgregoCart" aria-label="Left Align"> 
+                                        <button type="button"  id="addCarrito" class="botonConfig" data-toggle="modal" data-target="#AgregoCart" aria-label="Left Align"> 
                                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span>Agregar a Carrito<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:black"></span>
                                         </button>
                                     </div>
