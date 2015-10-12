@@ -151,6 +151,10 @@ function load(){
 
 		document.getElementById('loadMoreButton').innerHTML = "Cargando...";	
 
+	setTimeout(continueLoading,500);
+}
+
+function continueLoading(){
 		var request = new Object();
 		request.timeout = 7000;
 		request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name="+input+"&page_size=24"+"&page=";
@@ -223,7 +227,6 @@ function load(){
 
 	});
 
-	
 	document.getElementById('loadMoreButton').innerHTML = "CARGAR MAS";
 }
 
