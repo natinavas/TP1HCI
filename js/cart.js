@@ -9,6 +9,10 @@ var total = 0;
 
 var i = 0;
 
+if(cart[0] != undefined){
+	document.getElementById("cartProducts").innerHTML = "";
+}
+
 for(i = 0; cart[i] != undefined; i++){
 
 
