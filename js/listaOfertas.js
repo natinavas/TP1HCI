@@ -34,13 +34,8 @@ function addOffers(){
 
 		var ID = "pagProd.html?" + "=" + data.products[i].id;
 
-		var caca = "caca";
-
-		var id = JSON.stringify(i);
-
-
 		var prod = '<div class="col-md-2 col-sm-6 col-xs-6">'+
-				'<a onclick="function(){alert("hola")}" id="product'+ id + '" href= '+ID+'>'+
+				'<a onclick="loadProduct(data.products[i].name)" href='+ID+'>'+
 					'<div class="panel panel-default">'+
 						'<div class="panel-body">'+
 							'<div class="imgWrapper">'+
@@ -55,8 +50,6 @@ function addOffers(){
 				'</a>'+
 			'</div>';
 
-
-
 		document.getElementById('ofertas').innerHTML += prod;
 
 		if(i % 6 == 5){
@@ -67,24 +60,7 @@ function addOffers(){
 														'<br>'+
 														'<br>';
 		}
-
-
-
-
-		document.getElementById("product"+id).addEventListener("click", function(){alert("holaaa")});
-
 	}
 
-
 }
-
-
-function mySaveBreadcrumb(info){
-	alert("wacjniu");
-	var bh = sessionStorage.getItem("breadcrumbHandler");
-	bh.saveBreadcrumb(info);
-}
-
-
-
 
