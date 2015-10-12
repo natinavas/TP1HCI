@@ -1,4 +1,5 @@
 document.getElementById("sign-in").addEventListener("click", function(){signIn()});
+document.getElementById("cerrarSesion").addEventListener("click", function(){signOut()});
 
 $("#navbarContent").empty();
 
@@ -7,7 +8,6 @@ if(notSignedIn()){
 }else{
 	$("#navbarContent").append(loggedInButtons());
 }
-
 
 
 function notSignedIn(){
@@ -43,7 +43,7 @@ function loggedInButtons(){
 			+'<li><a href="usuario.html"><i class="glyphicon glyphicon-user" style = "color:black"></i><h7 style = "color:black">Mi Usuario</h7></a></li>'
 			+'<li><a href="contacto.html"><i class="glyphicon glyphicon-envelope" style = "color:black"></i><h7 style = "color:black"> Contacto</h7></a></li>'
 			+'<li class="divider"></li>'
-			+'<li><a href="pagPrincipal.html"><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 style = "color:black">Cerrar Sesión</h7></a></li>'
+			+'<li><a href="#" id="cerrarSesion"><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 style = "color:black">Cerrar Sesión</h7></a></li>'
 			+'</form>'
 			+'</div>'
 			+'</li>';
@@ -53,7 +53,6 @@ function loggedInButtons(){
 function showError(error){
 	alert(error.message);
 }
-
 
 function signIn(){
 	if("#loginPassword" != null || "#loginPassword" != "" || "#loginPassword" != null || "#loginUser" != null || "#loginUser" !=  ""){
@@ -71,6 +70,28 @@ function signIn(){
 					showError(error);	
 				}
 		});
+		location.reload();
 	}
 }
+
+function deleteAccount(){
+
+	sessionStorage.setItem("account", null);
+	location.reload();
+
+}
+
+function signOut(){
+	var account = JSON.parse(sessionStorage.getItem("account"));
+	var token = sessionStorage.getItem("token");
+
+	var request = new Object();
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignOut&username="+account.username+"&authentication_token="+token;
+	request.dataType="jsonp";
+	
+	$.ajax(request).done(function(data) {	
+		handleResponse(data,deleteAccount);
+	});
+}
+
 
