@@ -90,8 +90,6 @@ function applyFilter(){
 	}
 
 	reloadWithFilters(jsonFilters);
-
-	alert(jsonFilters);
 }
 
 function reloadWithFilters(filt){
@@ -170,8 +168,7 @@ function continueLoading(){
 		sessionStorage.setItem("lastSearch", request.url);
 
 		if(sessionStorage.getItem("actualFilters") != sessionStorage.getItem("prevFilters")){
-			
-			alert("aca estoy");
+		
 			pageNum = 0;
 		}
 		request.url +=  ++pageNum;
