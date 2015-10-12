@@ -81,6 +81,10 @@
 
 .wideButton:focus {
     color: #ffffff;
+}
+
+.wideButton:active {
+    color: #ffffff;
   background: #99db76;
 }
 
