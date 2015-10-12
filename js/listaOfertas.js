@@ -38,7 +38,7 @@ function addOffers(){
 														'<div class="row">';
 		}
 
-		var ID = "pagProd.html?" + "=" + data.products[i].id;
+		var ID = "pagProd.html?product" + "=" + data.products[i].id;
 
 		var prod = '<div class="col-md-2 col-sm-6 col-xs-6">'+
 				'<a onclick="loadProduct(data.products[i].name)" href='+ID+'>'+

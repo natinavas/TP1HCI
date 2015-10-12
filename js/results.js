@@ -32,7 +32,7 @@ function loadMore(){
 
 
 
-			var ID = "pagProd.html?" + "=" + data.products[i].id;
+			var ID = "pagProd.html?product" + "=" + data.products[i].id;
 
 
 			var prod = 

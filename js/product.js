@@ -21,6 +21,14 @@ request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetPro
 request.dataType="jsonp";
 console.log(request.url);
 $.ajax(request).done( function(data) {
+
+
+
+	document.getElementById("breadcrumbs-two").innerHTML += '<li><a href="#">' + data.product.name + '</a></li>';
+
+
+
+
 	localStorage.setItem("product", JSON.stringify(data));
 	document.getElementById("nameProd").innerHTML = data.product.name;
 	document.getElementById("mainPicture").src = data.product.imageUrl[0];

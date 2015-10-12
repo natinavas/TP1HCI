@@ -1,5 +1,20 @@
 
 
+
+
+
+
+var params = window.location.href.split("?")[1].split(";");
+
+for (var i = 0 ; i < params.length; i++) {
+	var key = params[i].split("=")[i];
+	if(key == search){
+		document.getElementById("breadcrumbs-two").innerHTML += '<li><a href="#">BÚSQUEDA</a></li>';
+	}
+
+};
+
+
 function saveBreadcrumb(info){
 	var cant = sessionStorage.getItem("cantBreadcrumb");
 	cant++;
