@@ -40,7 +40,6 @@ $.ajax(request).done( function(data) {
 		}
 	}
 
-	var flag = 1;
 	for(j = 0; (data.product.attributes[j] != undefined); j++){
 		if(data.product.attributes[j].name.split("-")[0] == "Talle"){
 			for(i  = 0; data.product.attributes[j].values[i] !=  undefined; i++){
@@ -54,10 +53,11 @@ $.ajax(request).done( function(data) {
 function addCarrito(){
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	var prod = JSON.parse(localStorage.getItem("product"));
-	alert(JSON.stringify(prod));
-	carrito[length] = prod;
+	if(carrito.indexOf(prod.product.id) == -1){
+		carrito.push(prod.product.id);
+ 	}
 
-	console.log(JSON.stringify(carrito[0]));
+	localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 
