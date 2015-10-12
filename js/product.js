@@ -63,7 +63,21 @@ $.ajax(request).done( function(data) {
 	//seteo marca del producto		
 	for(j = 0; (data.product.attributes[j] != undefined); j++){
 		if(data.product.attributes[j].name == "Marca"){
-			document.getElementById("prodTrademark").innerHTML = '<h5><b>Marca</b>: ' + data.product.attributes[j].values[0];
+			document.getElementById("prodTrademark").innerHTML = '<h5><b>Marca</b>: ' + data.product.attributes[j].values[0] +'.';
+		}
+	}
+
+	//seteo material del producto		
+	for(j = 0; (data.product.attributes[j] != undefined); j++){
+		if(data.product.attributes[j].name.split("-")[0] == "Material"){
+			document.getElementById("prodMaterial").innerHTML = '<h5><b>Material</b>: '+ data.product.attributes[j].values[0] +'.';
+		}
+	}
+
+	//seteo ocacion del producto		
+	for(j = 0; (data.product.attributes[j] != undefined); j++){
+		if(data.product.attributes[j].name == "Ocasion"){
+			document.getElementById("prodOcassion").innerHTML = '<h5><b>Ocasión</b>: ' + data.product.attributes[j].values[0] + '.';
 		}
 	}
 
