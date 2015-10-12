@@ -67,7 +67,6 @@ function signIn(){
 				error = data.meta.error;
 				if(error === undefined){
 					console.log(JSON.stringify(data.account));
-					
 				}else{
 					showError(error);	
 				}
