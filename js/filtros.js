@@ -43,8 +43,23 @@ $.ajax(request).done( function(data){
 
 function applyFilter(){
 	var colors = getFilterColors();
+	var jsonFilters = '['
+	for(i=0; i<colors.length; i++){
+		jsonFilters += '{	"id": ' + 4 + ',	"value": "' + colors[i] + '"},';
+	}
+	jsonFilters = jsonFilters.slice(0,jsonFilters.length - 1);
+	jsonFilters += ']';
+
+	alert(jsonFilters);
 }
 
 function getFilterColors(){
 	var ret = [];
+	var i;
+	for(i = 1; i <= 23; i++){
+		if(document.getElementById('inputColor'+JSON.stringify(i)).checked == true){
+			ret.push(document.getElementById('color'+ JSON.stringify(i)).innerHTML);
+		}
+	}
+	return ret;
 }
