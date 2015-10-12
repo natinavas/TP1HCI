@@ -78,7 +78,9 @@ function reloadWithFilters(filt){
 
 
 
-			var ID = "pagProd.html?product" + "=" + data.products[i].id;
+			var params = window.location.href.split("?")[1];
+
+			var ID = "pagProd.html?" + params + ";product=" + data.products[i].id;
 
 
 			var prod = 
