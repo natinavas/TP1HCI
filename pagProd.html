@@ -439,15 +439,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/product.js"></script>
     <script src="js/breadcrumbs.js"></script>
-    <script>
-      var cant = sessionStorage.getItem("cantBreadcrumb");
-  var i = 1;
-  var name;
-  for(i = 1; i < cant; i ++){
-    name = sessionStorage.getItem("breadcrumb" + i);
-    document.getElementById("myBreadcrumbs").innerHTML += '<li><a href="pagPrincipal.html">' + name + '</a></li>';
-  }
-    </script>
 </body>
 
 </html>

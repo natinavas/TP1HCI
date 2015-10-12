@@ -9,12 +9,14 @@ var total = 0;
 
 var i = 0;
 
-if(cart[0] != undefined){
+if(cart[0] == undefined){
+	document.getElementById("cartProducts").innerHTML = "<h3>SU CARRITO ESTÁ VACÍO</h3>";
+}
+else{
 	document.getElementById("cartProducts").innerHTML = "";
 }
 
 for(i = 0; cart[i] != undefined; i++){
-
 
 	var request = new Object();
 	request.timeout = 7000;
