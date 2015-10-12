@@ -56,9 +56,33 @@ $.ajax(request).done( function(data) {
 		if(data.product.attributes[j].name.split("-")[0] == "Talle"){
 			for(i  = 0; data.product.attributes[j].values[i] !=  undefined; i++){
 			document.getElementById("Talles").innerHTML += '<li><a href="#">'+ data.product.attributes[j].values[i] +'</a></li>';
-		}
+			}
 		}
 	}
+
+	//seteo marca del producto	
+	
+	for(j = 0; (data.product.attributes[j] != undefined); j++){
+		if(data.product.attributes[j].name == "Marca"){
+			document.getElementById("prodTrademark").innerHTML = '<h5><b>Marca</b>: ' + data.product.attributes[j].values[0];
+		}
+	}
+
+	//veo si es nuevo
+	for(j = 0; (data.product.attributes[j] != undefined); j++){
+		if(data.product.attributes[j].name == "Nuevo"){
+			document.getElementById("isNew").innerHTML = '<span class="label label-info">Nuevo</span>';
+		}
+	}
+	//veo si esta en oferta
+	for(j = 0; (data.product.attributes[j] != undefined); j++){
+		if(data.product.attributes[j].name == "Oferta"){
+			document.getElementById("isOffer").innerHTML = '<span class="label label-success">En Oferta</span>';
+		}
+	}
+
+
+
 });
 
 
