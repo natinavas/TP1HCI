@@ -18,6 +18,10 @@ function loadMore(){
 		request.timeout = 7000;
 		request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name="+input+"&page_size=24"+"&page=" + ++pageNum;
 		request.dataType="jsonp";
+
+		sessionStorage.setItem("ultimaBusqueda", request.url);
+
+
 		console.log(request.url);
 
 		$.ajax(request).done( function(data) {
@@ -30,9 +34,9 @@ function loadMore(){
 															'<div class="row">';
 			}
 
+			var params = window.location.href.split("?")[1];
 
-
-			var ID = "pagProd.html?product" + "=" + data.products[i].id;
+			var ID = "pagProd.html?" + params + ";product=" + data.products[i].id;
 
 
 			var prod = 

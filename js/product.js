@@ -11,8 +11,15 @@ document.getElementById("picture4").addEventListener("mouseout", function(){hove
 document.getElementById("picture5").addEventListener("mouseover", function(){hover("picture5")});
 document.getElementById("picture5").addEventListener("mouseout", function(){hover("picture5")});
 
-var id = window.location.search.split("=")[1];
 
+var id ="";
+var params = window.location.search.split("?")[1].split(";");
+
+for (var i = 0 ; i < params.length; i++) {
+	if(params[i].split("=")[0] == "product"){
+		id = params[i].split("=")[1];
+	}
+}
 var request = new Object();
 request.timeout = 7000;
 request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductById&id="+id;
@@ -22,9 +29,6 @@ request.dataType="jsonp";
 console.log(request.url);
 $.ajax(request).done( function(data) {
 
-
-
-	document.getElementById("breadcrumbs-two").innerHTML += '<li><a href="#">' + data.product.name + '</a></li>';
 
 
 
