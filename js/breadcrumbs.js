@@ -10,7 +10,7 @@ for (var i = 0 ; i < params.length; i++) {
 	var key = params[i].split("=")[0];
 	switch(key){
 		case "search":
-			document.getElementById("breadcrumbs-two").innerHTML += '<li><a href="#">BÚSQUEDA</a></li>';
+			document.getElementById("breadcrumbs-two").innerHTML += '<li><a href="resultadosBusqueda.html?search=' + params[i].split("=")[1] + '">BÚSQUEDA</a></li>';
 			break;
 		case "product":
 			
