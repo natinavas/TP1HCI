@@ -60,8 +60,7 @@ $.ajax(request).done( function(data) {
 		}
 	}
 
-	//seteo marca del producto	
-	
+	//seteo marca del producto		
 	for(j = 0; (data.product.attributes[j] != undefined); j++){
 		if(data.product.attributes[j].name == "Marca"){
 			document.getElementById("prodTrademark").innerHTML = '<h5><b>Marca</b>: ' + data.product.attributes[j].values[0];

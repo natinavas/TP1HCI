@@ -26,6 +26,24 @@ div.panel-heading-custom a {
     z-index: 10; /* Places the link above everything else in the div */
 }
 
+div.product {
+    vertical-align: middle;
+   width: 432px; /* I took the width from your post and placed it in css */
+   height: 391px;
+}
+
+div.product img{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #000000;
+}
+
+div.miniProduct img{
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #000000;
+}
+
 div.panel-heading-custom {
     padding: 20px 30px 20px 30px;
     position: relative;
