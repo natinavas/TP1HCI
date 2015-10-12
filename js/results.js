@@ -7,6 +7,15 @@ request.timeout = 7000;
 sessionStorage.setItem("actualFilters", "");
 sessionStorage.setItem("prevFilters", "");
 
+
+var search = window.location.search.split("?")[1];
+
+var input = search.split("=")[1];
+
+
+var pageNum = 0;
+load();
+
 //Subo colores
 
 request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=4";
@@ -51,6 +60,8 @@ function applyFilter(){
 	var colors = getFilterColors();
 	var trademarks = getFilterTrademarks();
 	var ocassions = getFilterOcassions();
+
+	pageNum = 0;
 
 	var jsonFilters = '['
 	for(i=0; i<colors.length; i++){
@@ -131,19 +142,9 @@ function getFilterOcassions(){
 
 
 
-//no hay filtros
-sessionStorage.setItem("actualFilters", "");
-sessionStorage.setItem("prevFilters", "");
 
 
-var search = window.location.search.split("?")[1];
 
-var input = search.split("=")[1];
-
-
-var request = new Object();
-var pageNum = 0;
-load();
 
 
 

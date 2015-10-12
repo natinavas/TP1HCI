@@ -27,6 +27,8 @@ $.ajax(request).done( function(data) {
 
 function addOffers(){
 
+	document.getElementById('ofertas').innerHTML = "";
+
 
 	var data = JSON.parse(sessionStorage.getItem("ofertas"));
 
