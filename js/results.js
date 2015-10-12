@@ -1,3 +1,136 @@
+//seteo filtros
+
+var request = new Object();
+request.timeout = 7000;
+
+//no hay filtros
+sessionStorage.setItem("actualFilters", "");
+sessionStorage.setItem("prevFilters", "");
+
+//Subo colores
+
+request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=4";
+request.dataType="jsonp";
+console.log(request.url);
+
+$.ajax(request).done( function(data){
+	var i = 0;
+	for(i =0 ; i < data.attribute.values.length; i++){
+		document.getElementById('color' + JSON.stringify(i+1)).innerHTML =  data.attribute.values[i];
+	}
+});
+
+//Subo marcas
+
+request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=9";
+request.dataType="jsonp";
+console.log(request.url);
+
+$.ajax(request).done( function(data){
+	var i = 0;
+	for(i =0 ; i < data.attribute.values.length; i++){
+		document.getElementById('trademark' + JSON.stringify(i+1)).innerHTML =  data.attribute.values[i];
+	}
+});
+
+//Subo ocasion
+
+request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=3";
+request.dataType="jsonp";
+console.log(request.url);
+
+$.ajax(request).done( function(data){
+	var i = 0;
+	for(i =0 ; i < data.attribute.values.length; i++){
+		document.getElementById('ocassion' + JSON.stringify(i+1)).innerHTML =  data.attribute.values[i];
+	}
+});
+
+
+function applyFilter(){
+	var colors = getFilterColors();
+	var trademarks = getFilterTrademarks();
+	var ocassions = getFilterOcassions();
+
+	var jsonFilters = '['
+	for(i=0; i<colors.length; i++){
+		jsonFilters += '{	"id": ' + 4 + ',	"value": "' + colors[i] + '"},';
+	}
+	for(i=0; i<trademarks.length; i++){
+		jsonFilters += '{	"id": ' + 9 + ',	"value": "' + trademarks[i] + '"},';
+	}
+	for(i=0; i<ocassions.length; i++){
+		jsonFilters += '{	"id": ' + 3 + ',	"value": "' + ocassions[i] + '"},';
+	}
+	jsonFilters = jsonFilters.slice(0,jsonFilters.length - 1);
+	jsonFilters += ']';
+
+	if(jsonFilters.length == 1){
+		jsonFilters = "";
+	}
+	else{
+		jsonFilters = "&filters=" + jsonFilters;
+	}
+
+	reloadWithFilters(jsonFilters);
+
+	alert(jsonFilters);
+}
+
+function reloadWithFilters(filt){
+
+	document.getElementById('products').innerHTML = "";
+	
+	sessionStorage.setItem("prevFilters", sessionStorage.getItem("actualFilters"));
+	sessionStorage.setItem("actualFilters", filt);
+
+	load();
+}
+
+function getFilterColors(){
+	var ret = [];
+	var i;
+	for(i = 1; i <= 23; i++){
+		if(document.getElementById('inputColor'+JSON.stringify(i)).checked == true){
+			ret.push(document.getElementById('color'+ JSON.stringify(i)).innerHTML);
+		}
+	}
+	return ret;
+}
+
+function getFilterTrademarks(){
+	var ret = [];
+	var i;
+	for(i = 1; i <= 50; i++){
+		if(document.getElementById('inputTrademark'+JSON.stringify(i)).checked == true){
+			ret.push(document.getElementById('trademark'+ JSON.stringify(i)).innerHTML);
+		}
+	}
+	return ret;
+}
+
+function getFilterOcassions(){
+	var ret = [];
+	var i;
+	for(i = 1; i <= 7; i++){
+		if(document.getElementById('inputOcassion'+JSON.stringify(i)).checked == true){
+			ret.push(document.getElementById('ocassion'+ JSON.stringify(i)).innerHTML);
+		}
+	}
+	return ret;
+}
+
+
+
+
+
+
+
+
+//results.js
+
+
+
 //no hay filtros
 sessionStorage.setItem("actualFilters", "");
 sessionStorage.setItem("prevFilters", "");
@@ -10,7 +143,7 @@ var input = search.split("=")[1];
 
 var request = new Object();
 var pageNum = 0;
-loadMore();
+load();
 
 
 
@@ -26,11 +159,18 @@ function load(){
 		sessionStorage.setItem("lastSearch", request.url);
 
 		if(sessionStorage.getItem("actualFilters") != sessionStorage.getItem("prevFilters")){
-			request.url += sessionStorage.getItem("prevFilters");
+			
 			alert("aca estoy");
 			pageNum = 0;
 		}
 		request.url +=  ++pageNum;
+
+		if(sessionStorage.getItem("actualFilters") != ""){
+			request.url += sessionStorage.getItem("actualFilters");
+		}
+
+
+
 
 		console.log(request.url);
 
