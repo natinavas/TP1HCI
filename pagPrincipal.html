@@ -233,7 +233,18 @@
 							<!-- Fecha de Nacimiento -->
 							<label class="control-label" for="fechaNac">Fecha de Nacimiento</label>
 							<div class="controls">
-								<input type="text" id="fechaNac" name="fechaNac" placeholder="" class="input-xlarge">
+
+								<input type="text" name="birthdate" value="10/24/1984" />
+ 
+								<script type="text/javascript">
+								$(function() {
+								    $('input[name="birthdate"]').daterangepicker({
+								        singleDatePicker: true,
+								        showDropdowns: true
+								    })
+								});
+								</script>
+								
 								<p class="help-block">Por favor ingrese su Fecha de Nacimiento</p>
 							</div>
 						</div>
