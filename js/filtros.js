@@ -39,3 +39,12 @@ $.ajax(request).done( function(data){
 		document.getElementById('ocassion' + JSON.stringify(i+1)).innerHTML =  data.attribute.values[i];
 	}
 });
+
+
+function applyFilter(){
+	var colors = getFilterColors();
+}
+
+function getFilterColors(){
+	var ret = [];
+}
