@@ -1,13 +1,11 @@
-document.getElementById("sign-in").addEventListener("click", function(){signIn()});
-document.getElementById("cerrarSesion").addEventListener("click", function(){signOut()});
-
-$("#navbarContent").empty();
-
 if(notSignedIn()){
 	$("#navbarContent").append(notLoggedInButtons());
+	document.getElementById("sign-in").addEventListener("click", function(){signIn()});
 }else{
+	document.getElementById("cerrarSesion").addEventListener("click", function(){signOut()});
 	$("#navbarContent").append(loggedInButtons());
 }
+
 
 
 function notSignedIn(){
@@ -28,7 +26,8 @@ function notLoggedInButtons(){
 			+'<form method="post"  accept-charset="UTF-8">'
 			+'<input style="margin-bottom: 15px;" type="text" placeholder="Usuario" id="loginUser" name="username">'
 			+'<input style="margin-bottom: 15px;" type="password" placeholder="Contraseña" id="loginPassword" name="password">'
-			+'<input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Iniciar Sesión"> <a data-toggle="modal" data-target="#cont" href="#"><span class="olvidoC">¿Olvidaste tu contraseña?</span></a>'
+			+'<input class="btn btn-primary btn-block" id="sign-in" value="Iniciar Sesión">'
+			+'<a data-toggle="modal" data-target="#cont" href="#"><span class="olvidoC">¿Olvidaste tu contraseña?</span></a>'
 			+'</form>'
 			+'</div>'
 			+'</li>';
@@ -55,34 +54,29 @@ function showError(error){
 }
 
 function signIn(){
-	if("#loginPassword" != null || "#loginPassword" != "" || "#loginPassword" != null || "#loginUser" != null || "#loginUser" !=  ""){
-		
 		var request = new Object();
-		request.url="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + loginUser + "&password=" + loginPassword;
+		request.url="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + document.getElementById('loginUser').value + "&password=" + document.getElementById('loginPassword').value;
 		request.dataType="jsonp";
-		
 		console.log(request.url);
 		$.ajax(request).done(function(data){
-				error = data.meta.error;
+				error = data.error;
 				if(error === undefined){
-					console.log(JSON.stringify(data.account));
+					localStorage.setItem("loggedUser", JSON.stringify(data));
+					location.reload();
 				}else{
 					showError(error);	
 				}
 		});
-		location.reload();
-	}
+		
 }
 
 function deleteAccount(){
-
 	sessionStorage.setItem("account", null);
 	location.reload();
-
 }
 
 function signOut(){
-	var account = JSON.parse(sessionStorage.getItem("account"));
+	var account = JSON.parse(sessionStorage.getItem("loggedUser"));
 	var token = sessionStorage.getItem("token");
 
 	var request = new Object();
