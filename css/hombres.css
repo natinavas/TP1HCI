@@ -11,7 +11,7 @@
   -webkit-filter: grayscale(100%);
 }
 
-body { padding-top: 20px; }
+body
 #myCarousel .nav a small {
     display:block;
 }
