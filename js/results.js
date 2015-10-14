@@ -7,6 +7,14 @@ request.timeout = 7000;
 sessionStorage.setItem("actualFilters", "");
 sessionStorage.setItem("prevFilters", "");
 
+$("#ocasionTitle").hide();
+$("#removeocasion").hide();
+
+$("#trademarkTitle").hide();
+$("#removetrademark").hide();
+
+$("#colorTitle").hide();
+$("#removecolor").hide();
 
 var search = window.location.search.split("?")[1];
 
@@ -16,63 +24,98 @@ var input = search.split("=")[1];
 var pageNum = 0;
 load();
 
-//Subo colores
 
-request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=4";
-request.dataType="jsonp";
-console.log(request.url);
+function removeFilter(category){
+	alert("holaaaa");
+		$("#" + category + "Title").hide();
+		$("#" + "remove" + category).hide();
+    	document.getElementById("color").innerHTML = '<option>'+ category +'</option>';
+    	location.reload();
+}
 
-$.ajax(request).done( function(data){
+
+
+
+
+//Subo colores, marcas y ocasion
+
+function setFilters(data){
+
+
+
+
 	var i = 0;
-	for(i =0 ; i < data.attribute.values.length; i++){
-		document.getElementById('color' + JSON.stringify(i+1)).innerHTML =  data.attribute.values[i];
+	for(i =0 ; data.filters != undefined && data.filters[i] != undefined; i++){
+		switch(data.filters[i].id){
+			case 4:
+				var e = document.getElementById("color");
+			    var selection = e.options[e.selectedIndex].text;
+
+			    if(selection != "Color"){
+					$("#colorTitle").show();
+					$("#removecolor").show();
+				}
+				else{
+					document.getElementById("color").innerHTML = '<option>'+ 'Color' +'</option>';
+					for(var j = 0; data.filters[i].values[j] != undefined; j ++){
+						document.getElementById("color").innerHTML += '<option>'+ data.filters[i].values[j] +'</option>';
+					}
+				}
+				break;
+			case 9:
+				var e = document.getElementById("trademark");
+			    var selection = e.options[e.selectedIndex].text;
+
+			    if(selection != "Marca"){
+					$("#trademarkTitle").show();
+					$("#removetrademark").show();
+			    }
+			    else{
+			    	document.getElementById("trademark").innerHTML = '<option>'+ 'Marca' +'</option>';
+					for(var j = 0; data.filters[i].values[j] != undefined; j ++){
+						document.getElementById("trademark").innerHTML += '<option>'+ data.filters[i].values[j] +'</option>';
+					}
+				}
+				break;
+			case 3:
+				var e = document.getElementById("ocasion");
+			    var selection = e.options[e.selectedIndex].text;
+
+			    if(selection != "Ocasión"){
+					$("#ocasionTitle").show();
+					$("#removeocasion").show();
+			    }
+			    else{
+			    	document.getElementById("ocasion").innerHTML = '<option>'+ 'Ocasión' +'</option>';
+					for(var j = 0; data.filters[i].values[j] != undefined; j ++){
+						document.getElementById("ocasion").innerHTML += '<option>'+ data.filters[i].values[j] +'</option>';
+					}
+				}
+				break;
+			default:
+				break;
+		}
 	}
-});
-
-//Subo marcas
-
-request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=9";
-request.dataType="jsonp";
-console.log(request.url);
-
-$.ajax(request).done( function(data){
-	var i = 0;
-	for(i =0 ; i < data.attribute.values.length; i++){
-		document.getElementById('trademark' + JSON.stringify(i+1)).innerHTML =  data.attribute.values[i];
-	}
-});
-
-//Subo ocasion
-
-request.url="http://eiffel.itba.edu.ar/hci/service3/Common.groovy?method=GetAttributeById&id=3";
-request.dataType="jsonp";
-console.log(request.url);
-
-$.ajax(request).done( function(data){
-	var i = 0;
-	for(i =0 ; i < data.attribute.values.length; i++){
-		document.getElementById('ocassion' + JSON.stringify(i+1)).innerHTML =  data.attribute.values[i];
-	}
-});
+}
 
 
 function applyFilter(){
-	var colors = getFilterColors();
-	var trademarks = getFilterTrademarks();
-	var ocassions = getFilterOcassions();
+	var color = getFilterColors();
+	var trademark = getFilterTrademarks();
+	var ocassion = getFilterOcassions();
 
 	pageNum = 0;
 
-	var jsonFilters = '['
-	for(i=0; i<colors.length; i++){
-		jsonFilters += '{	"id": ' + 4 + ',	"value": "' + colors[i] + '"},';
-	}
-	for(i=0; i<trademarks.length; i++){
-		jsonFilters += '{	"id": ' + 9 + ',	"value": "' + trademarks[i] + '"},';
-	}
-	for(i=0; i<ocassions.length; i++){
-		jsonFilters += '{	"id": ' + 3 + ',	"value": "' + ocassions[i] + '"},';
-	}
+	var jsonFilters = '[';
+		if(color != undefined)
+		jsonFilters += '{	"id": ' + 4 + ',	"value": "' + color + '"},';
+
+		if(trademark != undefined)
+		jsonFilters += '{	"id": ' + 9 + ',	"value": "' + trademark + '"},';
+
+		if(ocassion != undefined)
+		jsonFilters += '{	"id": ' + 3 + ',	"value": "' + ocassion + '"},';
+
 	if(document.getElementById('inputOfertas').checked == true){
 		jsonFilters += '{	"id": ' + 5 + ',	"value": "Oferta"},';
 	}
@@ -103,36 +146,32 @@ function reloadWithFilters(filt){
 }
 
 function getFilterColors(){
-	var ret = [];
-	var i;
-	for(i = 1; i <= 23; i++){
-		if(document.getElementById('inputColor'+JSON.stringify(i)).checked == true){
-			ret.push(document.getElementById('color'+ JSON.stringify(i)).innerHTML);
-		}
-	}
-	return ret;
+	var e = document.getElementById("color");
+    var ret = e.options[e.selectedIndex].text;
+    if(ret != "Color"){
+		$("#color").hide();
+		document.getElementById("ocasionTitle").innerHTML = ret;
+    	return ret;
+    }
+    return undefined;
 }
 
 function getFilterTrademarks(){
-	var ret = [];
-	var i;
-	for(i = 1; i <= 50; i++){
-		if(document.getElementById('inputTrademark'+JSON.stringify(i)).checked == true){
-			ret.push(document.getElementById('trademark'+ JSON.stringify(i)).innerHTML);
-		}
-	}
-	return ret;
+	var e = document.getElementById("trademark");
+    var ret = e.options[e.selectedIndex].text;
+    if(ret != "Marca"){
+    	return ret;
+    }
+    return undefined;
 }
 
 function getFilterOcassions(){
-	var ret = [];
-	var i;
-	for(i = 1; i <= 7; i++){
-		if(document.getElementById('inputOcassion'+JSON.stringify(i)).checked == true){
-			ret.push(document.getElementById('ocassion'+ JSON.stringify(i)).innerHTML);
-		}
-	}
-	return ret;
+	var e = document.getElementById("ocasion");
+    var ret = e.options[e.selectedIndex].text;
+    if(ret != "Ocasión"){
+    	return ret;
+    }
+    return undefined;
 }
 
 
@@ -171,6 +210,8 @@ function continueLoading(){
 		
 			pageNum = 0;
 		}
+
+
 		request.url +=  ++pageNum;
 
 		if(sessionStorage.getItem("actualFilters") != ""){
@@ -183,6 +224,11 @@ function continueLoading(){
 		console.log(request.url);
 
 		$.ajax(request).done( function(data) {
+
+
+		if(pageNum == 1){
+			setFilters(data);
+		}
 
 			document.getElementById('cantResultados').innerHTML = "Se encontraron <b>" + JSON.stringify(data.total) + "</b> resultados.";
 

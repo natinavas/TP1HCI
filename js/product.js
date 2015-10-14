@@ -20,6 +20,10 @@ for (var i = 0 ; i < params.length; i++) {
 		id = params[i].split("=")[1];
 	}
 }
+
+
+
+
 var request = new Object();
 request.timeout = 7000;
 request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductById&id="+id;
@@ -28,8 +32,6 @@ request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetPro
 request.dataType="jsonp";
 console.log(request.url);
 $.ajax(request).done( function(data) {
-
-
 
 
 
@@ -48,14 +50,14 @@ $.ajax(request).done( function(data) {
 	for(j = 0; data.product.attributes[j] != undefined; j++){
 		if(data.product.attributes[j].name == "Color"){
 			for(i = 0; data.product.attributes[j].values[i] != undefined; i++)
-				document.getElementById("Color").innerHTML += '<li><a href="#">'+ data.product.attributes[j].values[i] +'</a></li>';
+				document.getElementById("Color").innerHTML += '<option>'+ data.product.attributes[j].values[i] +'</option>';
 		}
 	}
 
 	for(j = 0; (data.product.attributes[j] != undefined); j++){
 		if(data.product.attributes[j].name.split("-")[0] == "Talle"){
 			for(i  = 0; data.product.attributes[j].values[i] !=  undefined; i++){
-			document.getElementById("Talles").innerHTML += '<li><a href="#">'+ data.product.attributes[j].values[i] +'</a></li>';
+			document.getElementById("Talles").innerHTML += '<option>'+ data.product.attributes[j].values[i] +'</option>';
 			}
 		}
 	}
@@ -98,6 +100,18 @@ $.ajax(request).done( function(data) {
 
 });
 
+
+function getTalle(){
+	var e = document.getElementById("Talles");
+    var option = e.options[e.selectedIndex].text;
+    alert(option);
+}
+
+function getColor(){
+	var e = document.getElementById("Color");
+    var option = e.options[e.selectedIndex].text;
+    alert(option);
+}
 
 function addCarrito(){
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
