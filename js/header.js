@@ -76,33 +76,70 @@ function signOut() {
 
 function CreateAccount() {
 
-    var username = JSON.stringify(document.getElementById("usernameP").value);			// stringify por que los valores tienen que estar como string
-    var firstname = JSON.stringify(document.getElementById("nombre").value);
-    var lastName = JSON.stringify(document.getElementById("apellido").value);
-    var dni = JSON.stringify(document.getElementById("dni").value);
-    var password = JSON.stringify(document.getElementById("passwordP").value);
-    var email = JSON.stringify(document.getElementById("emailP").value);
-    var birthdate = JSON.stringify("1989-04-10");										// para ahorrar tiempo harcodeo la fecha y el genero hasta acomodar eso
+   var username = document.getElementById("usernameP").value;
+	var firstname = document.getElementById("nombre").value;
+	var dni = document.getElementById("dni").value;
+	var password = document.getElementById("passwordP").value;
+	var email = document.getElementById("emailP").value;
+	var lastName = document.getElementById("apellido").value;
+	var birthdate = "1989-04-10"; 
+	var gender = "M";
 
-    var gender = JSON.stringify("M");
+    var account2 = {
+        "username": username,
+        "password": password,
+        "firstName": firstname,
+        "lastName": lastName,
+        "gender": gender,
+        "identityCard": dni,
+        "email": email,
+        "birthDate": birthdate
+    };
 
- 
+
     var request = new Object();
-    request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=%7b%22username%22:" + username + ",%22password%22:" + password + ",%22firstName%22:" + firstname + ",%22lastName%22:" + lastName + ",%22gender%22:" + gender + ",%22identityCard%22:" + dni + ",%22email%22:" + email + ",%22birthDate%22:" + birthdate + "%7d";
-    request.dataType = "jsonp";
+    request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=" + encodeURIComponent(JSON.stringify(account2)); 
+    	request.dataType = "jsonp"; 
+    	console.log(password); 
+    	console.log(username); 
+    	console.log(firstname); 
+    	console.log(request.url);
+    	 $.ajax(request).done(function(data) {
+            console.log(data);
+            error = data.error;
+            if (error === undefined) {
+            	console.log(password); 
+    			console.log(username); 
+    			console.log(firstname); 
+    			console.log(request.url);
+            	localStorage.setItem("loggedUser", JSON.stringify(data));
+                localStorage.setItem("account", JSON.stringify(data));
+                //location.reload();
+            } else {
+                showError(error);
+            }
+        });
    
-    console.log(password);
-    console.log(username); 
-    console.log(firstname);
-    console.log(request.url); 
-    $.ajax(request).done(function(data) {
-        error = data.error;
-        if (error === undefined) {
-            localStorage.setItem("account", JSON.stringify(data));
+    	
+    
+    
             //location.reload();
-        } else {
-            showError(error);
-        }
-    });
+        
+    
+    	/*request.dataType = "jsonp"; 
+    	console.log(password); 
+    	console.log(username); 
+    	console.log(firstname); 
+    	console.log(request.url);
+    	 $.ajax(request).done(function(data) {
+            console.log(data);
+            error = data.error;
+            if (error === undefined) {
+            	sessionStorage.setItem("account", JSON.stringify(data));
+                location.reload();
+            } else {
+                showError(error);
+            }
+        });*/
 
-}
+    }
