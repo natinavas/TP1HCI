@@ -1,4 +1,3 @@
-
 localStorage.removeItem("carrito");
 
 var carro = JSON.parse(localStorage.getItem("carrito"));
