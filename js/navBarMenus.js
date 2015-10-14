@@ -1,5 +1,5 @@
 
-var request = new Object();
+/*var request = new Object();
 request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=1";
 request.dataType = "jsonp";
 
@@ -12,7 +12,7 @@ $.ajax(request).done(function(calzado) {
 		var i;
 		for(i=0; calzado.subcategorioes[i] != undefined; i++){
 			if(calzado.subcategories[i].attributes[0].values[0] == "Adulto" && calzado.category.attributes[1].values[i] == "Femenino"){
-				document.getElementById('calzadoMujeres').innerHTML = <li><a href="#">Alpargatas</a></li>;
+				document.getElementById('calzadoMujeres').innerHTML = '<li><a href="#">Alpargatas</a></li>';
 				
 			}
 	}			
@@ -26,4 +26,4 @@ $.ajax(request).done(function(calzado) {
 
 function showError(error) {
     alert(error.message);
-}
+}*/
