@@ -115,7 +115,15 @@ function notSignedIn() {
 		request.dataType = "jsonp";
 
 		$.ajax(request).done(function(data) {
-			handleResponse(data, deleteAccount());
+			error = data.error;
+		
+			if(error == undefined){
+				sessionStorage.removeItem("loggedUser");
+				localStorage.removeItem("carrito");
+				
+			}else{
+				showError(error);
+			}
 		});
 		location.reload();
 	}

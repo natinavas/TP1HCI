@@ -1,5 +1,3 @@
-
-
 //alert(sessionStorage.getItem("loggedUser").authenticationToken);
 //var aux2 = sessionStorage.getItem("loggedUser").account.username;
 //alert("username: " + aux2);
@@ -24,8 +22,13 @@ function changePassword(){
 }
 
 
+function showError(error) {
+	alert(error.message);
+}
+
+
 function addAddress(){
-	alert("entro");
+	//alert("entro");
 	var newAddress= {
 		name: document.getElementById("nombreD").value,
 		street: document.getElementById("calleD").value,
@@ -35,24 +38,31 @@ function addAddress(){
 		phoneNumber: document.getElementById("telD")
 	};
 	
-	alert(JSON.stringify(newAddress));
+	console.log("new address:" + JSON.stringify(newAddress));
 	
 	var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 	
 	var request=new Object();
 	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAddress&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&address=" + JSON.stringify(newAddress);
 	request.dataType = "jsonp";
-	alert("request url: " + request.url);
+	console.log("request url: " + request.url);
 	
 	$.ajax(request).done(function(data) {
-		alert("rta" + JSON.stringify(data));
-		if(user.cantAddress == undefined || user.cantAddress == 0){
-			user.cantAdress=1;
-			user.addresses= {};
+		error=data.error;
+		//alert("rta" + JSON.stringify(data));
+		if(error==undefined){
+			if(user.cantAddress == undefined || user.cantAddress == 0){
+				user.cantAdress=1;
+				user.addresses= {};
+			}
+			else
+				user.cantAddress+=1;
+			user.addresses[user.cantAddress - 1] = data;
+		}else{
+			showError(error);
 		}
-		else
-			user.cantAddress+=1;
-		user.addresses[user.cantAddress - 1] = data;
-	});
+
+});
+	
 	
 }
