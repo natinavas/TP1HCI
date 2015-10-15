@@ -40,7 +40,7 @@
 	
 		<div class="container">
 			<div class="page-header">
-				<h1>MI USUARIO</h1>
+				<h2>MI USUARIO</h2>
 			</div>
 			<div class="user-info-block">
         
@@ -65,6 +65,11 @@
 					<li>
 						<a data-toggle="tab" href="#gestionPedidos">
 							<span class="glyphicon glyphicon-send" style="color:black"></span>
+						</a>
+					</li>
+					<li>
+						<a data-toggle="tab" href="#tarjetas">
+							<span class="glyphicon glyphicon-credit-card" style="color:black"></span>
 						</a>
 					</li>
 		
@@ -216,6 +221,9 @@
 												<input type="text" id="numeroD" placeholder="número" class="form-control">
 											</div>
 										</div><br />
+										
+										<!-- Text input-->
+										
 
 										<!-- Text input-->
 										<div class="form-group">
@@ -319,6 +327,77 @@
 								<div class="panel-footer">Put here some note for example: bootdey si a gallery of free bootstrap snippets</div>
 								</div>
 				
+						</div>
+						
+						<div id="tarjetas" class="tab-pane">
+							<h3>Mis Direcciones</h3><br />
+				
+							<div class="row">
+								<h4>Agregar Dirección</h4>    
+								<form class="form-horizontal" role="form">
+									<fieldset>
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="textinput">Nombre</label>
+											<div class="col-sm-10">
+												<input type="text" id="nombreD" placeholder="nombre" class="form-control">
+											</div>
+										</div><br />
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="textinput">Calle</label>
+											<div class="col-sm-10">
+												<input type="text" id="calleD" placeholder="calle" class="form-control">
+											</div>
+										</div><br />
+										
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="textinput">Número</label>
+											<div class="col-sm-10">
+												<input type="text" id="numeroD" placeholder="número" class="form-control">
+											</div>
+										</div><br />
+										
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="textinput">Ciudad</label>
+											<div class="col-sm-10">
+												<input type="text" id="ciudadD" placeholder="ciudad" class="form-control">
+											</div>
+										</div><br />
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="textinput">Provincia</label>
+											<div class="col-sm-4">
+												<input type="text" id="provinciaD" placeholder="provincia" class="form-control">
+											</div>
+
+											<label class="col-sm-2 control-label" for="textinput">Código Postal</label>
+											<div class="col-sm-4">
+												<input type="text" id="cpD" placeholder="código Postal" class="form-control">
+											</div>
+										</div><br />
+
+										<!-- Text input-->
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="textinput">Número de Teléfono</label>
+											<div class="col-sm-10">
+												<input type="text" id="telD" placeholder="número de teléfono" class="form-control">
+											</div>
+										</div><br />
+
+
+									</fieldset>
+								</form>
+								<div class="pull-right">
+									<button type="submit" class="btn btn-default">Cancelar</button>
+									<button  id="agregarDir" class="btn smallButton btn-primary">Guardar</button>
+								</div>
+							</div><!-- /.row -->
 						</div>
 			
 					</div>
