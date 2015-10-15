@@ -18,58 +18,35 @@ else{
 
 for(i = 0; cart[i] != undefined; i++){
 
-	var request = new Object();
-	request.timeout = 7000;
-	request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductById&id="+JSON.stringify(cart[i]);
+	var color = JSON.parse(cart[i]).color;
+	var talle = JSON.parse(cart[i]).talle;
+	var quantity = JSON.parse(cart[i]).quantity;
 
 
-	request.dataType="jsonp";
-	console.log(request.url);
-	$.ajax(request).done( function(product) {
+	var name = JSON.parse(cart[i]).name;
+	var image = JSON.parse(cart[i]).image;
+	var price = parseInt(JSON.parse(cart[i]).price);
+	var marca = JSON.parse(cart[i]).marca;
 
-
-
-
-
-	subtotal += product.product.price;
-	costoEnvio += Math.round(product.product.price/20);
-	total += product.product.price + Math.round(product.product.price/20);
-
-	var colores = "";
-	var j = 0;
-	var k = 0;
-	for(j = 0; product.product.attributes[j] != undefined; j++){
-		if(product.product.attributes[j].name == "Color"){
-			for(k = 0; product.product.attributes[j].values[k] != undefined; k++)
-				colores += '<li><a href="#">'+ product.product.attributes[j].values[k] +'</a></li>';
-		}
-	}
-
-	var talles = "";
-
-	for(j = 0; (product.product.attributes[j] != undefined); j++){
-		if(product.product.attributes[j].name.split("-")[0] == "Talle"){
-			for(k  = 0; product.product.attributes[j].values[k] !=  undefined; k++){
-			talles += '<li><a href="#">'+ product.product.attributes[j].values[k] +'</a></li>';
-		}
-		}
-	}
+	subtotal += price;
+	costoEnvio += Math.round(price/20);
+	total += price + Math.round(price/20);
 
 
 	var prod = 	'<div class="row">'+
-	            '<div class="col-xs-2"><img class="img-responsive" src=' + product.product.imageUrl[0] + '>'+
+	            '<div class="col-xs-2"><img class="img-responsive" src=' + image + '>'+
 	            '</div>'+
 	            '<div class="col-xs-4">'+
-	                '<h4 class="product-name"><strong>'+ product.product.name + '</strong></h4>'+
-	                '<h4><small>Descripción: una clasica camisa azul para todo tipo de ocación.</small></h4>'+
+	                '<h4 class="product-name"><strong>'+ name + '</strong></h4>'+
+	                '<h4>Marca: '+ marca + '</h4>'+
 	                
 	            '</div>'+
 	            '<div class="col-xs-6">'+
 	                '<div class="col-xs-6 text-right">'+
-	                    '<h4><strong>$' + product.product.price + ' <span class="text-muted">x</span></strong></h4>'+
+	                    '<h4><strong>$' + price + ' <span class="text-muted">x</span></strong></h4>'+
 	                '</div>'+
 	                '<div class="col-xs-4">'+
-	                    '<input type="number" name="quantity" min="1" max="15" value="1">'+
+	                    '<input type="number" name="quantity" min="1" max="15" value="' + quantity + '">'+
 	                '</div>'+
 	                '<div class="col-xs-2">'+
 	                    '<button type="button" class="btn btn-link btn-xs">'+
@@ -82,11 +59,14 @@ for(i = 0; cart[i] != undefined; i++){
 	            '</div>'+
 	            '<br>'+
 	            '<br>'+
-	            '<br>'+
-	            '<div class="col-xs-1 col-xs-offset-1">'+
+	            '<div class="col-xs-3 col-xs-offset-1">'+
+	            '<h4>Color: ' + color + '</h4>' +
+	            '<h4>Talle: ' + talle + '</h4>' +
 	            '</div><br/><br/><br/>'+
 	        '</div>'+
 	        '<hr></hr>';
+
+
 
 	        document.getElementById("cartProducts").innerHTML += prod;
 
@@ -94,7 +74,4 @@ document.getElementById("subtotal").innerHTML = "$" + subtotal;
 document.getElementById("costoEnvio").innerHTML = "$" + costoEnvio;
 document.getElementById("total").innerHTML = "$" + total;
 
-	});
 }
-
-

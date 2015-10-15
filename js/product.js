@@ -42,6 +42,10 @@ $.ajax(request).done( function(data) {
 
 	var i =  0, j = 0;
 
+	sessionStorage.setItem("image", data.product.imageUrl[0]);
+	sessionStorage.setItem("price", data.product.price);
+	sessionStorage.setItem("name", data.product.name);
+
 
 	for(i  = 1; data.product.imageUrl[i] !=  undefined; i++){
 		var picture = "picture"+ (i+1);
@@ -67,6 +71,7 @@ $.ajax(request).done( function(data) {
 	for(j = 0; (data.product.attributes[j] != undefined); j++){
 		if(data.product.attributes[j].name == "Marca"){
 			document.getElementById("prodTrademark").innerHTML = '<h5><b>Marca</b>: ' + data.product.attributes[j].values[0] +'.';
+			sessionStorage.setItem("marca", data.product.attributes[j].values[0]);
 		}
 	}
 
@@ -114,14 +119,14 @@ function getColor(){
 
 function addCarrito(){
 	var e = document.getElementById("Color");
-    var option = e.options[e.selectedIndex].text;
-    if(option == "Color"){
+    var optionColor = e.options[e.selectedIndex].text;
+    if(optionColor == "Color"){
     	alert("Elija un color");
     	return;
     }
-    e = document.getElementById("Talle");
-    option = e.options[e.selectedIndex].text;
-    if(option == "Talle"){
+    e = document.getElementById("Talles");
+    var optionTalle = e.options[e.selectedIndex].text;
+    if(optionTalle == "Talle"){
     	alert("Elija un talle");
     	return;
     }
@@ -129,9 +134,34 @@ function addCarrito(){
 
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	var prod = JSON.parse(localStorage.getItem("product"));
-	if(carrito.indexOf(prod.product.id) == -1){
-		carrito.push(prod.product.id);
- 	}
+
+    var newProd = new Object();
+    newProd.id = prod.product.id;
+    newProd.color = optionColor;
+    newProd.talle = optionTalle;
+    newProd.quantity = 1;
+    newProd.marca = sessionStorage.getItem("marca");
+    newProd.name = sessionStorage.getItem("name");
+    newProd.image = sessionStorage.getItem("image");
+    newProd.price = sessionStorage.getItem("price");
+
+
+
+
+    for (var i = 0; carrito[i] != undefined; i++) {
+    	product = JSON.parse(carrito[i]);
+    	if(product.id == newProd.id && product.color == newProd.color
+    	 && product.talle == newProd.talle){
+    		product.quantity++;
+    		carrito[i] = JSON.stringify(product);
+			localStorage.setItem("carrito", JSON.stringify(carrito));
+			alert("se ha agregado al carrito");
+			return;
+    	}
+    }
+
+
+    		carrito.push(JSON.stringify(newProd));
 
 	localStorage.setItem("carrito", JSON.stringify(carrito));
 
