@@ -25,7 +25,7 @@ function loadIndumentaria(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres">'+
+		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres;age=Adulto">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuHombres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -38,7 +38,7 @@ function loadIndumentaria(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?category=2;gender=Hombres">'+
+		                    '<a href="resultadosBusqueda.html?category=2;gender=Hombres;age=Adulto">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuHombres/vertodoIndumentaria.jpg" title="vertodoIndumentaria" alt="vertodoIndumentaria" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -73,7 +73,7 @@ function loadCalzado(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres">'+
+		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres;age=Adulto">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuHombres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -86,7 +86,7 @@ function loadCalzado(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?category=1;gender=Hombres">'+
+		                    '<a href="resultadosBusqueda.html?category=1;gender=Hombres;age=Adulto">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuHombres/vertodoCalzado.jpg" title="vertodoCalzado" alt="vertodoCalzado" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -120,7 +120,7 @@ function loadAccesorios(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres">'+
+		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres;age=Adulto">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuHombres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -133,7 +133,7 @@ function loadAccesorios(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?category=3;gender=Hombres">'+
+		                    '<a href="resultadosBusqueda.html?category=3;gender=Hombres;age=Adulto">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuHombres/vertodoAccesorios.jpg" title="vertodoAccesorios" alt="vertodoAccesorios" style="width:200px;height:275px;">'+
 		                        '</div>'+

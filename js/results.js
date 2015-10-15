@@ -331,8 +331,8 @@ function getBasicSearch(){
 			case "age":
 				ret += '{'+
 						'"id": 2,'+
-						 '"value":'+ value +
-						 '},';
+						 '"value":"'+ value +
+						 '"},';
 				break;
 			case "gender":
 				var gen;
