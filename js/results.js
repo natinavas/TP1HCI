@@ -18,8 +18,8 @@ $("#removecolor").hide();
 
 var search = window.location.search.split("?")[1];
 
-var input = search.split("=")[1];
-
+var basicSearch = getBasicSearch();
+//search.split("=")[1];
 
 var pageNum = 0;
 load();
@@ -106,7 +106,7 @@ function applyFilter(){
 
 	pageNum = 0;
 
-	var jsonFilters = '[';
+	var jsonFilters = '';
 		if(color != undefined)
 		jsonFilters += '{	"id": ' + 4 + ',	"value": "' + color + '"},';
 
@@ -122,15 +122,13 @@ function applyFilter(){
 	if(document.getElementById('inputNuevo').checked == true){
 		jsonFilters += '{	"id": ' + 6 + ',	"value": "Nuevo"},';
 	}
-	jsonFilters = jsonFilters.slice(0,jsonFilters.length - 1);
-	jsonFilters += ']';
+	//jsonFilters = jsonFilters.slice(0,jsonFilters.length - 1);
+	//jsonFilters += ']';
 
 	if(jsonFilters.length == 1){
 		jsonFilters = "";
 	}
-	else{
-		jsonFilters = "&filters=" + jsonFilters;
-	}
+
 
 	reloadWithFilters(jsonFilters);
 }
@@ -201,7 +199,8 @@ function load(){
 function continueLoading(){
 		var request = new Object();
 		request.timeout = 7000;
-		request.url="http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name="+input+"&page_size=24"+"&page=";
+		request.url= basicSearch;
+		//alert(request.url);
 		request.dataType="jsonp";
 
 		sessionStorage.setItem("lastSearch", request.url);
@@ -212,13 +211,23 @@ function continueLoading(){
 		}
 
 
-		request.url +=  ++pageNum;
+		request.url += "&page=" + ++pageNum;
+		request.url += "&page_size=24";
 
 		if(sessionStorage.getItem("actualFilters") != ""){
-			request.url += sessionStorage.getItem("actualFilters");
+			var filtersNow = sessionStorage.getItem("actualFilters");
+			var requestUrlVec = request.url.split("[");
+			
+			if(requestUrlVec.length == 2){
+				request.url = requestUrlVec[0] + "[" + filtersNow + requestUrlVec[1];
+			}
+			else{
+				filtersNow = filtersNow.slice(0,filtersNow.length - 1);
+				request.url += "&filters=[" + filtersNow + "]";
+			}
 		}
 
-
+		alert(request.url);
 
 
 		console.log(request.url);
@@ -288,3 +297,67 @@ function loadMore(){
 
 	load();
 }
+
+function getBasicSearch(){
+	var search = window.location.search.split("?")[1];
+	search = search.split(";");
+	var ret = "";
+
+	var base = search[0].split("=");
+	switch(base[0]){
+		case "category":
+			ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByCategoryId&id=" + base[1];
+			break;
+		case "subcategory":
+			ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsBySubcategoryId&id=" + base[1];
+			break;
+		case "search":
+			ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name=" + base[1];
+			break;
+		default:
+			ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts";
+			break;
+	}
+
+	if(search.length > 1){
+		ret += "&filters=[";
+	}
+
+	for (var i = 1 ; i < search.length; i++){
+		var filterId;
+		var key = search[i].split("=")[0];
+		var value = search[i].split("=")[1];
+		switch(key){
+			case "age":
+				ret += '{'+
+						'"id": 2,'+
+						 '"value":'+ value +
+						 '},';
+				break;
+			case "gender":
+				var gen;
+				if(value == "Hombres"){
+					gen = '"Masculino"';
+				}else{
+					gen = '"Femenino"';
+				}
+
+				ret += '{'+
+						'"id": 1,'+
+						 '"value":'+ gen +
+						 '},';
+				break;
+			default:
+				filterId = "";
+				break;
+		}
+	}
+	if(search.length > 1){
+		ret = ret.slice(0,ret.length - 1);
+		ret += "]";
+	}
+	//alert(ret);
+	return ret;
+}
+
+

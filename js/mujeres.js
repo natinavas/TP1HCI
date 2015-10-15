@@ -48,7 +48,7 @@ function loadIndumentaria(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?gender=Mujeres;category=Indumentaria;subcategory='+ c.subcategories[i].name +'">'+
+		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Mujeres">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuMujeres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -61,7 +61,7 @@ function loadIndumentaria(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?gender=Mujeres;category=Indumentaria">'+
+		                    '<a href="resultadosBusqueda.html?category=2;gender=Mujeres">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuMujeres/vertodoIndumentaria.jpg" title="vertodoIndumentaria" alt="vertodoIndumentaria" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -96,7 +96,7 @@ function loadCalzado(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?gender=Mujeres;category=Calzado;subcategory='+ c.subcategories[i].name +'">'+
+		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Mujeres">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuMujeres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -109,7 +109,7 @@ function loadCalzado(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?gender=Mujeres;category=Calzado">'+
+		                    '<a href="resultadosBusqueda.html?category=1;gender=Mujeres">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuMujeres/vertodoCalzado.jpg" title="vertodoCalzado" alt="vertodoCalzado" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -143,7 +143,7 @@ function loadAccesorios(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?gender=Mujeres;category=Accesorios;subcategory='+ c.subcategories[i].name +'">'+
+		                    '<a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Mujeres">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuMujeres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -156,7 +156,7 @@ function loadAccesorios(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="resultadosBusqueda.html?gender=Mujeres;category=Accesorios">'+
+		                    '<a href="resultadosBusqueda.html?category=3;gender=Mujeres">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuMujeres/vertodoCalzado.jpg" title="vertodoAccesorios" alt="vertodoAccesorios" style="width:200px;height:275px;">'+
 		                        '</div>'+
