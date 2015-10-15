@@ -71,9 +71,11 @@ function notSignedIn() {
 		request.dataType = "jsonp";
 		console.log(request.url);
 		$.ajax(request).done(function(data) {
+			alert(JSON.stringify(data));
 			error = data.error;
 			if (error === undefined) {
-				localStorage.setItem("loggedUser", JSON.stringify(data));
+				alert("entre aca bien");
+				sessionStorage.setItem("loggedUser", JSON.stringify(data));
 				location.reload();
 
 			} else {
