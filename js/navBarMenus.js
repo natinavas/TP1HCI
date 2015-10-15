@@ -5,6 +5,8 @@ loadCalzadoMasc();
 loadIndumentariaMasc();
 loadAccesoriosMasc();
 loadRopaNinios();
+loadRopaNinias();
+loadRopaBebes();
 
 
 function loadCalzadoFem(){
@@ -60,15 +62,51 @@ function loadNavBarFMClothes(num, categ, gender){
 
 function loadRopaNinios(){
 	var request = new Object();
-	request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=1&filters=[%20{%20%22id%22:%201,%20%22value%22:%20%22Masculino%22%20},%20{%20%22id%22:%202,%20%22value%22:%20%22Infantil%22%20}%20]";
-	request.dataType = "jsonp";
+	var i,j;
+	for(j = 1; j<=3; j++){
+		request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id="+j+"&filters=[%20{%20%22id%22:%201,%20%22value%22:%20%22Masculino%22%20},%20{%20%22id%22:%202,%20%22value%22:%20%22Infantil%22%20}%20]";
+		request.dataType = "jsonp";
 
-	console.log(request.url);
+		console.log(request.url);
 
-	$.ajax(request).done(function(c) {
-		for(i=0; i<c.subcategories.length; i++){
-			document.getElementById("ropaNinios").innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
-		}
-	});
+		$.ajax(request).done(function(c) {
+			for(i=0; i<c.subcategories.length; i++){
+				document.getElementById("ropaNinios").innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
+			}
+		});
+	}
+}
 
+function loadRopaNinias(){
+	var request = new Object();
+	var i,j;
+	for(j = 1; j<=3; j++){
+		request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id="+j+"&filters=[%20{%20%22id%22:%201,%20%22value%22:%20%22Femenino%22%20},%20{%20%22id%22:%202,%20%22value%22:%20%22Infantil%22%20}%20]";
+		request.dataType = "jsonp";
+
+		console.log(request.url);
+
+		$.ajax(request).done(function(c) {
+			for(i=0; i<c.subcategories.length; i++){
+				document.getElementById("ropaNinias").innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
+			}
+		});
+	}
+}
+
+function loadRopaBebes(){
+	var request = new Object();
+	var i,j;
+	for(j = 1; j<=3; j++){
+		request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id="+j+"&filters=[{%20%22id%22:%202,%20%22value%22:%20%22Bebe%22%20}]";
+		request.dataType = "jsonp";
+
+		console.log(request.url);
+
+		$.ajax(request).done(function(c) {
+			for(i=0; i<c.subcategories.length; i++){
+				document.getElementById("ropaBebes").innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
+			}
+		});
+	}
 }
