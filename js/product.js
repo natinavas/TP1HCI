@@ -42,6 +42,7 @@ $.ajax(request).done( function(data) {
 
 	var i =  0, j = 0;
 
+
 	for(i  = 1; data.product.imageUrl[i] !=  undefined; i++){
 		var picture = "picture"+ (i+1);
 		document.getElementById(picture).src = data.product.imageUrl[i];
@@ -114,10 +115,16 @@ function getColor(){
 function addCarrito(){
 	var e = document.getElementById("Color");
     var option = e.options[e.selectedIndex].text;
-    if(option == Color){
+    if(option == "Color"){
     	alert("Elija un color");
+    	return;
     }
-
+    e = document.getElementById("Talle");
+    option = e.options[e.selectedIndex].text;
+    if(option == "Talle"){
+    	alert("Elija un talle");
+    	return;
+    }
 
 
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
@@ -127,6 +134,8 @@ function addCarrito(){
  	}
 
 	localStorage.setItem("carrito", JSON.stringify(carrito));
+
+	alert("se ha agregado al carrito");
 }
 
 
