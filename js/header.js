@@ -6,6 +6,7 @@ if (notSignedIn()) {
 		signIn()
 	});
 	document.getElementById("registrarse").addEventListener("click", function() {
+		alert("por entrar");
 		register(); 
 	});
 
@@ -121,7 +122,7 @@ function notSignedIn() {
 	
 	
     function register() {
-		
+		alert("enters register");
 		// creo el objeto account
         var account2 = { 
 			username : document.getElementById("usernameP").value,
@@ -133,15 +134,17 @@ function notSignedIn() {
 			email : document.getElementById("emailP").value,
 			birthDate : "1991-02-02"
         };
+		console.log("account2 created");
+		alert("register request parameter " + JSON.stringify(account2));
 		
 		var request=new Object();
 		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=" + JSON.stringify(account2);
 		request.dataType = "jsonp";
-		console.log("request url: " + request.url);
+		alert("request url: " + request.url);
 		
 		$.ajax(request).done(function(data) { //aca hago el request de registrarse
 			
-			console.log("register request: " + JSON.stringify(data));
+			alert("register request: " + JSON.stringify(data));
 			error = data.error;
 			if(error == undefined){ //si no tengo error
 				//sessionStorage.setItem("loggedUser", JSON.stringify(data));
