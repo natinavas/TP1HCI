@@ -62,21 +62,14 @@ for(i = 0; cart[i] != undefined; i++){
 	            '<div class="col-xs-4">'+
 	                '<h4 class="product-name"><strong>'+ product.product.name + '</strong></h4>'+
 	                '<h4><small>Descripción: una clasica camisa azul para todo tipo de ocación.</small></h4>'+
-	                '<div class="col-xs-1">'+
-	                    '<button type="button" class="btn btn-link btn-xs">'+
-	                        '<span class="glyphicon glyphicon-gift" style="color:black"> </span>'+
-	                    '</button>'+
-	                '</div>'+
-	                '<div class="col-xs-10">'+
-	                    '<h6>Opciones para regalo</h6>'+
-	                '</div>'+
+	                
 	            '</div>'+
 	            '<div class="col-xs-6">'+
 	                '<div class="col-xs-6 text-right">'+
-	                    '<h6><strong>$' + product.product.price + ' <span class="text-muted">x</span></strong></h6>'+
+	                    '<h4><strong>$' + product.product.price + ' <span class="text-muted">x</span></strong></h4>'+
 	                '</div>'+
 	                '<div class="col-xs-4">'+
-	                    '<input type="text" class="form-control input-sm" value="1">'+
+	                    '<input type="number" name="quantity" min="1" max="15" value="1">'+
 	                '</div>'+
 	                '<div class="col-xs-2">'+
 	                    '<button type="button" class="btn btn-link btn-xs">'+
@@ -91,24 +84,6 @@ for(i = 0; cart[i] != undefined; i++){
 	            '<br>'+
 	            '<br>'+
 	            '<div class="col-xs-1 col-xs-offset-1">'+
-	                '<div class="col-xs-1 col-xs-offset-3">'+
-	                    '<div class="btn-group btn-input clearfix">'+
-	                        '<button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">'+
-	                            '<span data-bind="label">Talle</span> <span class="caret"></span>'+
-	                        '</button>'+
-	                        '<ul class="dropdown-menu" role="menu">'+
-	                            talles +
-	                        '</ul>'+
-	                    '</div><br/><br/>'+
-	                    '<div class="btn-group btn-input clearfix">'+
-	                        '<button type="button" class="btn smallButton dropdown-toggle form-control" data-toggle="dropdown">'+
-	                            '<span data-bind="label">Color</span> <span class="caret"></span>'+
-	                        '</button>'+
-	                        '<ul class="dropdown-menu" role="menu">'+
-	                            colores +
-	                        '</ul>'+
-	                    '</div>'+
-	                '</div>'+
 	            '</div><br/><br/><br/>'+
 	        '</div>'+
 	        '<hr></hr>';

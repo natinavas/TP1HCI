@@ -104,16 +104,22 @@ $.ajax(request).done( function(data) {
 function getTalle(){
 	var e = document.getElementById("Talles");
     var option = e.options[e.selectedIndex].text;
-    alert(option);
 }
 
 function getColor(){
 	var e = document.getElementById("Color");
     var option = e.options[e.selectedIndex].text;
-    alert(option);
 }
 
 function addCarrito(){
+	var e = document.getElementById("Color");
+    var option = e.options[e.selectedIndex].text;
+    if(option == Color){
+    	alert("Elija un color");
+    }
+
+
+
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	var prod = JSON.parse(localStorage.getItem("product"));
 	if(carrito.indexOf(prod.product.id) == -1){
