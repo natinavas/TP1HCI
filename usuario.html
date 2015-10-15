@@ -23,6 +23,8 @@
 	<link href="css/breadcrumb.css" rel="stylesheet">
 	<link href="css/user.css" rel="stylesheet">
 	
+	
+	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -73,15 +75,113 @@
 							<h3>Información de Cuenta</h3><br />
 							<div class="container">
 								<div id="userInfo"></div>
+								
+								<!-- Button trigger modal -->
+								<div class="row">
+									<br/><br/>
+								<div class="col-xs-2"></div>
+								<div class="col-xs-10">
+								<button type="button" class="btn smallButton" data-toggle="modal" data-target="#editUserInfo">
+								  editar información
+								</button>
+							</div>
+						</div>
+
+								<!-- Modal para editar informacion-->
+								<div class="modal fade" id="editUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h3 class="modal-title" id="myModalLabel">Editar Información</h3><h4> Por favor llene todos los campos </h4>
+								      </div>
+									 
+								      <div class="modal-body">
+										<form role="form">
+										  <div class="form-group">
+										    <label for="nuevoNombre">Nombre:</label>
+										    <input type="text" class="form-control" id="nuevoNombre">
+										  </div><br/>
+										  <div class="form-group">
+										    <label for="nuevoApellido">Apellido:</label>
+										    <input type="text" class="form-control" id="nuevoApellido">
+										  </div><br/>
+										  <div class="form-group">
+										    <label for="nuevoEmail">E-mail:</label>
+										    <input type="email" class="form-control" id="nuevoEmail">
+										  </div><br/>
+										  <div class="form-group">
+										    <label for="nuevaFechaNac">Fecha de Nacimiento:</label>
+										    <input type="date" class="form-control" id="nuevaFechaNac">
+										  </div>
+										</form>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+								        <button type="button" id="editInfo" class="btn btn-primary">Guardar Cambios</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
 							</div>
 						</div>
 						<div id="settings" class="tab-pane">
 							<h3>Preferencias</h3>
 							<br/>
 							<!-- Button trigger modal -->
-							<button type="button" class="smallButton" data-toggle="modal" data-target="#myModalChangePass">
+							<button type="button" class="smallButton" data-toggle="modal" data-target="#modalChangePass">
 								Cambiar Contraseña
 							</button>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="modalChangePass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="myModalLabel">Cambiar Contraseña</h4>
+										</div>
+										<div class="modal-body">
+					        
+											<div class="container">
+							
+												<form method="post" id="passwordForm">
+													<p>Ingrese su usuario</p>
+													<input type="text" class="input-lg" name="user" id="changePassUser" placeholder="Ingrese su usuario" autocomplete="on">
+													<br/><br/>
+								
+													<p>Ingrese su contraseña actual</p>
+													<input type="password" class="input-lg" name="password" id="oldPassword" placeholder="Ingrese su contraseña actual" autocomplete="off">
+													<br/><br/ >
+													<p>Ingrese su nueva contraseña</p>
+													<input type="password" class="input-lg" name="password1" id="password1" placeholder="Nueva Contraseña" autocomplete="off">
+													<br/><br/>
+													<input type="password" class="input-lg" name="password2" id="password2" placeholder="Repita Contraseña" autocomplete="off">
+													<div class="row">
+														<div class="col-sm-12"><br/>
+															<span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Por lo menos 8 																		caracteres<br/>
+															<span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Las contraseñas 																		coinciden<br/>
+															<span id="15char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Menos de 15 																		caracteres<br/>
+														</div>
+													</div>
+										
+												</form>
+							
+											</div>
+							
+							
+										</div>
+										<div class="modal-footer">
+											<div class="row">
+												<button type="button" class="smallButton" data-dismiss="modal">Cerrar sin guardar</button>
+												<input type="submit" class="smallButton" id="changePass" data-loading-text="Cambiando Contraseña..." value="Cambiar Contraseña">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
 				
 						</div>
 			
@@ -227,60 +327,7 @@
 		
 		</div>
 	
-		<!-- Modal -->
-		<div class="modal fade" id="myModalChangePass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Cambiar Contraseña</h4>
-					</div>
-					<div class="modal-body">
-					        
-						<div class="container">
-							
-							<form method="post" id="passwordForm">
-								<p>Ingrese su usuario</p>
-								<input type="text" class="input-lg" name="user" id="changePassUser" placeholder="Ingrese su usuario" autocomplete="on">
-								<br/><br/>
-								
-								<p>Ingrese su contraseña actual</p>
-								<input type="password" class="input-lg" name="password" id="newPassword1" placeholder="Ingrese su contraseña actual" autocomplete="off">
-								<br/><br/ >
-								<p>Ingrese su nueva contraseña</p>
-								<input type="password" class="input-lg" name="password1" id="newPassword2" placeholder="Nueva Contraseña" autocomplete="off">
-								<div class="row">
-									<div class="col-sm-3">
-										<span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Por lo menos 8 caracteres<br>
-										<span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Una letra en mayúscula
-									</div>
-									<div class="col-sm-3">
-										<span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Una letra en minuscula<br>
-										<span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Un número
-									</div>
-								</div><br />
-								<input type="password" class="input-lg" name="password2" id="password2" placeholder="Repita Contraseña" autocomplete="off">
-								<div class="row">
-									<div class="col-sm-12">
-										<span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Las contraseñas coinciden
-									</div>
-								</div>
-										
-							</form>
-							
-						</div>
-							
-							
-					</div>
-					<div class="modal-footer">
-						<div class="row">
-							<button type="button" class="smallButton" data-dismiss="modal">Cerrar sin guardar</button>
-							<input type="submit" class="smallButton" id="changePass" data-loading-text="Cambiando Contraseña..." value="Cambiar Contraseña">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>	
+
 	
 		<footer class="footer-distributed">
 			<div class="footer-left">
