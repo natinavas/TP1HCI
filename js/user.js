@@ -1,14 +1,17 @@
-alert(JSON.stringify(sessionStorage.getItem("loggedUser")));
 
 
-alert(sessionStorage.getItem("loggedUser").authenticationToken);
+//alert(sessionStorage.getItem("loggedUser").authenticationToken);
 //var aux2 = sessionStorage.getItem("loggedUser").account.username;
 //alert("username: " + aux2);
 
-document.getElementById("agregarDir").addEventListener("click", function() {
-	alert("por entrar");
-	//addAddress(); 
+document.getElementById("addrs").addEventListener("click", function(){
+	document.getElementById("agregarDir").addEventListener("click", function() {
+		//alert("por entrar");
+		addAddress(); 
+	});
+	//alert("Debug1");
 });
+
 
 
 
@@ -21,27 +24,35 @@ function changePassword(){
 }
 
 
-/*function addAddress(){
-	
+function addAddress(){
+	alert("entro");
 	var newAddress= {
 		name: document.getElementById("nombreD").value,
 		street: document.getElementById("calleD").value,
 		number: document.getElementById("numeroD").value,
-		province: document.getElementById("provinciaD").value;
-		zipCode: document.getElementById("cpD");
-		phoneNumber: document.getElementById("telD");
+		province: document.getElementById("provinciaD").value,
+		zipCode: document.getElementById("cpD"),
+		phoneNumber: document.getElementById("telD")
 	};
 	
+	alert(JSON.stringify(newAddress));
+	
+	var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+	
 	var request=new Object();
-	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAddress&username=" + janedoe + "&authentication_token=" + a8c0d2a9d332574951a8e4a0af7d516f + "&address=" + JSON.stringify(newAddress);
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAddress&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&address=" + JSON.stringify(newAddress);
 	request.dataType = "jsonp";
 	alert("request url: " + request.url);
 	
 	$.ajax(request).done(function(data) {
-		
-	}
+		alert("rta" + JSON.stringify(data));
+		if(user.cantAddress == undefined || user.cantAddress == 0){
+			user.cantAdress=1;
+			user.addresses= {};
+		}
+		else
+			user.cantAddress+=1;
+		user.addresses[user.cantAddress - 1] = data;
+	});
 	
-	
-	
-	
-}*/
+}
