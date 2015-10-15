@@ -1,26 +1,3 @@
-$(document).ready( function() {
-    $('#myCarousel').carousel({
-		interval:   4000
-	});
-	
-	var clickEvent = false;
-	$('#myCarousel').on('click', '.nav a', function() {
-			clickEvent = true;
-			$('.nav li').removeClass('active');
-			$(this).parent().addClass('active');		
-	}).on('slid.bs.carousel', function(e) {
-		if(!clickEvent) {
-			var count = $('.nav').children().length -1;
-			var current = $('.nav li.active');
-			current.removeClass('active').next().addClass('active');
-			var id = parseInt(current.data('slide-to'));
-			if(count == id) {
-				$('.nav li').first().addClass('active');	
-			}
-		}
-		clickEvent = false;
-	});
-});
 
 loadIndumentaria();
 loadCalzado();
@@ -29,7 +6,7 @@ loadAccesorios();
 function loadIndumentaria(){
 
 	var request = new Object();
-	request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=2&filters=[{%20%22id%22:%201,%20%22value%22:%20%22Femenino%22%20}]";
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=2&filters=[{%20%22id%22:%201,%20%22value%22:%20%22Masculino%22%20}]";
 	request.dataType = "jsonp";
 
 	console.log(request.url);
@@ -50,7 +27,7 @@ function loadIndumentaria(){
 		                    '</div>'+
 		                    '<a href="pagEnConstruccion.html">'+
 		                        '<div class="bw pic">'+
-		                            '<img src="img/menuMujeres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
+		                            '<img src="img/menuHombres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
 		                    '</a>'+
 		                '</div>');	
@@ -63,7 +40,7 @@ function loadIndumentaria(){
 		                    '</div>'+
 		                    '<a href="pagEnConstruccion.html">'+
 		                        '<div class="bw pic">'+
-		                            '<img src="img/menuMujeres/vertodoIndumentaria.jpg" title="vertodoIndumentaria" alt="vertodoIndumentaria" style="width:200px;height:275px;">'+
+		                            '<img src="img/menuHombres/vertodoIndumentaria.jpg" title="vertodoIndumentaria" alt="vertodoIndumentaria" style="width:200px;height:275px;">'+
 		                        '</div>'+
 		                    '</a>'+
 		                '</div>');	
@@ -77,7 +54,7 @@ function loadIndumentaria(){
 function loadCalzado(){
 
 	var request = new Object();
-	request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=1&filters=[{%20%22id%22:%201,%20%22value%22:%20%22Femenino%22%20}]";
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=1&filters=[{%20%22id%22:%201,%20%22value%22:%20%22Masculino%22%20}]";
 	request.dataType = "jsonp";
 
 	console.log(request.url);
@@ -98,7 +75,7 @@ function loadCalzado(){
 		                    '</div>'+
 		                    '<a href="pagEnConstruccion.html">'+
 		                        '<div class="bw pic">'+
-		                            '<img src="img/menuMujeres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
+		                            '<img src="img/menuHombres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
 		                    '</a>'+
 		                '</div>');	
@@ -111,7 +88,7 @@ function loadCalzado(){
 		                    '</div>'+
 		                    '<a href="pagEnConstruccion.html">'+
 		                        '<div class="bw pic">'+
-		                            '<img src="img/menuMujeres/vertodoCalzado.jpg" title="vertodoCalzado" alt="vertodoCalzado" style="width:200px;height:275px;">'+
+		                            '<img src="img/menuHombres/vertodoCalzado.jpg" title="vertodoCalzado" alt="vertodoCalzado" style="width:200px;height:275px;">'+
 		                        '</div>'+
 		                    '</a>'+
 		                '</div>');	
@@ -124,7 +101,7 @@ function loadCalzado(){
 function loadAccesorios(){
 
 	var request = new Object();
-	request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=3&filters=[{%20%22id%22:%201,%20%22value%22:%20%22Femenino%22%20}]";
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=3&filters=[{%20%22id%22:%201,%20%22value%22:%20%22Masculino%22%20}]";
 	request.dataType = "jsonp";
 
 	console.log(request.url);
@@ -145,7 +122,7 @@ function loadAccesorios(){
 		                    '</div>'+
 		                    '<a href="pagEnConstruccion.html">'+
 		                        '<div class="bw pic">'+
-		                            '<img src="img/menuMujeres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
+		                            '<img src="img/menuHombres/'+ c.subcategories[i].name +'.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
 		                    '</a>'+
 		                '</div>');	
@@ -158,7 +135,7 @@ function loadAccesorios(){
 		                    '</div>'+
 		                    '<a href="pagEnConstruccion.html">'+
 		                        '<div class="bw pic">'+
-		                            '<img src="img/menuMujeres/vertodoCalzado.jpg" title="vertodoAccesorios" alt="vertodoAccesorios" style="width:200px;height:275px;">'+
+		                            '<img src="img/menuHombres/vertodoCalzado.jpg" title="vertodoAccesorios" alt="vertodoAccesorios" style="width:200px;height:275px;">'+
 		                        '</div>'+
 		                    '</a>'+
 		                '</div>');	
