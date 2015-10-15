@@ -23,7 +23,7 @@ function loadNinias(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="pagEnConstruccion.html">'+
+		                    '<a href="resultadosBusqueda.html?gender=Mujeres;age=Infantil;category=Calzado;subcategory='+ c.subcategories[i].name +'">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuInfantiles/'+ c.subcategories[i].name +'Ninias.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -36,7 +36,7 @@ function loadNinias(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="pagEnConstruccion.html">'+
+		                    '<a href="resultadosBusqueda.html?gender=Mujeres;age=Infantil">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuInfantiles/vertodoNinias.jpg" title="vertodoNinias" alt="vertodoNinias" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -70,7 +70,7 @@ function loadNinios(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="pagEnConstruccion.html">'+
+		                    '<a href="resultadosBusqueda.html?gender=Hombres;age=Infantil;category=Calzado;subcategory='+ c.subcategories[i].name +'">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuInfantiles/'+ c.subcategories[i].name +'Ninios.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -83,7 +83,7 @@ function loadNinios(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="pagEnConstruccion.html">'+
+		                    '<a href="resultadosBusqueda.html?gender=Hombres;age=Infantil">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuInfantiles/vertodoNinios.jpg" title="vertodoIndumentaria" alt="vertodoIndumentaria" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -116,7 +116,7 @@ function loadBebes(){
 		                        '<div class=text-center>'+
 		                            '<h3>'+ c.subcategories[i].name +'</h3></div>'+
 		                    '</div>'+
-		                    '<a href="pagEnConstruccion.html">'+
+		                    '<a href="resultadosBusqueda.html?age=Bebe;category=Calzado;subcategory='+ c.subcategories[i].name +'">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuInfantiles/'+ c.subcategories[i].name +'Bebes.jpg" title="'+ c.subcategories[i].name +'" alt="'+ c.subcategories[i].name +'" style="width:200px;height:275px;">'+
 		                        '</div>'+
@@ -129,7 +129,7 @@ function loadBebes(){
 		                        '<div class=text-center>'+
 		                            '<h3>Ver Todo</h3></div>'+
 		                    '</div>'+
-		                    '<a href="pagEnConstruccion.html">'+
+		                    '<a href="resultadosBusqueda.html?age=Bebe">'+
 		                        '<div class="bw pic">'+
 		                            '<img src="img/menuInfantiles/vertodoBebes.jpg" title="vertodoBebes" alt="vertodoBebes" style="width:200px;height:275px;">'+
 		                        '</div>'+
