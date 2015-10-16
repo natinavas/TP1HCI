@@ -1,7 +1,8 @@
 	//clearAddresses();
-	$("#userInfo").append(personalInformation());
+	
 	$("#direcciones").append(showAddresses());
 	$("#tarjetas").append(showCards());
+	$("#userInfo").append(personalInformation());
 
 	document.getElementById("addrs").addEventListener("click", function(){
 		document.getElementById("agregarDir").addEventListener("click", function() {
