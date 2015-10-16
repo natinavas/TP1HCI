@@ -5,9 +5,9 @@
 
 	document.getElementById("addrs").addEventListener("click", function(){
 		document.getElementById("agregarDir").addEventListener("click", function() {
-			addAddress(); 
+			//addAddress(); 
 			//clearAddresses();
-			//showAddresses();
+			showAddresses();
 		});
 		//alert("Debug1");
 	});
@@ -19,7 +19,6 @@
 	document.getElementById("agregarTarjeta").addEventListener("click", function(){
 		addCard();
 	});
-	
 	
 	
 	document.getElementById("editInfo").addEventListener("click", function(){
@@ -40,7 +39,7 @@
 	
 		return information;
 	}
-
+	
 	function changePassword(){
 		var user = document.getElementById("changePassUser").value;
 		var oldPass = document.getElementById("oldPassword").value;
@@ -74,11 +73,9 @@
 		request.dataType="jsonp";*/
 	}
 
-
 	function showError(error) {
 		alert(error.message);
 	}
-
 
 	function addAddress(){
 		//alert("entro");
@@ -125,7 +122,25 @@
 	}
 	
 	function showAddresses(){
-		var adr = JSON.parse(localStorage.getItem("adr"));
+		var request = new Object();
+		var user= JSON.parse(sessionStorage.getItem("loggedUser"));
+		request.url= "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllAddresses&username=" + user.account.username + "&authentication_token=" + 				user.authenticationToken; 
+		request.dataType = "jasonp";
+		console.log(request.url)
+		$.ajax(request).done(function(data){
+			alert("entre a la funcion del request");
+			error = data.error;
+			if(error == undefined){
+				alert("no hubo error");
+				//alert(JSON.stringify(data));
+			}else{
+				showError(error);
+			}
+		});
+		
+		
+		
+		/*var adr = JSON.parse(localStorage.getItem("adr"));
 		console.log(adr);
 		if(adr == null || adr == undefined){
 			return '<h3> Usted no tiene direcciones </h3>'
@@ -143,12 +158,9 @@
 			}
 			
 			console.log("termine el for");
-			return ads;
+			return ads;*/
 		
 		}
-		
-		
-	}
 	
 	function showCards(){
 		var cards = JSON.parse(localStorage.getItem("cards"));
