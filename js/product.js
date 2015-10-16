@@ -174,7 +174,6 @@ function add(s){
 	    		product.quantity++;
 	    		vector[i] = JSON.stringify(product);
 				localStorage.setItem(s, JSON.stringify(vector));
-				alert("se ha agregado");
 				return 1;
 			}
     	}

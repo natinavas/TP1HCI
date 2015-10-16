@@ -141,6 +141,12 @@ function addItemToFav(number){
 }
 
 function finalizar(){
-	localStorage.removeItem("carrito");
 	localStorage.removeItem("wishList");
+
+	var carrito = JSON.parse(localStorage.getItem("carrito"));
+
+
+
+
+	alert("hola");
 }

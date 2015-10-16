@@ -17,8 +17,6 @@
     <link href="css/compra.css" rel="stylesheet">
     <link href="css/button.css" rel="stylesheet">
     <!--footer-->
-    <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -84,85 +82,11 @@
                                             <form class="form-horizontal" role="form">
                                                 <fieldset>
                                                     <!-- Form Name -->
-                                                    <h3>INGRESE SU INFORMACION PERSONAL PARA EL ENVIO</h3>
+                                                    <h3>SELECCIONE UNA DIRECCIÓN DE ENVIO</h3>
                                                     <br/>
-                                                    <!-- Text input-->
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="textinput">NOMBRE COMPLETO</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" placeholder="nombre" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
-                                                    <!-- Text input-->
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="textinput">CALLE</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="calle" class="form-control">
-                                                        </div>
-                                                        <label class="col-sm-2 control-label" for="textinput">NUMERO</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="número" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
-                                                    <!-- Text input-->
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="textinput">PISO</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="piso" class="form-control">
-                                                        </div>
-                                                        <label class="col-sm-2 control-label" for="textinput">DEPARTAMENTO</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="departamento" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
-                                                    <!-- Text input-->
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="textinput">CIUDAD</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="provincia" class="form-control">
-                                                        </div>
-                                                        <label class="col-sm-2 control-label" for="textinput">CODIGO POSTAL</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="código postal" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
-                                                    <!-- Text input-->
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="textinput">PROVINCIA</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="provincia" class="form-control">
-                                                        </div>
-                                                        <label class="col-sm-2 control-label" for="textinput">PAIS</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" placeholder="pais" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
-                                                    <!-- Text input-->
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="textinput">TELÉFONO</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" placeholder="teléfono" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <br/>
-                                                    <br/>
-                                                    <br/>
-													
+                                                    
+                                                <div id="direcciones">
+                                            </div>													
                                                 </fieldset>
                                             </form>
                                         </div>
@@ -170,7 +94,7 @@
                                         <br/>
                                         <br/>
                                         <ul class="list-inline pull-right">
-                                          <li><button type="button" class="smallButton btn btn-primary next-step">GUARDAR Y CONTINUAR</button></li>
+                                          <li><button type="button" id="firstStep" class="smallButton btn btn-primary">GUARDAR Y CONTINUAR</button></li>
                                         </ul>
                                     </div>
                                     <div class="tab-pane" role="tabpanel" id="step2">
