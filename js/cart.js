@@ -36,9 +36,9 @@ function loadProduct(i){
 	var price = parseInt(JSON.parse(cart[i]).price);
 	var marca = JSON.parse(cart[i]).marca;
 
-	subtotal += price;
-	costoEnvio += Math.round(price/20);
-	total += price + Math.round(price/20);
+	subtotal += price * quantity;
+	costoEnvio += Math.round((price * quantity)/20);
+	total += (price * quantity) + Math.round((price * quantity)/20);
 
 	var number = i;
 
@@ -62,7 +62,7 @@ function loadProduct(i){
 		                    '<button type="button" id="trash' + number + '" class="btn btn-link btn-xs">'+
 		                        '<span class="glyphicon glyphicon-trash" style="color:black"> </span>'+
 		                    '</button>'+
-		                    '<button type="button" id="fav' + number + '" onclick="hola()" class="btn btn-link btn-xs">'+
+		                    '<button type="button" id="fav' + number + '" class="btn btn-link btn-xs">'+
 		                		'<span class="glyphicon glyphicon-heart-empty" style="color:black"></span>'+
 		                    '</button>'+
 		                '</div>'+
@@ -96,17 +96,38 @@ document.getElementById("total").innerHTML = "$" + total;
 function removeItem(number){
 	$("#"+number).remove();
 	var cart = JSON.parse(localStorage.getItem("carrito"));
-	cart[number]
 
 	if (number > -1) {
     	cart.splice(number, 1);
 	}
-
 	localStorage.setItem("carrito", JSON.stringify(cart));
 
+
+    location.reload();
 }
 
 function addItemToFav(number){
-	alert(number);
 
+	var wishList = JSON.parse(localStorage.getItem("wishList"));
+	var carrito = JSON.parse(localStorage.getItem("carrito"));
+
+    var flag = 0;
+
+    for (var i = 0; wishList[i] != undefined; i++) {
+    	if(JSON.parse(wishList[i]).id == JSON.parse(carrito[number]).id && JSON.parse(wishList[i]).color == JSON.parse(carrito[number]).color
+    	 && JSON.parse(wishList[i]).talle == JSON.parse(carrito[number]).talle){
+    		alert("el item ya se encuentra en la lista de deseos");
+    		flag = 1;
+    	}
+    }
+
+
+    if(flag == 0){
+    	var prod = JSON.parse(carrito[number]);
+    	prod.quantity = 1;
+		alert("se ha agregado a la lista de deseos");
+    	wishList.push(JSON.stringify(prod));
+    }
+
+	localStorage.setItem("wishList", JSON.stringify(wishList));
 }

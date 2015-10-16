@@ -1,4 +1,5 @@
 localStorage.removeItem("carrito");
+localStorage.removeItem("wishList");
 
 var carro = JSON.parse(localStorage.getItem("carrito"));
 if (carro == undefined) {
@@ -6,6 +7,13 @@ if (carro == undefined) {
     var carrito = [];
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+var wish = JSON.parse(localStorage.getItem("wishList"));
+if (wish == undefined) {
+    var wishList = [];
+
+    localStorage.setItem("wishList", JSON.stringify(wishList));
 }
 
 

@@ -1,6 +1,7 @@
 
 
 document.getElementById("addCarrito").addEventListener("click", function(){addCarrito()});
+document.getElementById("addFav").addEventListener("click", function(){addFav()});
 
 document.getElementById("picture2").addEventListener("mouseover", function(){hover("picture2")});
 document.getElementById("picture2").addEventListener("mouseout", function(){hover("picture2")});
@@ -117,7 +118,15 @@ function getColor(){
     var option = e.options[e.selectedIndex].text;
 }
 
-function addCarrito(){
+function addFav(){
+
+	add("wishList");
+
+}
+
+function add(s){
+
+
 	var e = document.getElementById("Color");
     var optionColor = e.options[e.selectedIndex].text;
     if(optionColor == "Color"){
@@ -131,11 +140,10 @@ function addCarrito(){
     	return;
     }
 
-
-	var carrito = JSON.parse(localStorage.getItem("carrito"));
+	var vector = JSON.parse(localStorage.getItem(s));
 	var prod = JSON.parse(localStorage.getItem("product"));
 
-    var newProd = new Object();
+	var newProd = new Object();
     newProd.id = prod.product.id;
     newProd.color = optionColor;
     newProd.talle = optionTalle;
@@ -145,27 +153,38 @@ function addCarrito(){
     newProd.image = sessionStorage.getItem("image");
     newProd.price = sessionStorage.getItem("price");
 
-
-
-
-    for (var i = 0; carrito[i] != undefined; i++) {
-    	product = JSON.parse(carrito[i]);
+    for (var i = 0; vector[i] != undefined; i++) {
+    	product = JSON.parse(vector[i]);
     	if(product.id == newProd.id && product.color == newProd.color
     	 && product.talle == newProd.talle){
-    		product.quantity++;
-    		carrito[i] = JSON.stringify(product);
-			localStorage.setItem("carrito", JSON.stringify(carrito));
-			alert("se ha agregado al carrito");
-			return;
+    	 	if(s == "wishList"){
+				alert("el producto ya se encuentra en la lista de deseos");
+				return;
+    	 	}
+    	 	else{
+	    		product.quantity++;
+	    		vector[i] = JSON.stringify(product);
+				localStorage.setItem(s, JSON.stringify(vector));
+				alert("se ha agregado");
+				return;
+			}
     	}
     }
 
 
-    		carrito.push(JSON.stringify(newProd));
+    		vector.push(JSON.stringify(newProd));
 
-	localStorage.setItem("carrito", JSON.stringify(carrito));
+	localStorage.setItem(s, JSON.stringify(vector));
 
-	alert("se ha agregado al carrito");
+	alert("se ha agregado");
+
+}
+
+
+function addCarrito(){
+
+	add("carrito");
+
 }
 
 
