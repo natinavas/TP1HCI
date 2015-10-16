@@ -115,7 +115,12 @@ function loadBreadcrumbs(){
 				bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;oferta=Ofertas;age=Bebe">OFERTAS</a></li>';
 			}
 			else{
-				bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;oferta=Ofertas;gender='+ g +';age=Infantil">OFERTAS</a></li>';
+				if(g != ""){
+					bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;oferta=Ofertas;gender='+ g +';age=Infantil">OFERTAS</a></li>';
+				}
+				else{
+					bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;oferta=Ofertas">OFERTAS</a></li>';
+				}
 			}
 		}
 	}
@@ -130,7 +135,11 @@ function loadBreadcrumbs(){
 				bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;nuevo=Novedades;age=Bebe">NUEVO</a></li>';
 			}
 			else{
-				bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;nuevo=Novedades;gender='+ g +';age=Infantil">NUEVO</a></li>';
+				if(g != ""){
+					bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;nuevo=Novedades;gender='+ g +';age=Infantil">NUEVO</a></li>';
+				}else{
+					bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;nuevo=Novedades">NUEVO</a></li>';
+				}
 			}
 		}
 	}
