@@ -1,21 +1,3 @@
-localStorage.removeItem("carrito");
-localStorage.removeItem("wishList");
-
-var carro = JSON.parse(localStorage.getItem("carrito"));
-if (carro == undefined) {
-    alert("creo carrito");
-    var carrito = [];
-
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-var wish = JSON.parse(localStorage.getItem("wishList"));
-if (wish == undefined) {
-    var wishList = [];
-
-    localStorage.setItem("wishList", JSON.stringify(wishList));
-}
-
 
 var request = new Object();
 request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts&id=1&page_size=18";

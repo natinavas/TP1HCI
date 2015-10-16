@@ -3,14 +3,14 @@ var wishList = JSON.parse(localStorage.getItem("wishList"));
 
 
 
-if(wishList[0] == undefined){
+if(wishList == undefined || wishList[0] == undefined){
 	document.getElementById("wishListProducts").innerHTML = "<h3>SU LISTA DE DESEOS ESTÁ VACÍA</h3>";
 }
 else{
 	document.getElementById("wishListProducts").innerHTML = "";
 }
 
-for(i = 0; wishList[i] != undefined; i++){
+for(i = 0; wishList != undefined && wishList[i] != undefined; i++){
 	loadProduct(i);
 }
 
@@ -96,6 +96,14 @@ function addItemToCart(number){
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
 
     var flag = 0;
+
+
+	if (carrito == undefined) {
+	    alert("creo carrito");
+	    var carrito = [];
+
+	    localStorage.setItem("carrito", JSON.stringify(carrito));
+	}
 
     for (var i = 0; carrito[i] != undefined; i++) {
 

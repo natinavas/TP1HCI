@@ -120,8 +120,17 @@ function getColor(){
 
 function addFav(){
 
-	add("wishList");
+	var wish = JSON.parse(localStorage.getItem("wishList"));
+	if (wish == undefined) {
+		alert("creo wishlist");
+	    var wishList = [];
 
+	    localStorage.setItem("wishList", JSON.stringify(wishList));
+	}
+
+	if(add("wishList") == 1){
+		alert("se ha agregado a la lista de deseos");
+	}
 }
 
 function add(s){
@@ -131,13 +140,13 @@ function add(s){
     var optionColor = e.options[e.selectedIndex].text;
     if(optionColor == "Color"){
     	alert("Elija un color");
-    	return;
+    	return -1;
     }
     e = document.getElementById("Talles");
     var optionTalle = e.options[e.selectedIndex].text;
     if(optionTalle == "Talle"){
     	alert("Elija un talle");
-    	return;
+    	return -1;
     }
 
 	var vector = JSON.parse(localStorage.getItem(s));
@@ -159,14 +168,14 @@ function add(s){
     	 && product.talle == newProd.talle){
     	 	if(s == "wishList"){
 				alert("el producto ya se encuentra en la lista de deseos");
-				return;
+				return -1;
     	 	}
     	 	else{
 	    		product.quantity++;
 	    		vector[i] = JSON.stringify(product);
 				localStorage.setItem(s, JSON.stringify(vector));
 				alert("se ha agregado");
-				return;
+				return 1;
 			}
     	}
     }
@@ -175,16 +184,24 @@ function add(s){
     		vector.push(JSON.stringify(newProd));
 
 	localStorage.setItem(s, JSON.stringify(vector));
-
-	alert("se ha agregado");
+	return 1;
 
 }
 
 
 function addCarrito(){
 
-	add("carrito");
+	var carro = JSON.parse(localStorage.getItem("carrito"));
+	if (carro == undefined) {
+	    alert("creo carrito");
+	    var carrito = [];
 
+	    localStorage.setItem("carrito", JSON.stringify(carrito));
+	}
+
+	if(add("carrito") == 1){
+		alert("se ha agregado al carrito");
+	}
 }
 
 
