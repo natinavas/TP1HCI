@@ -39,21 +39,24 @@ function loadNavBarFMClothes(num, categ, gender){
 	request.dataType = "jsonp";
 
 	var i = 0;
-	var g;
+	var g, gHref;
 	if(gender == "Femenino"){
 		g = "Fem";
+		gHref = "Mujeres";
 	}
 	else if(gender == "Masculino"){
 		g = "Masc";
+		gHref = "Hombres";
 	}
 	else{
 		g = "";
+		gHref = "";
 	}
 
 	$.ajax(request).done(function(c) {
 
 		for(i=0; i<c.subcategories.length; i++){
-			document.getElementById(categ + g).innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender='+ g +';age=Adulto">'+ c.subcategories[i].name +'</a></li>';
+			document.getElementById(categ + g).innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender='+ gHref +';age=Adulto">'+ c.subcategories[i].name +'</a></li>';
 		}		
 	});
 }
