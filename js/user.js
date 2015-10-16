@@ -1,14 +1,13 @@
 	//clearAddresses();
 	
-	alert(document.getElementById("cpD"));
-	
 	showAddresses();
 	$("#tarjetas").append(showCards());
 	$("#userInfo").append(personalInformation());
 
 	
 	document.getElementById("agregarDir").addEventListener("click", function() {
-		//addAddress(); 
+		//alert(JSON.stringify(document.getElementById("nombreD")));
+		addAddress(); 
 		//clearAddresses();
 		//showAddresses();
 	});
@@ -81,18 +80,17 @@
 	}
 
 	function addAddress(){
-		//alert("entro");
 		var newAddress= {
 			name: document.getElementById("nombreD").value,
 			street: document.getElementById("calleD").value,
 			number: document.getElementById("numeroD").value,
 			province: document.getElementById("provinciaD").value,
 			//	city: document.getElementById("provinciaD").value,
-			zipCode: "1943",//document.getElementById("cpD"),
-			phoneNumber: "47657134",//document.getElementById("telD")
+			zipCode: document.getElementById("cpD").value,
+			phoneNumber: document.getElementById("telD").value
 		};
 	
-		console.log("new address:" + JSON.stringify(newAddress));
+		alert("new address:" + JSON.stringify(newAddress));
 	
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 	
@@ -128,7 +126,7 @@
 		var user= JSON.parse(sessionStorage.getItem("loggedUser"));
 		
 		var request = new Object();
-		request.url= "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllAddresses&username=" + user.account.username + "&authentication_token=" + 				user.authenticationToken; 
+		request.url= "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllAddresses&username=" + user.account.username + "&authentication_token=" + 				user.authenticationToken + "&page_size=" + 20; 
 		request.dataType = "jsonp";
 		console.log(request.url);
 		
@@ -145,7 +143,7 @@
 					var miDir = adr[i];
 					ret += '<div id= addres' + i + '><h3> Dirreccion ' + (i+1) + ':</h3><h4>' + miDir.name
 					+ '</h4><h5>' + miDir.street + ' ' + miDir.number
-					+ '</h5><h5> ' + miDir.province + '</h5><h5>' 
+					+ '</h5><h5> Provincia: ' + miDir.province + '</h5><h5> Código Postal: ' 
 					+ miDir.zipCode
 					+ '</h5> <h5> Numero de Telefono: ' + miDir.phoneNumber + '</h5></div><br/> <br/>';
 				}
@@ -155,28 +153,6 @@
 				showError(error);
 			}
 		});
-		
-		
-		
-		/*var adr = JSON.parse(localStorage.getItem("adr"));
-		console.log(adr);
-		if(adr == null || adr == undefined){
-		return '<h3> Usted no tiene direcciones </h3>'
-		}else{
-		var i;
-		var ads = ' ';
-		for(i=0; adr[i] != null; i++){
-		var miDir = JSON.parse(adr[i]);
-		//alert(miDir.address.phoneNumber);
-		ads += '<div id= addres' + i + '<h3> Dirreccion ' + (i+1) + ':</h3><h4>' + miDir.address.name
-		+ '<h5>' + miDir.address.street + ' ' + miDir.address.number
-		+ '<br /><br/> ' + miDir.address.province + '<br /><br/>' 
-		+ miDir.address.zipCode
-		+ '<h5> Numero de Telefono: ' + miDir.address.phoneNumber + '</div><br/> <br/>';
-		}
-			
-		console.log("termine el for");
-		return ads;*/
 		
 	}
 	
