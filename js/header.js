@@ -1,5 +1,5 @@
 	function loadStuff(){
-
+	
 	document.getElementById("input").addEventListener("keypress", function(){
 		if(event.keyCode == 13){
 			search();
@@ -145,12 +145,20 @@
 	function register() {
 		alert("enters register");
 		// creo el objeto account
+		var sex;
+		if (document.getElementById('masc').checked) {
+		  sex = document.getElementById('masc').value;
+		}else{
+			sex="F";
+		}
+
+
 		var account2 = { 
 			username : document.getElementById("usernameP").value,
 			password : document.getElementById("passwordP").value,
 			firstName : document.getElementById("nombre").value,
 			lastName : document.getElementById("apellido").value,
-			gender : "M",
+			gender : sex,
 			identityCard : document.getElementById("dni").value,
 			email : document.getElementById("emailP").value,
 			birthDate : "1991-02-02"

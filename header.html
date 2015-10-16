@@ -190,8 +190,10 @@
 											<!-- Genero -->
 											<label class="control-label" for="genero">Género</label>
 											<div class="controls">
-												<label class="radio-inline"><input type="radio" name="optradio">Masculino</label>
-												<label class="radio-inline"><input type="radio" name="optradio">Femenino</label>
+												<div id=sexo>
+												<label class="radio-inline"><input type="radio" id="masc" value= "M" name="optradio">Masculino</label>
+												<label class="radio-inline"><input type="radio" id="fem" value= "F" name="optradio">Femenino</label>
+											</div>
 												<p class="help-block">Por favor ingrese su Género</p>
 											</div>
 										</div>
@@ -218,19 +220,8 @@
 											<!-- Fecha de Nacimiento -->
 											<label class="control-label" for="fechaNac">Fecha de Nacimiento</label>
 											<div class="controls">
-
-												<input type="date" name="birthdate" value="10/24/1984" />
- 
-												<script type="text/javascript">
-												/*$(function() {
-													$('input[name="birthdate"]').daterangepicker({
-													singleDatePicker: true,
-													showDropdowns: true
-													})
-													});*/
-													</script> 
-								
-													<p class="help-block">Por favor ingrese su Fecha de Nacimiento</p>
+												<input type="date" name="birthdate"  data-date-format="YYYY-MM-DD"/>
+ 											   	<p class="help-block">Por favor ingrese su Fecha de Nacimiento</p>
 												</div>
 											</div>
 						
@@ -252,13 +243,12 @@
 							
 								</fieldset>
 							</form>
-							<div class="control-group">
 								<!-- Button -->
 								<br>
+								<div class="col-xs-1"></div>
 								<div class="controls">
 									<button class="btn smallButton" id="registrarse">REGISTRARSE</button>
 								</div>
-							</div>
 							<br>
 							<br>
 						</div>
