@@ -71,7 +71,7 @@ function loggedInButtons() {
 	+ '<li><a href="usuario.html"><i class="glyphicon glyphicon-user" style = "color:black"></i><h7 style = "color:black">Mi Usuario</h7></a></li>' 
 	+ '<li><a href="contacto.html"><i class="glyphicon glyphicon-envelope" style = "color:black"></i><h7 style = "color:black"> Contacto</h7></a></li>' 
 	+ '<li class="divider"></li>' 
-	+ '<li><a href="pagPrincipal.html"><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 id="cerrarSesion" style = "color:black">Cerrar Sesión</h7></a></li>' 
+	+ '<li><a href="index.html"><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 id="cerrarSesion" style = "color:black">Cerrar Sesión</h7></a></li>' 
 	+ '</form>' + '</div>' + '</li>'
 	return buttons;
 }
