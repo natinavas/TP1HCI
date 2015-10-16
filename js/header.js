@@ -42,9 +42,6 @@
 
 	}
 
-
-
-
 	function notLoggedInButtons() {
 		var buttons = '<li><a href="#"  data-toggle="modal" data-target="#myModal" >Registrarse</a></li>' 
 		+ '<li class="divider-vertical"></li>' 
@@ -59,7 +56,6 @@
 		+ '</form>' + '</div>' + '</li>';
 		return buttons;
 	}
-
 
 	function loggedInButtons() {
 		var buttons = '<li class="divider-vertical"></li>' 
@@ -97,24 +93,6 @@
 		});
 	}
 
-	function signIn2(user, pass){
-		var request = new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + document.getElementById('loginUser').value + "&password=" + 			document.getElementById('loginPassword').value;
-		request.dataType = "jsonp";
-		console.log(request.url);
-		$.ajax(request).done(function(data) {
-			error = data.error;
-			if (error === undefined) {
-				localStorage.setItem("loggedUser", JSON.stringify(data));
-				location.reload();
-
-			} else {
-				showError(error);
-			}
-		});
-	}
-
-
 	function deleteAccount() {
 		sessionStorage.setItem("account", null);
 		location.reload();
@@ -123,6 +101,7 @@
 	function signOut() {
 		
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+		alert(JSON.stringify(user.authenticationToken));
 		
 		var request = new Object();
 		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignOut&username=" + user.account.username + "&authentication_token=" 					+user.authenticationToken;
@@ -140,14 +119,12 @@
 		
 	}
 	
-	
 	function register(){
-		
 		
 		var id=document.getElementById("dni").value;
 		
 		if(!validateId(id)){
-			alert("Su numero de DNI debe tener hasta ocho numeros");
+			alert("Su número de DNI debe tener hasta ocho numeros");
 		}else{
 		
 			var firstName = document.getElementById("nombre").value;
@@ -169,12 +146,12 @@
 						var user=document.getElementById("usernameP").value;
 		
 						if(!validateUser(user)){
-							alert("el usuario debe tener entre 6 y 15 caracteres")
+							alert("El usuario debe tener entre 6 y 15 caracteres")
 						}else{
 		
 							var email=document.getElementById("emailP").value;
 							if(!validateEmail(email)){
-								alert("email no es válido");
+								alert("El email no es válido");
 							}else{
 								var brthDate = new Date(document.getElementById('fechaP').value);
 								var validDate = new Date("1999-01-01");
@@ -199,21 +176,15 @@
 										birthDate : brthDate
 									};
 									console.log("account2 created");
-									alert("register request parameter " + JSON.stringify(account2));
 		
-									var request=new Object();
+									var request = new Object();
 									request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=" + JSON.stringify(account2);
 									request.dataType = "jsonp";
-									alert("request url: " + request.url);
 		
-									$.ajax(request).done(function(data) { //aca hago el request de registrarse
-			
-										alert("register request: " + JSON.stringify(data));
+									$.ajax(request).done(function(data){
 										error = data.error;
-										if(error == undefined){ //si no tengo error
-											sessionStorage.setItem("loggedUser", JSON.stringify(data));
-											signIn2(document.getElementById("usernameP").value, document.getElementById("passwordP").value);
-											location.reload();
+										if(error == undefined){
+											signIn2(user, pass);
 										}else{
 											showError(error);
 			
@@ -226,6 +197,24 @@
 				}
 			}
 		}
+	}
+	
+	function signIn2(user, pass){
+		var request = new Object();
+		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + user + "&password=" + pass;
+		request.dataType = "jsonp";
+		console.log(request.url);
+			
+		$.ajax(request).done(function(data) {
+			console.log("login request: " + JSON.stringify(data));
+			error = data.error;
+			if (error === undefined) {
+				sessionStorage.setItem("loggedUser", JSON.stringify(data));
+				location.reload();
+			} else {
+				showError(error);
+			}
+		});
 	}
 		
 	function validateEmail(email) {
@@ -254,21 +243,5 @@
 	}
 	
 	
-	function signIn2(user, pass){
-		var request = new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + user + "&password=" + pass;
-		request.dataType = "jsonp";
-		console.log(request.url);
-			
-		$.ajax(request).done(function(data) {
-			console.log("login request: " + JSON.stringify(data));
-			error = data.error;
-			if (error === undefined) {
-				sessionStorage.setItem("loggedUser", JSON.stringify(data));
-				location.reload();
-			} else {
-				showError(error);
-			}
-		});
-	}
+	
 

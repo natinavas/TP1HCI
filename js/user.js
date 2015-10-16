@@ -22,7 +22,6 @@
 		addCard();
 	});
 	
-	
 	document.getElementById("editInfo").addEventListener("click", function(){
 		editPersonalInfo();
 	});
@@ -141,11 +140,11 @@
 				for (i=0; adr[i] != undefined && adr[i] != null; i++){
 					
 					var miDir = adr[i];
-					ret += '<div id= addres' + i + '><h3> Dirreccion ' + (i+1) + ':</h3><h4>' + miDir.name
+					ret += '<div id= addres' + i + '><h3> Dirección ' + (i+1) + ':</h3><h4>' + miDir.name
 					+ '</h4><h5>' + miDir.street + ' ' + miDir.number
 					+ '</h5><h5> Provincia: ' + miDir.province + '</h5><h5> Código Postal: ' 
 					+ miDir.zipCode
-					+ '</h5> <h5> Numero de Telefono: ' + miDir.phoneNumber + '</h5></div><br/> <br/>';
+					+ '</h5> <h5> Número de Telefono: ' + miDir.phoneNumber + '</h5></div><br/> <br/>';
 				}
 				$("#direcciones").append(ret);
 				
@@ -170,7 +169,6 @@
 				+ '<h4>Fecha de Vencimiento: ' + miTar.creditCard.expirationDate + '<br /><br/>';
 			}
 			
-			console.log("termine el for");
 			return tarjs;
 		
 		}
@@ -178,49 +176,93 @@
 		
 	}
 	
-	function clearAddresses(){
-		localStorage.removeItem("adr");
-	}
-	
 	function editPersonalInfo(){
 		
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 		
-		var account ={
-			firstName: document.getElementById("nuevoNombre").value,
-			lastName: document.getElementById("nuevoApellido").value,
-			gender: user.account.gender,
-			identityCard: user.account.identityCard,
-			email: document.getElementById("nuevoEmail").value,
-			birthDate: "1979-01-01"
-		}
-		var request = new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=UpdateAccount&username=" + user.account.username + "&authentication_token="+ 			user.authenticationToken + "&account=" + JSON.stringify(account);
-		request.dataType="jsonp";
-		console.log(request.url);
-		
-		$.ajax(request).done(function(data) {
-			error=data.error;
-			if(error == undefined){
-				
-				user.account.firstName = account.firstName;
-				user.account.lastName = account.lastName;
-				user.account.email = account.email;
-				//user.account.birthDate = account.birthDate;
-				
-				sessionStorage.setItem("loggedUser", JSON.stringify(user));
-				alert("Sus cambios han sido guardados.");
-				
-				location.reload();
+		var firstName = document.getElementById("nuevoNombre").value;
+		if( !validateName(firstName)){
+			alert("Usted ha ingresado un nombre inválido");
+		}else{
+			
+			var lastName = document.getElementById("nuevoApellido").value;
+			if( !validateName (lastName)){
+				alert("Usted ha ingresado un apellido inválido");
 			}else{
-				showError(error);
+				
+				var email = document.getElementById("nuevoEmail").value;
+				if( !validateEmail( email)){
+					alert("Usted ha ingresado un email inválido");
+				}else{
+					
+					var brthDate = new Date(document.getElementById("nuevaFecha").value);
+					var validDate = new Date("1999-01-01");
+					if(brthDate > validDate){
+						alert("Fecha inválida, se deben tener al menos 16 años para estar registrado en esta página");
+					}else{
+		
+		
+						var account ={
+							firstName: firstName,
+							lastName: lastName,
+							gender: user.account.gender,
+							identityCard: user.account.identityCard,
+							email: email,
+							birthDate: brthDate
+						}
+						var request = new Object();
+						request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=UpdateAccount&username=" + user.account.username + "&authentication_token="+ 			user.authenticationToken + "&account=" + JSON.stringify(account);
+						request.dataType="jsonp";
+						console.log(request.url);
+		
+						$.ajax(request).done(function(data) {
+							error=data.error;
+							if(error == undefined){
+				
+								user.account.firstName = account.firstName;
+								user.account.lastName = account.lastName;
+								user.account.email = account.email;
+								//user.account.birthDate = account.birthDate;
+				
+								sessionStorage.setItem("loggedUser", JSON.stringify(user));
+								alert("Sus cambios han sido guardados.");
+				
+								location.reload();
+							}else{
+								showError(error);
+							}
+						});
+					}
+				}
 			}
-		});
+		}
 		
 	}
 
 	function addCard(){
-		alert("entre por lo menos");
+		
+		if (document.getElementById('amex').checked) {
+			if(!validateAmex()){
+				alert("Por favor ingrese información válida");
+			}
+		}else if(document.getElementById('diners').checked){
+			if(!validateDiners()){
+				alert("Por favor ingrese información válida");
+			}
+		}else if(document.getElementById('master').checked){
+			if(!validateMaster()){
+				alert("Por favor ingrese información válida");
+			}
+		}else if(document.getElementById('visa').checked){
+			if(!validateVisa()){
+				alert("Por favor ingrese información válida");
+			}
+		}else{
+			alert("Por favor seleccione su tipo de tarjeta");
+		}
+		
+		
+		
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 		var tarjeta = {
 			number : document.getElementById("numeroTarjeta").value,
@@ -250,6 +292,7 @@
 		
 		});
 	}
+	
 	
 	
 	$("input[type=password]").keyup(function(){
