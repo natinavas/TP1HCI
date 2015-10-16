@@ -1,17 +1,19 @@
 	//clearAddresses();
 	
-	$("#direcciones").append(showAddresses());
+	alert(document.getElementById("cpD"));
+	
+	showAddresses();
 	$("#tarjetas").append(showCards());
 	$("#userInfo").append(personalInformation());
 
-	document.getElementById("addrs").addEventListener("click", function(){
-		document.getElementById("agregarDir").addEventListener("click", function() {
-			//addAddress(); 
-			//clearAddresses();
-			showAddresses();
-		});
-		//alert("Debug1");
+	
+	document.getElementById("agregarDir").addEventListener("click", function() {
+		//addAddress(); 
+		//clearAddresses();
+		//showAddresses();
 	});
+	//alert("Debug1");
+	
 	
 	document.getElementById("changePass").addEventListener("click", function(){
 		changePassword();
@@ -95,7 +97,7 @@
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 	
 		var request=new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAddress&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&address=" + 							JSON.stringify(newAddress);
+		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAddress&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&address=" + JSON.stringify(newAddress);
 		request.dataType = "jsonp";
 	
 		$.ajax(request).done(function(data) {
@@ -123,17 +125,32 @@
 	}
 	
 	function showAddresses(){
-		var request = new Object();
 		var user= JSON.parse(sessionStorage.getItem("loggedUser"));
+		
+		var request = new Object();
 		request.url= "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllAddresses&username=" + user.account.username + "&authentication_token=" + 				user.authenticationToken; 
-		request.dataType = "jasonp";
-		console.log(request.url)
+		request.dataType = "jsonp";
+		console.log(request.url);
+		
 		$.ajax(request).done(function(data){
-			alert("entre a la funcion del request");
 			error = data.error;
+			
 			if(error == undefined){
-				alert("no hubo error");
-				//alert(JSON.stringify(data));
+				var i;
+				var ret= '';
+				adr = data.addresses;
+				//alert(JSON.stringify(adr[0]));
+				for (i=0; adr[i] != undefined && adr[i] != null; i++){
+					
+					var miDir = adr[i];
+					ret += '<div id= addres' + i + '><h3> Dirreccion ' + (i+1) + ':</h3><h4>' + miDir.name
+					+ '</h4><h5>' + miDir.street + ' ' + miDir.number
+					+ '</h5><h5> ' + miDir.province + '</h5><h5>' 
+					+ miDir.zipCode
+					+ '</h5> <h5> Numero de Telefono: ' + miDir.phoneNumber + '</h5></div><br/> <br/>';
+				}
+				$("#direcciones").append(ret);
+				
 			}else{
 				showError(error);
 			}
@@ -144,24 +161,24 @@
 		/*var adr = JSON.parse(localStorage.getItem("adr"));
 		console.log(adr);
 		if(adr == null || adr == undefined){
-			return '<h3> Usted no tiene direcciones </h3>'
+		return '<h3> Usted no tiene direcciones </h3>'
 		}else{
-			var i;
-			var ads = ' ';
-			for(i=0; adr[i] != null; i++){
-				var miDir = JSON.parse(adr[i]);
-				//alert(miDir.address.phoneNumber);
-				ads += '<div id= addres' + i + '<h3> Dirreccion ' + (i+1) + ':</h3><h4>' + miDir.address.name
-				+ '<h5>' + miDir.address.street + ' ' + miDir.address.number
-				+ '<br /><br/> ' + miDir.address.province + '<br /><br/>' 
-				+ miDir.address.zipCode
-				+ '<h5> Numero de Telefono: ' + miDir.address.phoneNumber + '</div><br/> <br/>';
-			}
-			
-			console.log("termine el for");
-			return ads;*/
-		
+		var i;
+		var ads = ' ';
+		for(i=0; adr[i] != null; i++){
+		var miDir = JSON.parse(adr[i]);
+		//alert(miDir.address.phoneNumber);
+		ads += '<div id= addres' + i + '<h3> Dirreccion ' + (i+1) + ':</h3><h4>' + miDir.address.name
+		+ '<h5>' + miDir.address.street + ' ' + miDir.address.number
+		+ '<br /><br/> ' + miDir.address.province + '<br /><br/>' 
+		+ miDir.address.zipCode
+		+ '<h5> Numero de Telefono: ' + miDir.address.phoneNumber + '</div><br/> <br/>';
 		}
+			
+		console.log("termine el for");
+		return ads;*/
+		
+	}
 	
 	function showCards(){
 		var cards = JSON.parse(localStorage.getItem("cards"));
@@ -200,7 +217,6 @@
 			identityCard: user.account.identityCard,
 			email: document.getElementById("nuevoEmail").value,
 			birthDate: "1979-01-01"
-			
 		}
 		var request = new Object();
 		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=UpdateAccount&username=" + user.account.username + "&authentication_token="+ 			user.authenticationToken + "&account=" + JSON.stringify(account);
@@ -266,7 +282,7 @@
 			$("#8char").removeClass("glyphicon-remove");
 			$("#8char").addClass("glyphicon-ok");
 			$("#8char").css("color","#00A41E");
-		}else{
+		}else{ß
 			$("#8char").removeClass("glyphicon-ok");
 			$("#8char").addClass("glyphicon-remove");
 			$("#8char").css("color","#FF0004");

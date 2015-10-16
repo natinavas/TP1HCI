@@ -71,7 +71,7 @@
 		+ '<li><a href="usuario.html"><i class="glyphicon glyphicon-user" style = "color:black"></i><h7 style = "color:black">Mi Usuario</h7></a></li>' 
 		+ '<li><a href="contacto.html"><i class="glyphicon glyphicon-envelope" style = "color:black"></i><h7 style = "color:black"> Contacto</h7></a></li>' 
 		+ '<li class="divider"></li>' 
-		+ '<li><a href="index.html"><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 id="cerrarSesion" style = "color:black">Cerrar Sesión</h7></a></li>' 
+		+ '<li><a><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 id="cerrarSesion" style = "color:black">Cerrar Sesión</h7></a></li>' 
 		+ '</form>' + '</div>' + '</li>'
 		return buttons;
 	}
@@ -122,27 +122,24 @@
 	}
 
 	function signOut() {
-		var account = JSON.parse(sessionStorage.getItem("loggedUser"));
-		var token = sessionStorage.getItem("token");
-
-		var request = new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignOut&username=" + account.username + "&authentication_token=" + token;
-		request.dataType = "jsonp";
-
-		$.ajax(request).done(function(data) {
-			error = data.error;
 		
+		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+		
+		var request = new Object();
+		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignOut&username=" + user.account.username + "&authentication_token=" 					+user.authenticationToken;
+		request.dataType = "jsonp";
+		$.ajax(request).done(function(data){
+			error = data.error;
 			if(error == undefined){
 				sessionStorage.removeItem("loggedUser");
 				localStorage.removeItem("carrito");
-				
+				location.replace("index.html");
 			}else{
 				showError(error);
 			}
 		});
-		location.reload();
+		
 	}
-	// cierra el controller
 	
 	
 	function register() {
