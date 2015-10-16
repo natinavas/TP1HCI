@@ -116,11 +116,28 @@ function applyFilter(){
 		if(ocassion != undefined)
 		jsonFilters += '{	"id": ' + 3 + ',	"value": "' + ocassion + '"},';
 
+	var search = window.location.search.split("?")[1];
+	search = search.split(";");
+	var alreadyOffers = false;
+	var alreadyNew = false;
+	for(var i = 0; i < search.length; i++){
+		var keySearch = search[i].split("=")[0];
+		if(keySearch == "oferta")
+			alreadyOffers = true;
+		if(keySearch == "nuevo")
+			alreadyNew = true;
+	}
+
+
 	if(document.getElementById('inputOfertas').checked == true){
-		jsonFilters += '{	"id": ' + 5 + ',	"value": "Oferta"},';
+		if(alreadyOffers == false){
+			jsonFilters += '{	"id": ' + 5 + ',	"value": "Oferta"},';
+		}
 	}
 	if(document.getElementById('inputNuevo').checked == true){
-		jsonFilters += '{	"id": ' + 6 + ',	"value": "Nuevo"},';
+		if(alreadyNew == false){
+			jsonFilters += '{	"id": ' + 6 + ',	"value": "Nuevo"},';
+		}
 	}
 	//jsonFilters = jsonFilters.slice(0,jsonFilters.length - 1);
 	//jsonFilters += ']';
