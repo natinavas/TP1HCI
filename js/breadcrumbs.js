@@ -149,16 +149,9 @@ function loadProdBreadCrumb(){
 
 			console.log(request.url);
 
-			/*$.ajax(request ,{async : false}).done(function(c){
+			$.ajax(request ,{async : false}).done(function(c){
 				bc.innerHTML += '<li><a >'+ c.product.name.toUpperCase() +'</a></li>';
-			});*/
-
-			$.ajax({
-    			async: "false",
-    			success: function(c){
-    				bc.innerHTML += '<li><a >'+ c.product.name.toUpperCase() +'</a></li>';
-    			}
-    		});
+			});
 		}
 	}
 }
