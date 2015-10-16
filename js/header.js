@@ -1,15 +1,15 @@
 	function loadStuff(){
 	
-	document.getElementById("input").addEventListener("keypress", function(){
-		if(event.keyCode == 13){
-			search();
-		}
-	});
+		document.getElementById("input").addEventListener("keypress", function(){
+			if(event.keyCode == 13){
+				search();
+			}
+		});
 
-	function search(){
-		var input =  document.getElementById("input").value;
-		window.location.href = 'resultadosBusqueda.html?search=' + input;
-	}
+		function search(){
+			var input =  document.getElementById("input").value;
+			window.location.href = 'resultadosBusqueda.html?search=' + input;
+		}
 
 		console.log("logged User is: " + sessionStorage.getItem("loggedUser"));
 
@@ -19,7 +19,6 @@
 				signIn()
 			});
 			document.getElementById("registrarse").addEventListener("click", function() {
-				alert("por entrar");
 				register(); 
 			});
 
@@ -142,50 +141,119 @@
 	}
 	
 	
-	function register() {
-		alert("enters register");
-		// creo el objeto account
-		var sex;
-		if (document.getElementById('masc').checked) {
-		  sex = document.getElementById('masc').value;
+	function register(){
+		
+		
+		var id=document.getElementById("dni").value;
+		
+		if(!validateId(id)){
+			alert("Su numero de DNI debe tener hasta ocho numeros");
 		}else{
-			sex="F";
-		}
-
-
-		var account2 = { 
-			username : document.getElementById("usernameP").value,
-			password : document.getElementById("passwordP").value,
-			firstName : document.getElementById("nombre").value,
-			lastName : document.getElementById("apellido").value,
-			gender : sex,
-			identityCard : document.getElementById("dni").value,
-			email : document.getElementById("emailP").value,
-			birthDate : "1991-02-02"
-		};
-		console.log("account2 created");
-		alert("register request parameter " + JSON.stringify(account2));
 		
-		var request=new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=" + JSON.stringify(account2);
-		request.dataType = "jsonp";
-		alert("request url: " + request.url);
-		
-		$.ajax(request).done(function(data) { //aca hago el request de registrarse
-			
-			alert("register request: " + JSON.stringify(data));
-			error = data.error;
-			if(error == undefined){ //si no tengo error
-				//sessionStorage.setItem("loggedUser", JSON.stringify(data));
-				signIn2(document.getElementById("usernameP").value, document.getElementById("passwordP").value);
+			var firstName = document.getElementById("nombre").value;
+			if(!validateName(firstName)){
+				alert("El nombre debe tener hasta 80 caracteres alfa-numericos");
 			}else{
-				showError(error);
+		
+				var lastName = document.getElementById("apellido").value;
+				if(!validateName(lastName)){
+					alert("El apellido debe tener hasta 80 caracteres alfa-numericos");
+				}else{
+		
+		
+					var pass = document.getElementById("passwordP").value;
+					if(!validatePassword(pass)){
+						alert("La contraseña debe tener entre 8 y 15 caracteres alfa-numericos");
+					}else{
+		
+						var user=document.getElementById("usernameP").value;
+		
+						if(!validateUser(user)){
+							alert("el usuario debe tener entre 6 y 15 caracteres")
+						}else{
+		
+							var email=document.getElementById("emailP").value;
+							if(!validateEmail(email)){
+								alert("email no es válido");
+							}else{
+								var brthDate = new Date(document.getElementById('fechaP').value);
+								var validDate = new Date("1999-01-01");
 			
+								if(brthDate > validDate){
+									alert("Fecha inválida, se deben tener al menos 16 años para poder registrarse");
+								}else{
+									var sex;
+									if (document.getElementById('masc').checked) {
+										sex = document.getElementById('masc').value;
+									}else{
+										sex="F";
+									}
+									var account2 = { 
+										username : user,
+										password : pass,
+										firstName : firstName,
+										lastName : lastName,
+										gender : sex,
+										identityCard : id,
+										email : email,
+										birthDate : brthDate
+									};
+									console.log("account2 created");
+									alert("register request parameter " + JSON.stringify(account2));
+		
+									var request=new Object();
+									request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=" + JSON.stringify(account2);
+									request.dataType = "jsonp";
+									alert("request url: " + request.url);
+		
+									$.ajax(request).done(function(data) { //aca hago el request de registrarse
+			
+										alert("register request: " + JSON.stringify(data));
+										error = data.error;
+										if(error == undefined){ //si no tengo error
+											sessionStorage.setItem("loggedUser", JSON.stringify(data));
+											signIn2(document.getElementById("usernameP").value, document.getElementById("passwordP").value);
+											location.reload();
+										}else{
+											showError(error);
+			
+										}
+									});
+								}
+							}
+						}
+					}
+				}
 			}
-		});
-
+		}
 	}
 		
+	function validateEmail(email) {
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		return re.test(email);
+	}	
+	
+	function validateUser(user){
+		var re = /^[a-z0-9_-]{6,15}$/;
+		return re.test(user);
+	}
+	
+	function validatePassword(pass){
+		var re = /^[a-z0-9_-]{8,15}$/;
+		return re.test(pass);
+	}
+	
+	function validateName(name){
+		var re = /^[a-z0-9_-]{1,80}$/;
+		return re.test(name);
+	}
+	
+	function validateId(id){
+		var re = /^[0-9]{8}$/;
+		return re.test(id);
+	}
+	
+	
 	function signIn2(user, pass){
 		var request = new Object();
 		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + user + "&password=" + pass;
