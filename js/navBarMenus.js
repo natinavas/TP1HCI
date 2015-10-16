@@ -53,7 +53,7 @@ function loadNavBarFMClothes(num, categ, gender){
 	$.ajax(request).done(function(c) {
 
 		for(i=0; i<c.subcategories.length; i++){
-			document.getElementById(categ + g).innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
+			document.getElementById(categ + g).innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender='+ g +';age=Adulto">'+ c.subcategories[i].name +'</a></li>';
 		}		
 	});
 }
@@ -67,7 +67,7 @@ function loadRopaNinios(){
 
 		$.ajax(request).done(function(c) {
 			for(i=0; i<c.subcategories.length; i++){
-				document.getElementById("ropaNinios").innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
+				document.getElementById("ropaNinios").innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres;age=Infantil">'+ c.subcategories[i].name +'</a></li>';
 			}
 		});
 	}
@@ -83,7 +83,7 @@ function loadRopaNinias(){
 
 		$.ajax(request).done(function(c) {
 			for(i=0; i<c.subcategories.length; i++){
-				document.getElementById("ropaNinias").innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
+				document.getElementById("ropaNinias").innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Mujeres;age=Infantil">'+ c.subcategories[i].name +'</a></li>';
 			}
 		});
 	}
@@ -98,7 +98,7 @@ function loadRopaBebes(){
 
 		$.ajax(request).done(function(c) {
 			for(i=0; i<c.subcategories.length; i++){
-				document.getElementById("ropaBebes").innerHTML += '<li><a href="#">'+ c.subcategories[i].name +'</a></li>';
+				document.getElementById("ropaBebes").innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';age=Bebe">'+ c.subcategories[i].name +'</a></li>';
 			}
 		});
 	}

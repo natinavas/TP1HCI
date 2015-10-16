@@ -347,6 +347,16 @@ function getBasicSearch(){
 						 '"value":'+ gen +
 						 '},';
 				break;
+			case "oferta":
+				ret += '{'+
+						'"id": 5,'+
+						 '"value":"Oferta"},';
+				break;
+			case "nuevo":
+				ret += '{'+
+						'"id": 6,'+
+						 '"value":"Nuevo"},';
+				break;
 			default:
 				filterId = "";
 				break;
