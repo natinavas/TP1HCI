@@ -93,12 +93,12 @@ function loadBreadcrumbs(){
 			$.ajax(request).done(function(c){
 				if(isAdult == true){
 					bc.innerHTML += '<li><a href="resultadosBusqueda.html?category='+ c.subcategory.category.id +';gender='+ g +';age=Adulto">'+ c.subcategory.category.name.toUpperCase() +'</a></li>';
-					bc.innerHTML += '<li><a href="resultadosBusqueda.html?category='+ c.subcategory.id +';gender='+ g +';age=Adulto">'+ c.subcategory.name.toUpperCase() +'</a></li>';
+					bc.innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategory.id +';gender='+ g +';age=Adulto">'+ c.subcategory.name.toUpperCase() +'</a></li>';
 				}else if(isBaby == true){
-					bc.innerHTML += '<li><a href="resultadosBusqueda.html?category='+ c.subcategory.id +';age=Bebe">'+ c.subcategory.name.toUpperCase() +'</a></li>';
+					bc.innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategory.id +';age=Bebe">'+ c.subcategory.name.toUpperCase() +'</a></li>';
 				}
 				else{
-					bc.innerHTML += '<li><a href="resultadosBusqueda.html?category='+ c.subcategory.id +';gender='+ g +';age=Infantil">'+ c.subcategory.name.toUpperCase() +'</a></li>';
+					bc.innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategory.id +';gender='+ g +';age=Infantil">'+ c.subcategory.name.toUpperCase() +'</a></li>';
 				}
 			});
 		
