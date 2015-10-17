@@ -30,11 +30,11 @@ load();
 
 
 function removeFilter(category){
-	alert("holaaaa");
-		$("#" + category + "Title").hide();
-		$("#" + "remove" + category).hide();
-    	document.getElementById("color").innerHTML = '<option>'+ category +'</option>';
-    	location.reload();
+
+	$("#" + category + "Title").hide();
+	$("#" + "remove" + category).hide();
+	document.getElementById("color").innerHTML = '<option>'+ category +'</option>';
+	location.reload();
 }
 
 
@@ -248,7 +248,7 @@ function continueLoading(){
 			}
 		}
 
-		alert(request.url);
+		//alert(request.url);
 
 
 		console.log(request.url);
