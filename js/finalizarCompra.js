@@ -227,30 +227,42 @@ $(document).ready(function () {
     request= new Object();
     request.url ="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllCreditCards&username="+user.account.username +"&authentication_token="+user.authenticationToken+"&page_size=" + 10;
     request.dataType = "jsonp";
+    console.log(request.url);
   //  alert(request.url);
 
     
     $.ajax(request).done(function(data) {
         error = data.error;
-
-        var ret = "";
-
-
-        var creditCards = [];
-        
 		
-		var myCards = data.creditCards;
         if(error == undefined){
-            for(i=0; myCards[i] != undefined; i++){
-                ret +='<label class="radio-inline"><input type="radio" id="card' + myCards[i].id + '" name="optradio"></input>';
-                ret +='<h3> Tarjeta ' + (i+1) + ':</h3><h4>' + myCards[i].number
-                    + '</h4>'
-                    + '<h4> Vencimiento: ' + myCards[i].expirationDate
-                    + '</h4></label>';
-                    alert(ret);
 
-                creditCards.push(myCards[i].id);
 
+            var myCards = data.creditCards;
+
+            var ret = "";
+
+
+            var creditCards = [];
+
+            if(myCards[0] == undefined){
+                ret += '<h5>Su cuenta no tiene tarjetas de crédito registradas</h5><br/>'
+                    + '<h5>Para añadir una diríjase a Mi Cuenta -> Mi Usuario ->  '
+                    + '<span class="glyphicon glyphicon-credit-card"  style="color:black"></span>'
+                    + '  -> Agregar Nueva Tarjeta<h5/>';
+            }
+
+            else{
+                for(i=0; myCards[i] != undefined; i++){
+                    ret +='<label class="radio-inline"><input type="radio" id="card' + myCards[i].id + '" name="optradio"></input>';
+                    ret +='<h3> Tarjeta ' + (i+1) + ':</h3><h4>' + myCards[i].number
+                        + '</h4>'
+                        + '<h4> Vencimiento: ' + myCards[i].expirationDate
+                        + '</h4></label>';
+                        alert(ret);
+
+                    creditCards.push(myCards[i].id);
+
+                }
             }
              $("#medioPago").append(ret);
              sessionStorage.setItem("creditCards", JSON.stringify(creditCards));
@@ -283,6 +295,13 @@ function showAddresses(){
                 var i;
                 var ret= '';
                 adr = data.addresses;
+
+                if(adr[0] == undefined){
+                    ret += '<h5>Debe agregar direcciones de envío a su cuenta para continuar</h5><br/>'
+                    + '<h5>Diríjase a Mi Cuenta -> Mi Usuario ->  '
+                    + '<span class="glyphicon glyphicon-home"  style="color:black"></span>'
+                    + '  -> Agregar Nueva Dirección<h5/>';
+                }
 
 
                 //alert(JSON.stringify(adr[0]));

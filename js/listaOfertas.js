@@ -1,6 +1,6 @@
 
 var request = new Object();
-request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts&id=1&page_size=18";
+request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts&filters=[{%20%22id%22:%205,%20%22value%22:%20%22Oferta%22%20}]&page_size=18";
 
 
 
