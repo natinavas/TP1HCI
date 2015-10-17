@@ -144,9 +144,7 @@ function finalizar(){
 	localStorage.removeItem("wishList");
 
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
-
-
-
-
-	alert("hola");
+	if(sessionStorage.getItem("loggedUser") == null || sessionStorage.getItem("loggedUser") == undefined){
+		alert("Usted debe iniciar sesion para finalizar su compra");
+	}
 }

@@ -18,12 +18,12 @@ $(document).ready(function () {
         var addresses = JSON.parse(sessionStorage.getItem("addresses"));
 
 
-            alert(addresses);
+            //alert(addresses);
 
         for(var i = 0; addresses != undefined && addresses[i] != undefined; i++){
             if(document.getElementById(addresses[i]).checked){
 
-                alert(addresses[i] + " esta checked");
+                //alert(addresses[i] + " esta checked");
                 var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
                 var username = user.account.username;
@@ -33,9 +33,9 @@ $(document).ready(function () {
 
                 var orderId = parseInt(sessionStorage.getItem("orderId"));
 
-                alert(orderId);
+                //alert(orderId);
 
-                alert( "dir id : " + addresses[i].split("dir")[1]);
+               // alert( "dir id : " + addresses[i].split("dir")[1]);
 
                 var adr = new Object();
                 adr.id = orderId;
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 request.dataType="jsonp";
                 console.log(request.url);
                 $.ajax(request).done( function(data) {
-                    alert(JSON.stringify(data));
+                   // alert(JSON.stringify(data));
 
                     var $active = $('.wizard .nav-tabs li.active');
                     $active.next().removeClass('disabled');
@@ -110,8 +110,8 @@ var authenticationToken = user.authenticationToken;
     request.dataType="jsonp";
     console.log(request.url);
     $.ajax(request).done( function(data) {
-        alert("cree la orden");
-        alert(JSON.stringify(data));
+       // alert("cree la orden");
+       // alert(JSON.stringify(data));
 
         sessionStorage.setItem("orderId", JSON.stringify(data.order.id));
 
@@ -119,7 +119,7 @@ var authenticationToken = user.authenticationToken;
 
 
         for(var i = 0; carrito != undefined && carrito[i] != undefined; i++){
-            alert("elemento de carrito: " + carrito[i]);
+           // alert("elemento de carrito: " + carrito[i]);
             addItemToCart(data, JSON.parse(carrito[i]));
         }
 
@@ -135,23 +135,16 @@ request = new Object();
     request.dataType="jsonp";
     console.log(request.url);
     $.ajax(request).done( function(data) {
-        alert(JSON.stringify(data));
+        //alert(JSON.stringify(data));
 
 
     });
-
-    alert("holaaaaaaa");
-
-
-
-        
-
 
 
         var request= new Object();
         request.url ="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllCreditCards&username="+user.account.username +"&authentication_token="+user.authenticationToken+"&page_size=" + 10;
         request.dataType = "jsonp";
-        alert(request.url);
+      //  alert(request.url);
 
         
         $.ajax(request).done(function(data) {
@@ -159,17 +152,16 @@ request = new Object();
 
             var ret = "";
             
+			
+			var myCards = data.creditCards;
             if(error == undefined){
-                alert("entro");
-
-                for(i=0; data.creditCards[i] != undefined; i++){
-                    ret += '<input type="radio" id="card' + data.creditCards[i].id + '" name="optradio"></input>'
-                        + '<h4> Tarjeta ' + (i+1) + ':</h4><h4>' + data.creditCards[i].number
+                for(i=0; myCards[i] != undefined; i++){
+                    ret +='<div class = "row"><input type="radio" id="card' + myCards[i].id + '" name="optradio"></input></div>';
+                    ret +='<div class="row"><h3> Tarjeta ' + (i+1) + ':</h3><h4>' + myCards[i].number
                         + '</h4>'
-                        + '<h4> Vencimiento: ' + data.creditCards[i].expirationDate +
-                        + '</h4><br/> <br/><br/><br/><br/>';
+                        + '<h4> Vencimiento: ' + myCards[i].expirationDate +
+                        + '</h4></div><div class="row"></div>';
 
-                   
                 }
                  $("#medioPago").append(ret);
             }else{
@@ -210,13 +202,12 @@ function showAddresses(){
 
                 addresses.push('dir' + miDir.id);
                     
-                    ret += '<label class="radio-inline"><input type="radio" id="dir' + miDir.id + '" value= "M" name="optradio">'
+                    ret += '<input type="radio" id="dir' + miDir.id + '" name="optradio">'
                     + '<div id= addres' + i + '><h3> Direccion ' + (i+1) + ':</h3><h4>' + miDir.name
                     + '</h4><h5>' + miDir.street + ' ' + miDir.number
                     + '</h5><h5> Provincia: ' + miDir.province + '</h5><h5> Código Postal: ' 
                     + miDir.zipCode
-                    + '</h5> <h5> Numero de Telefono: ' + miDir.phoneNumber + '</h5></div><br/> <br/>'
-                    + '</label>';
+					+ '</h5><h5> Numero de Telefono: ' + miDir.phoneNumber + '</h5></div>';
                 }
                 $("#direcciones").append(ret);
 
@@ -249,7 +240,7 @@ function addItemToCart(orderData, item){
     prod.product = product;
     prod.quantity = item.quantity;
 
-    alert("prod :" + JSON.stringify(prod));
+    //alert("prod :" + JSON.stringify(prod));
 
 
     request = new Object();
@@ -262,8 +253,8 @@ function addItemToCart(orderData, item){
 
 
     $.ajax(request).done( function(data) {
-        alert(JSON.stringify(data.orderItem));
-        alert("cantidad : " + JSON.stringify(data.orderItem.quantity));
+       // alert(JSON.stringify(data.orderItem));
+       // alert("cantidad : " + JSON.stringify(data.orderItem.quantity));
     });
 
 }

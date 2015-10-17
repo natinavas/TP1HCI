@@ -251,6 +251,7 @@
 	function addCard(){
 		
 		if (document.getElementById('amex').checked) {
+			alert("la tarj es amex");
 			if(!validateAmex()){
 				alert("la tarjeta es amex");
 				alert("Por favor ingrese información válida");
@@ -346,8 +347,8 @@
 		var regTar1 = /34[0-9]{13}$/;
 		var regTar2 = /37[0-9]{13}$/;
 		
-		alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta)));
-		return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta));
+		alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta)));
+		return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
 		
 	}
 	
