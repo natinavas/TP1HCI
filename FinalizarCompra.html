@@ -46,28 +46,28 @@
                                 <div class="connecting-line"></div>
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active">
-                                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="PASO 1">
                                             <span class="round-tab">
 												<i class="glyphicon glyphicon-user"></i>
 											</span>
                                         </a>
                                     </li>
                                     <li role="presentation" class="disabled">
-                                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="PASO 2">
                                             <span class="round-tab">
 												<i class="glyphicon glyphicon-usd"></i>
 											</span>
                                         </a>
                                     </li>
                                     <li role="presentation" class="disabled">
-                                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="PASO 3">
                                             <span class="round-tab">
 												<i class="glyphicon glyphicon-eye-open"></i>
 											</span>
                                         </a>
                                     </li>
                                     <li role="presentation" class="disabled">
-                                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="EXITO">
                                             <span class="round-tab">
 												<i class="glyphicon glyphicon-ok"></i>
 											</span>
@@ -79,7 +79,6 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" role="tabpanel" id="step1">
                                         <div class="row">
-                                            <form class="form-horizontal" role="form">
                                                 <fieldset>
                                                     <!-- Form Name -->
                                                     <h3>SELECCIONE UNA DIRECCIÓN DE ENVIO</h3>
@@ -88,7 +87,6 @@
                                                 <div id="direcciones">
                                             </div>													
                                                 </fieldset>
-                                            </form>
                                         </div>
                                         <!-- /.row -->
                                         <br/>
@@ -99,18 +97,16 @@
                                     </div>
                                     <div class="tab-pane" role="tabpanel" id="step2">
                                         <div class="container">
-                                            <div class="centered title">
-                                                <h1>INGRESE SU INFORMACION DE PAGO</h1></div>
-                                        </div>
+                                                <h3>INGRESE SU INFORMACION DE PAGO</h3></div>
                                         <hr class="featurette-divider"></hr>
                                         <div class="container">
                                             <div class="row">
-                                                    <div class="alert alert-info">Por favor elija su metodo de pago y aprete continuar.</div>
+                                                    <div class="alert alert-info">Por favor elija su metodo de pago y aprete GUARDAR Y CONTINUAR.</div>
                                                     <label class='control-label'></label>
                                                     <!-- spacing -->
                                                     <br/>
                                                     <div id="medioPago">
-                                                        <label class="radio-inline"><input type="radio" id="efectivo" name="optradio"><h3>EFECTIVO</h3></label><br/>
+                                                        <label class="radio-inline"><input type="radio" id="efectivo" name="optradio"></input><h3>EFECTIVO</h3></label><br/><br/>
                                                     </div>
                                                     <br/>
                                                     <br/>
@@ -118,14 +114,14 @@
                                                     <div class="jumbotron jumbotron-flat">
                                                         <div class="center">
                                                             <h2><i>TOTAL A PAGAR:</i></h2></div>
-                                                        <div class="paymentAmt">$100</div>
+                                                        <div id="total" class="paymentAmt">$100</div>
                                                     </div>
                                                     <ul class="list-inline pull-right">
                                                         <li>
                                                             <button type="button" class="btn btn-default prev-step">ANTERIOR</button>
                                                         </li>
                                                         <li>
-                                                            <button type="button" class="smallButton btn btn-primary next-step">GUARDAR Y CONTINUAR</button>
+                                                            <button type="button" id="second-step" class="smallButton btn btn-primary">GUARDAR Y CONTINUAR</button>
                                                         </li>
                                                     </ul>
                                             </div>
@@ -136,7 +132,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <div class="invoice-title">
-                                                        <h2>RESUMEN DE COMPRA</h2>
+                                                        <h3>RESUMEN DE COMPRA</h3>
                                                         <h3 class="pull-right">Pedido # 12345</h3>
                                                     </div>
                                                     <hr>
@@ -242,7 +238,7 @@
                                         </div>
                                         <ul class="list-inline pull-right">
                                             <li>
-                                                <button type="button" class="smallButton btn btn-primary btn-info-full next-step">FINALIZAR</button>
+                                                <button type="button" id="last-step" class="smallButton btn btn-primary btn-info-full">FINALIZAR</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -266,6 +262,7 @@
         <!-- Bootstrap core JavaScript
 			================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/finalizarCompra.js"></script>

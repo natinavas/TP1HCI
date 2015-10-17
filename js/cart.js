@@ -142,9 +142,13 @@ function addItemToFav(number){
 
 function finalizar(){
 	localStorage.removeItem("wishList");
-
-	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	if(sessionStorage.getItem("loggedUser") == null || sessionStorage.getItem("loggedUser") == undefined){
-		alert("Usted debe iniciar sesion para finalizar su compra");
+		alert("Usted debe iniciar sesión para finalizar su compra");
+	}
+	else{
+		var total = new Object();
+		total.value = parseInt(document.getElementById("total").innerHTML.split("$")[1]);
+		sessionStorage.setItem("total", JSON.stringify(total));
+		window.location.href = "finalizarCompra.html";
 	}
 }
