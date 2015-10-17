@@ -142,8 +142,17 @@ function addItemToFav(number){
 
 function finalizar(){
 	localStorage.removeItem("wishList");
+	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	if(sessionStorage.getItem("loggedUser") == null || sessionStorage.getItem("loggedUser") == undefined){
 		alert("Usted debe iniciar sesión para finalizar su compra");
+	}
+	else if(carrito == undefined || carrito[0] == undefined){
+
+		swal({   title: "Error!",
+			text: "Agregue un producto al carrito para continuar",
+			type: "error",
+			confirmButtonText: "Cerrrar"
+		});
 	}
 	else{
 		var total = new Object();
