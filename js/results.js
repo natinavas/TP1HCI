@@ -21,6 +21,10 @@ var search = window.location.search.split("?")[1];
 var basicSearch = getBasicSearch();
 //search.split("=")[1];
 
+document.getElementById('inputOfertas').checked = false;
+document.getElementById('inputNuevo').checked = false;
+
+
 var pageNum = 0;
 load();
 
@@ -270,6 +274,15 @@ function continueLoading(){
 
 			var ID = "pagProd.html?" + params + ";product=" + data.products[i].id;
 
+			var marca = "";
+
+			for(j = 0; (data.products[i].attributes[j] != undefined); j++){
+				if(data.products[i].attributes[j].name == "Marca"){
+					marca =data.products[i].attributes[j].values[0];
+					
+				}
+			}
+
 
 			var prod = 
 		        '<div class="col-xs-3">'+
@@ -279,9 +292,11 @@ function continueLoading(){
 			                    '<div class="imgWrapper">'+
 									'<img src='+data.products[i].imageUrl[0]+'>'+
 			                    '</div>'+
-			                    '<br>'+
+			                    '<br/>'+
 								'<font size="3" style="color:black"><b>'+data.products[i].name+'</b></font>'+
-			                    '<br>'+
+			                    '<br/>'+
+								'<font size="2" style="color:grey">Marca: '+marca+'</font>'+
+			                    '<br/>'+
 								'<font size="2" style="color:grey">$'+data.products[i].price+'</font>'+
 			                '</div>'+
 			            '</a>'+

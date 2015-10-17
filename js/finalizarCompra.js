@@ -73,6 +73,13 @@ $(document).ready(function () {
 
     });
 
+
+    $("#second-step").click(function (e) {
+
+
+
+    });
+
     $(".next-step").click(function (e) {
         var $active = $('.wizard .nav-tabs li.active');
         $active.next().removeClass('disabled');
@@ -132,6 +139,44 @@ request = new Object();
 
 
     });
+
+    alert("holaaaaaaa");
+
+
+
+        
+
+
+
+        var request= new Object();
+        request.url ="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllCreditCards&username="+user.account.username +"&authentication_token="+user.authenticationToken+"&page_size=" + 10;
+        request.dataType = "jsonp";
+        alert(request.url);
+
+        
+        $.ajax(request).done(function(data) {
+            error = data.error;
+
+            var ret = "";
+            
+            if(error == undefined){
+                alert("entro");
+
+                for(i=0; data.creditCards[i] != undefined; i++){
+                    ret += '<input type="radio" id="card' + data.creditCards[i].id + '" name="optradio"></input>'
+                        + '<h4> Tarjeta ' + (i+1) + ':</h4><h4>' + data.creditCards[i].number
+                        + '</h4>'
+                        + '<h4> Vencimiento: ' + data.creditCards[i].expirationDate +
+                        + '</h4><br/> <br/><br/><br/><br/>';
+
+                   
+                }
+                 $("#medioPago").append(ret);
+            }else{
+                showError(error);
+            }
+        
+        });
 
 
 

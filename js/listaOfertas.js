@@ -31,6 +31,16 @@ function addOffers() {
 
         var ID = "pagProd.html?product" + "=" + data.products[i].id;
 
+
+        var marca = "";
+
+        for(j = 0; (data.products[i].attributes[j] != undefined); j++){
+            if(data.products[i].attributes[j].name == "Marca"){
+                marca =data.products[i].attributes[j].values[0];
+                
+            }
+        }
+
         var prod = '<div class="col-md-2 col-sm-6 col-xs-6">' +
             '<a onclick="loadProduct(data.products[i].name)" href=' + ID + '>' +
             '<div class="panel panel-default">' +
@@ -40,6 +50,8 @@ function addOffers() {
             '</div>' +
             '<br>' +
             '<font size="3" style="color:black"><b>' + data.products[i].name + '</b></font>' +
+            '<br>' +
+            '<font size="2" style="color:grey">Marca: ' + marca + '</font>' +
             '<br>' +
             '<font size="2" style="color:grey">$' + data.products[i].price + '</font>' +
             '</div>' +
