@@ -282,7 +282,11 @@ function continueLoading(){
 					
 				}
 			}
-
+			var prodName = data.products[i].name;
+			if(data.products[i].name.length > 21){
+				prodName = data.products[i].name.slice(0,19);
+				prodName += "..."
+			}
 
 			var prod = 
 		        '<div class="col-xs-3">'+
@@ -293,7 +297,7 @@ function continueLoading(){
 									'<img src='+data.products[i].imageUrl[0]+'>'+
 			                    '</div>'+
 			                    '<br/>'+
-								'<font size="3" style="color:black"><b>'+data.products[i].name+'</b></font>'+
+								'<font size="3" style="color:black"><b>'+prodName+'</b></font>'+
 			                    '<br/>'+
 								'<font size="2" style="color:grey">Marca: '+marca+'</font>'+
 			                    '<br/>'+

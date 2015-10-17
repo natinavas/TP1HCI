@@ -37,8 +37,17 @@ function addOffers() {
         for(j = 0; (data.products[i].attributes[j] != undefined); j++){
             if(data.products[i].attributes[j].name == "Marca"){
                 marca =data.products[i].attributes[j].values[0];
-                
+                if(marca.length > 7){
+                    marca = marca.slice(0,5);
+                    marca += "..."
+                }
             }
+        }
+
+        var prodName = data.products[i].name;
+        if(data.products[i].name.length > 12){
+            prodName = data.products[i].name.slice(0,10);
+            prodName += "..."
         }
 
         var prod = '<div class="col-md-2 col-sm-6 col-xs-6">' +
@@ -49,7 +58,7 @@ function addOffers() {
             '<img src=' + data.products[i].imageUrl[0] + '>' +
             '</div>' +
             '<br>' +
-            '<font size="3" style="color:black"><b>' + data.products[i].name + '</b></font>' +
+            '<font size="3" style="color:black"><b>' + prodName + '</b></font>' +
             '<br>' +
             '<font size="2" style="color:grey">Marca: ' + marca + '</font>' +
             '<br>' +
