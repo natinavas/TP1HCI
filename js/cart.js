@@ -33,7 +33,7 @@ function loadProduct(i){
 
 	var name = JSON.parse(cart[i]).name;
 	var image = JSON.parse(cart[i]).image;
-	var price = parseInt(JSON.parse(cart[i]).price);
+	var price = JSON.parse(cart[i]).price;
 	var marca = JSON.parse(cart[i]).marca;
 
 	subtotal += price * quantity;
@@ -76,19 +76,26 @@ function loadProduct(i){
 		        	'<hr></hr>'+
 	        	'</div>';
 
-	        document.getElementById("cartProducts").innerHTML += prod;
+    document.getElementById("cartProducts").innerHTML += prod;
 
 
-	        $(document).on('click', "#trash"+number, function(){
-	        	removeItem(number);
-	        });
-	        $(document).on('click', "#fav"+number, function(){
-	        	addItemToFav(number);
-	        });
+    $(document).on('click', "#trash"+number, function(){
+    	removeItem(number);
+    });
+    $(document).on('click', "#fav"+number, function(){
+    	addItemToFav(number);
+    });
 
-document.getElementById("subtotal").innerHTML = "$" + subtotal;
-document.getElementById("costoEnvio").innerHTML = "$" + costoEnvio;
-document.getElementById("total").innerHTML = "$" + total;
+	document.getElementById("subtotal").innerHTML = "$" + subtotal;
+	document.getElementById("costoEnvio").innerHTML = "$" + costoEnvio;
+	document.getElementById("total").innerHTML = "$" + total;
+
+
+	sessionStorage.setItem("subtotal", "$" + subtotal);
+	sessionStorage.setItem("costoEnvio", "$" + costoEnvio);
+	sessionStorage.setItem("total", "$" + total);
+
+
 
 }
 
@@ -113,7 +120,6 @@ function addItemToFav(number){
 
 
 	if (wishList == undefined) {
-		alert("creo wishlist");
 	    var wishList = [];
 
 	    localStorage.setItem("wishList", JSON.stringify(wishList));
@@ -124,7 +130,10 @@ function addItemToFav(number){
     for (var i = 0; wishList[i] != undefined; i++) {
     	if(JSON.parse(wishList[i]).id == JSON.parse(carrito[number]).id && JSON.parse(wishList[i]).color == JSON.parse(carrito[number]).color
     	 && JSON.parse(wishList[i]).talle == JSON.parse(carrito[number]).talle){
-    		alert("el item ya se encuentra en la lista de deseos");
+			swal({   title: "El producto ya se encuentra en la lista de deseos",
+				type: "error",
+				confirmButtonText: "Cerrrar"
+			});
     		flag = 1;
     	}
     }
@@ -133,7 +142,10 @@ function addItemToFav(number){
     if(flag == 0){
     	var prod = JSON.parse(carrito[number]);
     	prod.quantity = 1;
-		alert("se ha agregado a la lista de deseos");
+    	swal({   title: "Se ha agregado a la lista de deseos",
+			type: "success",
+			confirmButtonText: "Cerrrar"
+		});
     	wishList.push(JSON.stringify(prod));
     }
 
@@ -159,9 +171,6 @@ function finalizar(){
 		});
 	}
 	else{
-		var total = new Object();
-		total.value = parseInt(document.getElementById("total").innerHTML.split("$")[1]);
-		sessionStorage.setItem("total", JSON.stringify(total));
 		window.location.href = "finalizarCompra.html";
 	}
 }

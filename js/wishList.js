@@ -47,7 +47,7 @@ function loadProduct(i){
 		                    '<button type="button" id="trash' + number + '" class="btn btn-link btn-xs">'+
 		                        '<span class="glyphicon glyphicon-trash" style="color:black"> </span>'+
 		                    '</button>'+
-		                    '<button type="button" id="cart' + number + '" onclick="hola()" class="btn btn-link btn-xs">'+
+		                    '<button type="button" id="cart' + number + '" class="btn btn-link btn-xs">'+
 		                		'<span class="glyphicon glyphicon-shopping-cart" style="color:black"></span>'+
 		                    '</button>'+
 		                '</div>'+
@@ -99,26 +99,32 @@ function addItemToCart(number){
 
 
 	if (carrito == undefined) {
-	    alert("creo carrito");
 	    var carrito = [];
 
 	    localStorage.setItem("carrito", JSON.stringify(carrito));
 	}
 
+
     for (var i = 0; carrito[i] != undefined; i++) {
 
     	if(JSON.parse(wishList[number]).id == JSON.parse(carrito[i]).id && JSON.parse(wishList[number]).color == JSON.parse(carrito[i]).color
     	 && JSON.parse(wishList[number]).talle == JSON.parse(carrito[i]).talle){
-    		alert("el item ya se encuentra en el carrito");
+    	 	var prod = JSON.parse(carrito[i]);
+    	 	prod.quantity++;
+    	 	carrito[i] = JSON.stringify(prod);
     		flag = 1;
     	}
     }
 
 
     if(flag == 0){
-	alert("se ha agregado al carrito");
     	carrito.push(wishList[number]);
     }
+
+	swal({   title: "Se ha agregado al carrito",
+		type: "success",
+		confirmButtonText: "Cerrrar"
+	});
 
 	localStorage.setItem("carrito", JSON.stringify(carrito));
 

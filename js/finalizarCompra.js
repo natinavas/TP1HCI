@@ -26,9 +26,9 @@ $(document).ready(function () {
 
         for(var i = 0; addresses != undefined && addresses[i] != undefined; i++){
 
-            if(document.getElementById(addresses[i]).checked){
+            if(document.getElementById("dir" + JSON.parse(addresses[i]).id).checked){
 
-
+                var selectedAdress = JSON.parse(addresses[i]);
 
                 //alert(addresses[i] + " esta checked");
                 var user = JSON.parse(sessionStorage.getItem("loggedUser"));
@@ -40,6 +40,7 @@ $(document).ready(function () {
 
                 var orderId = parseInt(sessionStorage.getItem("orderId"));
 
+
                 //alert(orderId);
 
                // alert( "dir id : " + addresses[i].split("dir")[1]);
@@ -47,7 +48,7 @@ $(document).ready(function () {
                 var adr = new Object();
                 adr.id = orderId;
                 var address = new Object();
-                address.id = parseInt(addresses[i].split("dir")[1]);
+                address.id = parseInt(JSON.parse(addresses[i]).id);
                 adr.address = address;
 
                 sessionStorage.setItem("address", JSON.stringify(address));
@@ -61,6 +62,15 @@ $(document).ready(function () {
                 console.log(request.url);
                 $.ajax(request).done( function(data) {
                    // alert(JSON.stringify(data));
+
+
+                    var s = '';
+
+                    s += '<br/>' + selectedAdress.name
+                    + '<br/>' + selectedAdress.street + ' ' + selectedAdress.number
+                    + '<br/>Código Postal : ' + selectedAdress.zipCode;
+
+                    document.getElementById("receptor").innerHTML = s;
 
 
                     var $active = $('.wizard .nav-tabs li.active');
@@ -138,6 +148,7 @@ $(document).ready(function () {
 
         if(document.getElementById("efectivo").checked){
 
+            document.getElementById("metodoPago").innerHTML = '<br/>EFECTIVO';
 
             sessionStorage.setItem("finalOrder", JSON.stringify(finalOrder));
 
@@ -147,14 +158,31 @@ $(document).ready(function () {
             return;
         }
         else{
-
             for(var i = 0; creditCards != undefined && creditCards[i] != undefined; i++){
-                if(document.getElementById("card" + creditCards[i]).checked){
+                if(document.getElementById("card" + JSON.parse(creditCards[i]).id).checked){
+
+                    var selectedCard = JSON.parse(creditCards[i]);
+
+                    var s = '';
+
+                    var num = '';
+
+                    for(var j = 0; j < selectedCard.number.length - 4; j++){
+                        num += '*';
+                    }
+
+                    num += selectedCard.number.substring(selectedCard.number.length - 4, selectedCard.number.length);
+
+                    s += '<br/>Tarjeta ' + (i + 1)
+                    + '<br/>' + num
+                    + '<br/>Fecha de vencimiento: ' + selectedCard.expirationDate.substring(0,2) + '/' + selectedCard.expirationDate.substring(2,4);
+
+                    document.getElementById("metodoPago").innerHTML = s;
 
                     //alert(addresses[i] + " esta checked");
 
                     var creditCard = new Object();
-                    creditCard.id = creditCards[i];
+                    creditCard.id = JSON.parse(creditCards[i]).id;
                     finalOrder.creditCard = creditCard;
 
                     sessionStorage.setItem("finalOrder", JSON.stringify(finalOrder));
@@ -192,9 +220,8 @@ $(document).ready(function () {
     });
 
 
-    var total = JSON.parse(sessionStorage.getItem("total"));
 
-    document.getElementById("total").innerHTML = "$" + total.value;
+    document.getElementById("total").innerHTML = sessionStorage.getItem("total")
 
     showAddresses();
 
@@ -203,6 +230,14 @@ $(document).ready(function () {
     var username = user.account.username;
 
     var authenticationToken = user.authenticationToken;
+
+    var s = '';
+
+    s += '<br/>' + user.account.firstName + ' ' + user.account.lastName
+    + '<br/>' + user.account.email;
+
+    $("#cliente").append(s);
+
 
 
     var request = new Object();
@@ -218,13 +253,21 @@ $(document).ready(function () {
 
         sessionStorage.setItem("orderId", JSON.stringify(data.order.id));
 
+        document.getElementById("date").innerHTML = '<br/>' + data.order.receivedDate.toString();
+        document.getElementById("pedido").innerHTML = 'Pedido # ' + data.order.id;
         var carrito = JSON.parse(localStorage.getItem("carrito"));
 
 
         for(var i = 0; carrito != undefined && carrito[i] != undefined; i++){
            // alert("elemento de carrito: " + carrito[i]);
             addItemToCart(data, JSON.parse(carrito[i]));
+            loadProduct(JSON.parse(carrito[i]));
         }
+
+
+        document.getElementById("subtotal").innerHTML += sessionStorage.getItem("subtotal");
+        document.getElementById("costoEnvio").innerHTML += sessionStorage.getItem("costoEnvio");
+        document.getElementById("totalPrecio").innerHTML += sessionStorage.getItem("total");
 
 
 
@@ -248,7 +291,6 @@ $(document).ready(function () {
 
             var ret = "";
 
-
             var creditCards = [];
 
             if(myCards[0] == undefined){
@@ -266,12 +308,12 @@ $(document).ready(function () {
                         + '<h4> Vencimiento: ' + myCards[i].expirationDate
                         + '</h4></label>';
 
-                    creditCards.push(myCards[i].id);
+                    creditCards.push(JSON.stringify(myCards[i]));
 
                 }
             }
-             $("#medioPago").append(ret);
-             sessionStorage.setItem("creditCards", JSON.stringify(creditCards));
+            document.getElementById("medioPago").innerHTML += ret;
+            sessionStorage.setItem("creditCards", JSON.stringify(creditCards));
         }else{
             showError(error);
         }
@@ -315,7 +357,9 @@ function showAddresses(){
 
                     var miDir = adr[i];
 
-                addresses.push('dir' + miDir.id);
+
+
+                addresses.push(JSON.stringify(miDir));
                     
                     ret += '<label class="radio-inline"><input type="radio" id="dir' + miDir.id + '" name="optradio">'
                     + '<div id= addres' + i + '><h3> Direccion ' + (i+1) + ':</h3><h4>' + miDir.name
@@ -373,6 +417,24 @@ function addItemToCart(orderData, item){
     });
 
 }
+
+function loadProduct(product){
+
+    var content = document.getElementById("products").innerHTML;
+
+    var s = '<tr>'
+    + '<td>' + product.name + '</td>'
+    + '<td class="text-center">' + product.price + '</td>'
+    + '<td class="text-center">' + product.quantity + '</td>'
+    + '<td class="text-right">' + (product.price * product.quantity) + '</td>'
+    + '</tr>';
+
+    document.getElementById("products").innerHTML = s + content;
+
+
+}
+
+
 
 
 function nextTab(elem) {
