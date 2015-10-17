@@ -145,7 +145,9 @@ function loadBreadcrumbs(){
 	}
 }
 
-loadProdBreadCrumb();
+
+setTimeout(loadProdBreadCrumb,20);
+//loadProdBreadCrumb();
 
 function loadProdBreadCrumb(){
 	//me fijo si es un producto
@@ -158,7 +160,8 @@ function loadProdBreadCrumb(){
 
 			console.log(request.url);
 
-			$.ajax(request ,{async : false}).done(function(c){
+			$.ajax(request).done(function(c){
+
 				bc.innerHTML += '<li><a >'+ c.product.name.toUpperCase() +'</a></li>';
 			});
 		}
