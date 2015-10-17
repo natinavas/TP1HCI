@@ -43,7 +43,7 @@
 	}
 
 	function notLoggedInButtons() {
-		var buttons = '<li><a href="#"  data-toggle="modal" data-target="#myModal" >Registrarse</a></li>' 
+		var buttons = '<li class="myReg"><a href="#"  data-toggle="modal" data-target="#myModal" >Registrarse</a></li>' 
 		+ '<li class="divider-vertical"></li>' 
 		+ '<li class="dropdown">' 
 		+ '<a class="dropdown-toggle" href="#" data-toggle="dropdown">Iniciar Sesión<strong class="caret"></strong></a>' 
@@ -72,7 +72,11 @@
 	}
 
 	function showError(error) {
-		alert(error.message);
+		var mess = document.getElementById("messageP");
+		mess.className = "alert alert-danger  alert-dismissible";
+		mess.style.display = "block";
+		$('#messageP').append('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + error.message);
+		//alert(error.message);
 	}
 
 	function signIn() {
