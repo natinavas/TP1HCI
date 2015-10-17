@@ -144,7 +144,11 @@ function finalizar(){
 	localStorage.removeItem("wishList");
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	if(sessionStorage.getItem("loggedUser") == null || sessionStorage.getItem("loggedUser") == undefined){
-		alert("Usted debe iniciar sesión para finalizar su compra");
+		swal({   title: "Error!",
+			text: "Usted debe iniciar sesión para finalizar su compra",
+			type: "error",
+			confirmButtonText: "Cerrrar"
+		});
 	}
 	else if(carrito == undefined || carrito[0] == undefined){
 

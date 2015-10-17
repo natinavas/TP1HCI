@@ -78,7 +78,11 @@ $(document).ready(function () {
             }
         }
 
-        alert("debe seleccionar una opción");
+        swal({   title: "Error!",
+            text: "Debe seleccionar una opción",
+            type: "error",
+            confirmButtonText: "Cerrrar"
+        });
 
     });
 
@@ -99,13 +103,13 @@ $(document).ready(function () {
         request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=ConfirmOrder&username=" + username + "&authentication_token=" + authenticationToken + "&order=" + JSON.stringify(finalOrder);
 
 
-        alert(JSON.stringify(finalOrder));
+        //alert(JSON.stringify(finalOrder));
 
         request.dataType="jsonp";
         console.log(request.url);
         $.ajax(request).done( function(data) {
 
-            alert(JSON.stringify(data));
+            //alert(JSON.stringify(data));
 
                 var $active = $('.wizard .nav-tabs li.active');
                 $active.next().removeClass('disabled');
@@ -166,8 +170,11 @@ $(document).ready(function () {
             }
         }
 
-
-        alert("debe seleccionar una opción");
+        swal({   title: "Error!",
+            text: "Debe seleccionar una opción",
+            type: "error",
+            confirmButtonText: "Cerrrar"
+        });
 
     });
 
@@ -258,7 +265,6 @@ $(document).ready(function () {
                         + '</h4>'
                         + '<h4> Vencimiento: ' + myCards[i].expirationDate
                         + '</h4></label>';
-                        alert(ret);
 
                     creditCards.push(myCards[i].id);
 

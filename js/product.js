@@ -122,14 +122,17 @@ function addFav(){
 
 	var wish = JSON.parse(localStorage.getItem("wishList"));
 	if (wish == undefined) {
-		alert("creo wishlist");
 	    var wishList = [];
 
 	    localStorage.setItem("wishList", JSON.stringify(wishList));
 	}
 
 	if(add("wishList") == 1){
-		alert("se ha agregado a la lista de deseos");
+
+		swal({   title: "Se ha agregado a la lista de deseos",
+			type: "success",
+			confirmButtonText: "Cerrrar"
+		});
 	}
 }
 
@@ -139,13 +142,19 @@ function add(s){
 	var e = document.getElementById("Color");
     var optionColor = e.options[e.selectedIndex].text;
     if(optionColor == "Color"){
-    	alert("Elija un color");
+		swal({   title: "Elija un color",
+			type: "error",
+			confirmButtonText: "Cerrrar"
+		});
     	return -1;
     }
     e = document.getElementById("Talles");
     var optionTalle = e.options[e.selectedIndex].text;
     if(optionTalle == "Talle"){
-    	alert("Elija un talle");
+		swal({   title: "Elija un talle",
+			type: "error",
+			confirmButtonText: "Cerrrar"
+		});
     	return -1;
     }
 
@@ -167,7 +176,10 @@ function add(s){
     	if(product.id == newProd.id && product.color == newProd.color
     	 && product.talle == newProd.talle){
     	 	if(s == "wishList"){
-				alert("el producto ya se encuentra en la lista de deseos");
+				swal({   title: "El producto ya se encuentra en la lista de deseos",
+					type: "error",
+					confirmButtonText: "Cerrrar"
+				});
 				return -1;
     	 	}
     	 	else{
@@ -192,14 +204,17 @@ function addCarrito(){
 
 	var carro = JSON.parse(localStorage.getItem("carrito"));
 	if (carro == undefined) {
-	    alert("creo carrito");
 	    var carrito = [];
 
 	    localStorage.setItem("carrito", JSON.stringify(carrito));
 	}
 
 	if(add("carrito") == 1){
-		alert("se ha agregado al carrito");
+
+		swal({   title: "Se ha agregado al carrito",
+			type: "success",
+			confirmButtonText: "Cerrrar"
+		});
 	}
 }
 
