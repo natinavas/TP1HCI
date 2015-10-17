@@ -173,7 +173,7 @@
 				var i;
 				var ret= ' ';
 				for(i=0; cards[i] != undefined; i++){
-					ret+= '<h3>Tarjeta ' + (i+1) + ': ' + '</h3></br><h5>Numero: '+ cards[i].number+'</h5><br/><h5>Fecha de Vencimiento: '+cards[i].expirationDate+'</h5>';
+					ret+= '<h3>Tarjeta ' + (i+1) + ': ' + '</h3><h5>Numero: '+ cards[i].number+'</h5><h5>Fecha de Vencimiento: '+cards[i].expirationDate+'</h5><br/>';
 				}
 				$("#tarjetas").append(ret);
 			}else{
