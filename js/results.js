@@ -26,6 +26,7 @@ document.getElementById('inputNuevo').checked = false;
 
 
 var pageNum = 0;
+var orderby = "";
 load();
 
 
@@ -38,7 +39,29 @@ function removeFilter(category){
 }
 
 
+function orderBy(opt){
+	pageNum = 0;
+	
+	switch(opt){
+		case "nombre":
+			orderby = "&sort_key=nombre";
+			break;
+		case "marca":
+			orderby = "&sort_key=marca";
+			break;
+		case "precioasc":
+			orderby = "&sort_key=precio&sort_order=asc";
+			break;
+		case"preciodesc":
+			orderby = "&sort_key=precio&sort_order=desc";
+			break;
+		default:
+			orderby = "";
+			break;
+	}
 
+	load();
+}
 
 
 //Subo colores, marcas y ocasion
@@ -234,6 +257,7 @@ function continueLoading(){
 
 		request.url += "&page=" + ++pageNum;
 		request.url += "&page_size=24";
+		request.url += orderby;
 
 		if(sessionStorage.getItem("actualFilters") != ""){
 			var filtersNow = sessionStorage.getItem("actualFilters");
