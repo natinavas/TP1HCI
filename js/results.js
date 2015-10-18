@@ -40,6 +40,9 @@ function removeFilter(category){
 
 
 function orderBy(opt){
+
+	document.getElementById("products").innerHTML = '';
+
 	pageNum = 0;
 	
 	switch(opt){

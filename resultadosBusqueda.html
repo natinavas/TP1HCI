@@ -49,6 +49,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-2">
+                        <div class="text-center"><h4>FILTROS</h4></div>
                         <div class="panel-group" id="accordion">
                                                             
                             <div class="panel panel-default">
@@ -129,6 +130,52 @@
                         <button id="applyFilterButton" onclick="applyFilter()" type="button" class="buttonPanel">
                             APLICAR FILTROS
                         </button>
+                        <br/>
+                        <br/>
+                        <div class="text-center"><h4>ORDENAR POR</h4></div>
+
+                        <div class="panel-group">
+
+                            <div class="panel panel-default">
+                                    <div class="panel-heading-custom">
+                                        <h5 class="panel-title">
+                                            <a class="panel-title" onclick="orderBy('marca')">
+                                                <font size="4">MARCA</font>
+                                            </a>
+                                        </h5>
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                    <div class="panel-heading-custom">
+                                        <h5 class="panel-title">
+                                            <a class="panel-title" onclick="orderBy('nombre')">
+                                                <font size="4">NOMBRE</font>
+                                            </a>
+                                        </h5>
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                    <div class="panel-heading-custom">
+                                        <h5 class="panel-title">
+                                            <a class="panel-title" onclick="orderBy('precioasc')">
+                                                <font size="1">PRECIO ASCENDENTE</font>
+                                            </a>
+                                        </h5>
+                                    </div>
+                            </div>
+                            <div class="panel panel-default">
+                                    <div class="panel-heading-custom">
+                                        <h5 class="panel-title">
+                                            <a class="panel-title" onclick="orderBy('preciodesc')">
+                                                <font size="1">PRECIO DESCENDENTE</font>
+                                            </a>
+                                        </h5>
+                                    </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
                     <div class="col-xs-10">
                         <div id="products" style="width:100%">
