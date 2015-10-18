@@ -1,5 +1,6 @@
 var params = window.location.href.split("?")[1].split(";");
 var bc = document.getElementById("breadcrumbs-two");
+var ph = document.getElementById("pageHeader");
 var i=0;
 
 loadBreadcrumbs();
@@ -8,7 +9,8 @@ function loadBreadcrumbs(){
 	// me fijo si es una busqueda por nombre
 	for (i = 0 ; i < params.length; i++){
 		if(params[i].split("=")[0] == "search"){
-			bc.innerHTML += '<li><a href="resultadosBusqueda.html?search='+ params[i].split("=")[1] +'">BÚSQUEDA</a></li>';
+			bc.innerHTML += '<li><a href="resultadosBusqueda.html?search='+ params[i].split("=")[1] +'">BUSQUEDA</a></li>';
+			ph.innerHTML = "<h1>BUSQUEDA DE '"+ params[i].split("=")[1] + "'</h1>";
 		}
 	}
 
@@ -32,6 +34,7 @@ function loadBreadcrumbs(){
 				isBaby = true;
 				bc.innerHTML += '<li><a href="infantil.html">INFANTIL</a></li>';
 				bc.innerHTML += '<li><a href="resultadosBusqueda.html?category=1;age=Bebe">BEBES</a></li>';
+				ph.innerHTML = '<h1>BEBES</h1>';
 			}
 			else{
 				bc.innerHTML += '<li><a href="infantil.html">INFANTIL</a></li>';
@@ -41,11 +44,13 @@ function loadBreadcrumbs(){
 					kid = "NIÑOS";
 					kidHref = "resultadosBusqueda.html?category=1;gender=Hombres;age=Infantil";
 					bc.innerHTML += '<li><a href="'+ kidHref +'">'+ kid +'</a></li>';
+					ph.innerHTML = '<h1>NIÑOS</h1>';
 				}
 				if(g == "Mujeres"){
 					kid = "NIÑAS";
 					kidHref = "resultadosBusqueda.html?category=1;gender=Mujeres;age=Infantil";
 					bc.innerHTML += '<li><a href="'+ kidHref +'">'+ kid +'</a></li>';
+					ph.innerHTML = '<h1>NIÑAS</h1>';
 
 				}
 				
@@ -57,9 +62,11 @@ function loadBreadcrumbs(){
 	if(isAdult == true){
 		if(g == "Hombres"){
 			bc.innerHTML += '<li><a href="hombres.html">HOMBRES</a></li>';
+			ph.innerHTML = '<h1>HOMBRES</h1>';
 		}
 		if(g == "Mujeres"){
 			bc.innerHTML += '<li><a href="mujeres.html">MUJERES</a></li>';
+			ph.innerHTML = '<h1>MUJERES</h1>';
 		}
 	}
 
@@ -77,6 +84,7 @@ function loadBreadcrumbs(){
 
 				$.ajax(request).done(function(c){
 					bc.innerHTML += '<li><a href="resultadosBusqueda.html?category='+ c.category.id +';gender='+ g +';age=Adulto">'+ c.category.name.toUpperCase() +'</a></li>';
+					ph.innerHTML = '<h1>' + c.category.name.toUpperCase() + '</h1>';
 				});
 			}
 		}
@@ -102,6 +110,7 @@ function loadBreadcrumbs(){
 				else{
 					bc.innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategory.id +';gender='+ g +';age=Infantil">'+ c.subcategory.name.toUpperCase() +'</a></li>';
 				}
+				ph.innerHTML = '<h1>' + c.subcategory.name.toUpperCase() + '</h1>';
 			});
 		
 		}
@@ -124,6 +133,7 @@ function loadBreadcrumbs(){
 					bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;oferta=Ofertas">OFERTAS</a></li>';
 				}
 			}
+			ph.innerHTML = '<h1>OFERTAS</h1>';
 		}
 	}
 
@@ -143,6 +153,7 @@ function loadBreadcrumbs(){
 					bc.innerHTML += '<li><a href="resultadosBusqueda.html?todo=todo;nuevo=Novedades">NUEVO</a></li>';
 				}
 			}
+			ph.innerHTML = '<h1>NUEVO</h1>';
 		}
 	}
 }
@@ -165,6 +176,7 @@ function loadProdBreadCrumb(){
 			$.ajax(request).done(function(c){
 
 				bc.innerHTML += '<li><a >'+ c.product.name.toUpperCase() +'</a></li>';
+				ph.innerHTML = '<h1>' + c.product.name.toUpperCase() + '</h1>';
 			});
 		}
 	}
