@@ -72,7 +72,10 @@
 	}
 
 	function showError(error) {
-		alert(error.message);
+		swal({   title: error.message,
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
 	}
 
 	function signIn() {
@@ -124,40 +127,61 @@
 		var id=document.getElementById("dni").value;
 		
 		if(!validateId(id)){
-			alert("Su número de DNI debe tener hasta ocho numeros");
+		swal({   title: "Su número de DNI debe tener hasta ocho numeros",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
 		}else{
 		
 			var firstName = document.getElementById("nombre").value;
 			if(!validateName(firstName)){
-				alert("El nombre debe tener hasta 80 caracteres alfa-numericos");
+			swal({   title: "El nombre debe tener hasta 80 caracteres alfa-numericos",
+				type: "error",
+				confirmButtonText: "Cerrar"
+			});
 			}else{
 		
 				var lastName = document.getElementById("apellido").value;
 				if(!validateName(lastName)){
-					alert("El apellido debe tener hasta 80 caracteres alfa-numericos");
+				swal({   title: "El apellido debe tener hasta 80 caracteres alfa-numericos",
+					type: "error",
+					confirmButtonText: "Cerrar"
+				});
 				}else{
 		
 		
 					var pass = document.getElementById("passwordP").value;
 					if(!validatePassword(pass)){
-						alert("La contraseña debe tener entre 8 y 15 caracteres alfa-numericos");
+					swal({   title: "La contraseña debe tener entre 8 y 15 caracteres alfa-numericos",
+						type: "error",
+						confirmButtonText: "Cerrar"
+					});
 					}else{
 		
 						var user=document.getElementById("usernameP").value;
 		
 						if(!validateUser(user)){
-							alert("El usuario debe tener entre 6 y 15 caracteres")
+						swal({   title: "El usuario debe tener entre 6 y 15 caracteres",
+							type: "error",
+							confirmButtonText: "Cerrar"
+						});
 						}else{
 		
 							var email=document.getElementById("emailP").value;
 							if(!validateEmail(email)){
-								alert("El email no es válido");
+							swal({   title: "El email no es válido",
+								type: "error",
+								confirmButtonText: "Cerrar"
+							});
 							}else{
 								var brthDate = new Date(document.getElementById('fechaP').value);
 								var validDate = new Date("1999-01-01");
 			
 								if(brthDate > validDate){
-									alert("Fecha inválida, se deben tener al menos 16 años para poder registrarse");
+								swal({   title: "Fecha inválida, se deben tener al menos 16 años para poder registrarse",
+									type: "error",
+									confirmButtonText: "Cerrar"
+								});
 								}else{
 									var sex;
 									if (document.getElementById('masc').checked) {
