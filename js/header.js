@@ -72,198 +72,219 @@
 	}
 
 	function showError(error) {
+		if(error.code == 101){
+			swal({   title: "El usuario es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+	}else if(error.code == 105){
+		swal({   title: "La contraseña es inválida.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code == 104){
+		swal({   title: "El nombre de usuario es inválido.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code == 999){
+		swal({   title: "Se produjo un error inesperado procesando la solicitud.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code== 2){
+		swal({   title: "Se requiere un nombre de usuario.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if( error.code == 3){
+		swal({   title: "Se requiere la contraseña la cual no fue suministrada.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else{
 		swal({   title: error.message,
 			type: "error",
 			confirmButtonText: "Cerrar"
 		});
 	}
+	}
 
 	function signIn() {
-		var request = new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + document.getElementById('loginUser').value + "&password=" + 			document.getElementById('loginPassword').value;
-		request.dataType = "jsonp";
-		console.log(request.url);
-		$.ajax(request).done(function(data) {
-			console.log(JSON.stringify(data));
-			error = data.error;
-			if (error === undefined) {
-				sessionStorage.setItem("loggedUser", JSON.stringify(data));
-				location.reload();
+	var request = new Object();
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + document.getElementById('loginUser').value + "&password=" + 			document.getElementById('loginPassword').value;
+	request.dataType = "jsonp";
+	console.log(request.url);
+	$.ajax(request).done(function(data) {
+		console.log(JSON.stringify(data));
+		error = data.error;
+		if (error === undefined) {
+			sessionStorage.setItem("loggedUser", JSON.stringify(data));
+			location.reload();
 
-			} else {
-				showError(error);
-			}
-		});
+		} else {
+			showError(error);
+		}
+	});
 	}
 
 	function deleteAccount() {
-		sessionStorage.setItem("account", null);
-		location.reload();
+	sessionStorage.setItem("account", null);
+	location.reload();
 	}
 
 	function signOut() {
 		
-		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
-		alert(JSON.stringify(user.authenticationToken));
+	var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+	alert(JSON.stringify(user.authenticationToken));
 		
-		var request = new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignOut&username=" + user.account.username + "&authentication_token=" 					+user.authenticationToken;
-		request.dataType = "jsonp";
-		$.ajax(request).done(function(data){
-			error = data.error;
-			if(error == undefined){
-				sessionStorage.removeItem("loggedUser");
-				localStorage.removeItem("carrito");
-				location.replace("index.html");
-			}else{
-				showError(error);
-			}
-		});
+	var request = new Object();
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignOut&username=" + user.account.username + "&authentication_token=" 					+user.authenticationToken;
+	request.dataType = "jsonp";
+	$.ajax(request).done(function(data){
+		error = data.error;
+		if(error == undefined){
+			sessionStorage.removeItem("loggedUser");
+			localStorage.removeItem("carrito");
+			location.replace("index.html");
+		}else{
+			showError(error);
+		}
+	});
 		
 	}
 	
 	function register(){
-		
-		var id=document.getElementById("dni").value;
-		
-		if(!validateId(id)){
+	var id=document.getElementById("dni").value;
+	if(!validateId(id)){
 		swal({   title: "Su número de DNI debe tener hasta ocho numeros",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else{
+		var firstName = document.getElementById("nombre").value;
+		if(!validateName(firstName)){
+			swal({   title: "El nombre debe tener hasta 80 caracteres alfa-numericos",
 			type: "error",
 			confirmButtonText: "Cerrar"
 		});
+	}else{
+		var lastName = document.getElementById("apellido").value;
+		if(!validateName(lastName)){
+			swal({   title: "El apellido debe tener hasta 80 caracteres alfa-numericos",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+	}else{
+		var pass = document.getElementById("passwordP").value;
+		if(!validatePassword(pass)){
+			swal({   title: "La contraseña debe tener entre 8 y 15 caracteres alfa-numericos",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+	}else{
+		var user=document.getElementById("usernameP").value;
+		if(!validateUser(user)){
+			swal({   title: "El usuario debe tener entre 6 y 15 caracteres",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+	}else{
+		var email=document.getElementById("emailP").value;
+		if(!validateEmail(email)){
+			swal({   title: "El email no es válido",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+	}else{
+		var brthDate = new Date(document.getElementById('fechaP').value);
+		var validDate = new Date("1999-01-01");
+		if(brthDate > validDate){
+			swal({   title: "Fecha inválida, se deben tener al menos 16 años para poder registrarse",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+	}else{
+		var sex;
+		if (document.getElementById('masc').checked) {
+			sex = document.getElementById('masc').value;
 		}else{
-		
-			var firstName = document.getElementById("nombre").value;
-			if(!validateName(firstName)){
-			swal({   title: "El nombre debe tener hasta 80 caracteres alfa-numericos",
-				type: "error",
-				confirmButtonText: "Cerrar"
-			});
-			}else{
-		
-				var lastName = document.getElementById("apellido").value;
-				if(!validateName(lastName)){
-				swal({   title: "El apellido debe tener hasta 80 caracteres alfa-numericos",
-					type: "error",
-					confirmButtonText: "Cerrar"
-				});
-				}else{
-		
-		
-					var pass = document.getElementById("passwordP").value;
-					if(!validatePassword(pass)){
-					swal({   title: "La contraseña debe tener entre 8 y 15 caracteres alfa-numericos",
-						type: "error",
-						confirmButtonText: "Cerrar"
-					});
-					}else{
-		
-						var user=document.getElementById("usernameP").value;
-		
-						if(!validateUser(user)){
-						swal({   title: "El usuario debe tener entre 6 y 15 caracteres",
-							type: "error",
-							confirmButtonText: "Cerrar"
-						});
-						}else{
-		
-							var email=document.getElementById("emailP").value;
-							if(!validateEmail(email)){
-							swal({   title: "El email no es válido",
-								type: "error",
-								confirmButtonText: "Cerrar"
-							});
-							}else{
-								var brthDate = new Date(document.getElementById('fechaP').value);
-								var validDate = new Date("1999-01-01");
-			
-								if(brthDate > validDate){
-								swal({   title: "Fecha inválida, se deben tener al menos 16 años para poder registrarse",
-									type: "error",
-									confirmButtonText: "Cerrar"
-								});
-								}else{
-									var sex;
-									if (document.getElementById('masc').checked) {
-										sex = document.getElementById('masc').value;
-									}else{
-										sex="F";
-									}
-									var account2 = { 
-										username : user,
-										password : pass,
-										firstName : firstName,
-										lastName : lastName,
-										gender : sex,
-										identityCard : id,
-										email : email,
-										birthDate : brthDate
-									};
-									console.log("account2 created");
-		
-									var request = new Object();
-									request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=" + JSON.stringify(account2);
-									request.dataType = "jsonp";
-		
-									$.ajax(request).done(function(data){
-										error = data.error;
-										if(error == undefined){
-											signIn2(user, pass);
-										}else{
-											showError(error);
-			
-										}
-									});
-								}
-							}
-						}
-					}
-				}
-			}
+			sex="F";
 		}
-	}
-	
-	function signIn2(user, pass){
+		var account2 = { 
+			username : user,
+			password : pass,
+			firstName : firstName,
+			lastName : lastName,
+			gender : sex,
+			identityCard : id,
+			email : email,
+			birthDate : brthDate
+		};
+		console.log("account2 created");
 		var request = new Object();
-		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + user + "&password=" + pass;
+		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAccount&account=" + JSON.stringify(account2);
 		request.dataType = "jsonp";
-		console.log(request.url);
-			
-		$.ajax(request).done(function(data) {
-			console.log("login request: " + JSON.stringify(data));
+		$.ajax(request).done(function(data){
 			error = data.error;
-			if (error === undefined) {
-				sessionStorage.setItem("loggedUser", JSON.stringify(data));
-				location.reload();
-			} else {
+			if(error == undefined){
+				signIn2(user, pass);
+			}else{
 				showError(error);
+			
 			}
 		});
 	}
+	}
+	}
+	}
+	}
+	}
+	}
+	}
+
+	
+	function signIn2(user, pass){
+	var request = new Object();
+	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignIn&username=" + user + "&password=" + pass;
+	request.dataType = "jsonp";
+	console.log(request.url);
+			
+	$.ajax(request).done(function(data) {
+	console.log("login request: " + JSON.stringify(data));
+	error = data.error;
+	if (error === undefined) {
+	sessionStorage.setItem("loggedUser", JSON.stringify(data));
+	location.reload();
+	} else {
+	showError(error);
+	}
+	});
+	}
 		
 	function validateEmail(email) {
-		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		return re.test(email);
+	var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	return re.test(email);
 	}	
 	
 	function validateUser(user){
-		var re = /^[a-z0-9_-]{6,15}$/;
-		return re.test(user);
+	var re = /^[a-z0-9_-]{6,15}$/;
+	return re.test(user);
 	}
 	
 	function validatePassword(pass){
-		var re = /^[a-z0-9_-]{8,15}$/;
-		return re.test(pass);
+	var re = /^[a-z0-9_-]{8,15}$/;
+	return re.test(pass);
 	}
 	
 	function validateName(name){
-		var re = /^[a-z0-9_-]{1,80}$/;
-		return re.test(name);
+	var re = /^[a-z0-9_-]{1,80}$/;
+	return re.test(name);
 	}
 	
 	function validateId(id){
-		var re = /^[0-9]{8}$/;
-		return re.test(id);
+	var re = /^[0-9]{8}$/;
+	return re.test(id);
 	}
 	
 	

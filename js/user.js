@@ -8,10 +8,7 @@
 
 	
 	document.getElementById("agregarDir").addEventListener("click", function() {
-		//alert(JSON.stringify(document.getElementById("nombreD")));
 		addAddress(); 
-		//clearAddresses();
-		//showAddresses();
 	});
 	
 	document.getElementById("changePass").addEventListener("click", function(){
@@ -50,8 +47,16 @@
 		newPass2 = document.getElementById("password2").value;
 		
 		if( newPass1 != newPass2){
-			alert("Las contraseñas no coincieden.");
 			
+			swal({   title: "Las contraseñas no coinciden.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+		}else if( newPass1 == null || newPass1 == "" || newPass1.length < 8 || newPass1.length >15){
+			swal({   title: "Ingrese su nueva contraseña, recuerde que tiene que tener entre 8 y 15 caracteres",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
 		}else{
 			var request = new Object();
 			request.url="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=ChangePassword&username=" + user + "&password=" + oldPass + "&new_password=" +newPass1;
@@ -75,7 +80,55 @@
 	}
 
 	function showError(error) {
-		alert(error.message);
+		if(error.code == 101){
+			swal({   title: "El usuario es inválido y/o la contraseña no coincide con la del usuario.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+				});
+		}else if(error.code == 2){
+			swal({   title: "Se requiere un nombre de usuario.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+				});
+		}else if(error.code == 3){
+	swal({   title: "Se requiere la actual contraseña del usuario la cual no fue suministrada.",
+	type: "error",
+	confirmButtonText: "Cerrar"
+		});
+		}else if(error.code == 5){
+	swal({   title: "Se requiere la nueva contraseña del usuario la cual no fue suministrada.",
+	type: "error",
+	confirmButtonText: "Cerrar"
+		});
+		}else if(error.code == 104){
+	swal({   title: "El nombre de usuario es inválido.",
+	type: "error",
+	confirmButtonText: "Cerrar"
+		});
+		}else if(error.code == 105){
+	swal({   title: "La contraseña del usuario (actual o nueva) es inválida.",
+	type: "error",
+	confirmButtonText: "Cerrar"
+		});
+		}else if(error.code == 999){
+	swal({   title: "Se produjo un error inesperado procesando la solicitud.",
+	type: "error",
+	confirmButtonText: "Cerrar"
+		});
+		}else{
+			swal({   title: error.message,
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+		}
+			
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	function addAddress(){
@@ -89,7 +142,7 @@
 			phoneNumber: document.getElementById("telD").value
 		};
 	
-		alert("new address:" + JSON.stringify(newAddress));
+		//alert("new address:" + JSON.stringify(newAddress));
 	
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 	
@@ -104,11 +157,11 @@
 			if(error==undefined){
 				
 				var adr = JSON.parse(localStorage.getItem("adr"));
-				alert(JSON.stringify(adr));
+				//alert(JSON.stringify(adr));
 				if(adr == undefined || adr == null){
 					var adr = [JSON.stringify(data)];
 				}else{
-					alert(JSON.stringify(data));
+					//(JSON.stringify(data));
 					adr.push(JSON.stringify(data));
 				}
 				
@@ -158,11 +211,11 @@
 	function showCards(){
 		
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
-		alert(user.authenticationToken);
+		//(user.authenticationToken);
 		var request= new Object();
 		request.url ="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllCreditCards&username="+user.account.username +"&authentication_token="+user.authenticationToken+"&page_size=" + 10;
 		request.dataType = "jsonp";
-		alert(request.url);
+		//alert(request.url);
 		
 		$.ajax(request).done(function(data) {
 			error = data.error;
@@ -191,23 +244,35 @@
 		
 		var firstName = document.getElementById("nuevoNombre").value;
 		if( !validateName(firstName)){
-			alert("Usted ha ingresado un nombre inválido");
+			swal({   title: "Usted ha ingresado un nombre inválido",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
 		}else{
 			
 			var lastName = document.getElementById("nuevoApellido").value;
 			if( !validateName (lastName)){
-				alert("Usted ha ingresado un apellido inválido");
+				swal({   title: "Usted ha ingresado un apellido inválido",
+				type: "error",
+				confirmButtonText: "Cerrar"
+			});
 			}else{
 				
 				var email = document.getElementById("nuevoEmail").value;
 				if( !validateEmail( email)){
-					alert("Usted ha ingresado un email inválido");
+					swal({   title: "Usted ha ingresado un email inválido",
+					type: "error",
+					confirmButtonText: "Cerrar"
+				});
 				}else{
 					
 					var brthDate = new Date(document.getElementById("nuevaFecha").value);
 					var validDate = new Date("1999-01-01");
 					if(brthDate > validDate){
-						alert("Fecha inválida, se deben tener al menos 16 años para estar registrado en esta página");
+						swal({   title: "Fecha inválida, se deben tener al menos 16 años para estar registrado en esta página",
+						type: "error",
+						confirmButtonText: "Cerrar"
+					});
 					}else{
 		
 		
@@ -234,8 +299,10 @@
 								//user.account.birthDate = account.birthDate;
 				
 								sessionStorage.setItem("loggedUser", JSON.stringify(user));
-								alert("Sus cambios han sido guardados.");
-				
+								swal({   title: "Sus cambios han sido guardados.",
+								type: "error",
+								confirmButtonText: "Cerrar"
+							});
 								location.reload();
 							}else{
 								showError(error);
@@ -251,28 +318,43 @@
 	function addCard(){
 		
 		if (document.getElementById('amex').checked) {
-			alert("la tarj es amex");
+			//alert("la tarj es amex");
 			if(!validateAmex()){
-				alert("la tarjeta es amex");
-				alert("Por favor ingrese información válida");
+				//alert("la tarjeta es amex");
+				swal({   title: "Por favor ingrese información válida",
+				type: "error",
+				confirmButtonText: "Cerrar"
+			});
 			}
 		}else if(document.getElementById('diners').checked){
 			if(!validateDiners()){
-				alert("la tarjeta es diners");
-				alert("Por favor ingrese información válida");
+				//alert("la tarjeta es diners");
+				swal({   title: "Por favor ingrese información válida",
+				type: "error",
+				confirmButtonText: "Cerrar"
+			});
 			}
 		}else if(document.getElementById('master').checked){
 			if(!validateMaster()){
-				alert("la tarjeta es master");
-				alert("Por favor ingrese información válida");
+				//alert("la tarjeta es master");
+				swal({   title: "Por favor ingrese información válida",
+				type: "error",
+				confirmButtonText: "Cerrar"
+			});
 			}
 		}else if(document.getElementById('visa').checked){
 			if(!validateVisa()){
-				alert("la tarjeta es visa");
-				alert("Por favor ingrese información válida");
+				//alert("la tarjeta es visa");
+				swal({   title: "Por favor ingrese información válida",
+				type: "error",
+				confirmButtonText: "Cerrar"
+			});
 			}
 		}else{
-			alert("Por favor seleccione su tipo de tarjeta");
+			swal({   title: "Por favor ingrese información válida",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
 		}
 		
 		
@@ -307,7 +389,7 @@
 		var regSecCode = /^[0-9]{3}$/;
 		var regTar = /5[1-4][0-9]{14}$/;
 		
-		alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
+		//alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
 		return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
 		
 	}
@@ -320,7 +402,7 @@
 		var regTar1 = /4[0-9]{12}$/;
 		var regTar2 = /4[0-9]{15}$/;
 		
-		alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta)));
+		//alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta)));
 		return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta));
 		
 	}
@@ -333,7 +415,7 @@
 		var regSecCode = /^[0-9]{3}$/;
 		var regTar = /36[0-9]{14}$/;
 		
-		alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
+		//alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
 		return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
 		
 	}
@@ -347,7 +429,7 @@
 		var regTar1 = /34[0-9]{13}$/;
 		var regTar2 = /37[0-9]{13}$/;
 		
-		alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta)));
+		//alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta)));
 		return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
 		
 	}
