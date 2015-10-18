@@ -375,7 +375,12 @@ function getBasicSearch(){
 			ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsBySubcategoryId&id=" + base[1];
 			break;
 		case "search":
-			ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name=" + base[1];
+			if(base[1] != ""){
+				ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&name=" + base[1];
+			}
+			else{
+				ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts";
+			}
 			break;
 		default:
 			ret += "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts";
