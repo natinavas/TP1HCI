@@ -40,13 +40,15 @@ function loadBreadcrumbs(){
 				if(g == "Hombres"){
 					kid = "NIÑOS";
 					kidHref = "resultadosBusqueda.html?category=1;gender=Hombres;age=Infantil";
+					bc.innerHTML += '<li><a href="'+ kidHref +'">'+ kid +'</a></li>';
 				}
 				if(g == "Mujeres"){
 					kid = "NIÑAS";
 					kidHref = "resultadosBusqueda.html?category=1;gender=Mujeres;age=Infantil";
+					bc.innerHTML += '<li><a href="'+ kidHref +'">'+ kid +'</a></li>';
 
 				}
-				bc.innerHTML += '<li><a href="'+ kidHref +'">'+ kid +'</a></li>';
+				
 			}
 		}
 	}
