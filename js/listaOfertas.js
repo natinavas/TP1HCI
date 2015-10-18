@@ -8,9 +8,13 @@ request.url = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetA
 request.dataType = "jsonp";
 console.log(request.url);
 $.ajax(request).done(function(data) {
-    sessionStorage.setItem("ofertas", JSON.stringify(data));
-    addOffers();
-});
+    if(data.error === undefined){
+        sessionStorage.setItem("ofertas", JSON.stringify(data));
+        addOffers();
+    }
+}).fail(function (jqXHR, textStatus, errorThrown) {
+        alert("no tenes conexion :(");
+    });
 
 
 

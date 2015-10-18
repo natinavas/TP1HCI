@@ -7,6 +7,7 @@ request.timeout = 7000;
 sessionStorage.setItem("actualFilters", "");
 sessionStorage.setItem("prevFilters", "");
 
+
 $("#ocasionTitle").hide();
 $("#removeocasion").hide();
 
@@ -71,9 +72,76 @@ function orderBy(opt){
 
 function setFilters(data){
 
+	var colores = [];
+	var marcas = [];
+	var ocasiones = [];
+
+
+	var i = 0;
+	for(i =0 ; data.filters != undefined && data.filters[i] != undefined; i++){
+
+		switch(data.filters[i].id){
+			case 4:
+
+
+			document.getElementById("colorPanel").innerHTML = '';
+
+				for(var j = 0; data.filters[i].values[j] != undefined; j ++){
+
+
+					document.getElementById("colorPanel").innerHTML += '<div class="checkbox text-left">'
+					+ '<label><input id="color' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
+					+ '</div>';
+
+					colores[j] = data.filters[i].values[j];
+
+				}
+				break;
+			case 9:
 
 
 
+			document.getElementById("marcaPanel").innerHTML = '';
+
+				for(var j = 0; data.filters[i].values[j] != undefined; j ++){
+
+					document.getElementById("marcaPanel").innerHTML += '<div class="checkbox text-left">'
+					+ '<label><input id="trademark' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
+					+ '</div>';
+
+					marcas[j] = data.filters[i].values[j];
+
+				}
+				break;
+			case 3:
+
+
+			document.getElementById("ocasionPanel").innerHTML = '';
+
+				for(var j = 0; data.filters[i].values[j] != undefined; j ++){
+
+					document.getElementById("ocasionPanel").innerHTML += '<div class="checkbox text-left">'
+					+ '<label><input id="ocasion' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
+					+ '</div>';
+
+
+					ocasiones[j] = data.filters[i].values[j];
+
+				}
+				break;
+			}
+
+			sessionStorage.setItem("colores",JSON.stringify(colores));
+			sessionStorage.setItem("marcas",JSON.stringify(marcas));
+			sessionStorage.setItem("ocasiones",JSON.stringify(ocasiones));
+		}
+
+
+
+
+
+
+/*
 	var i = 0;
 	for(i =0 ; data.filters != undefined && data.filters[i] != undefined; i++){
 		switch(data.filters[i].id){
@@ -126,25 +194,30 @@ function setFilters(data){
 				break;
 		}
 	}
+	*/
 }
 
 
 function applyFilter(){
-	var color = getFilterColors();
-	var trademark = getFilterTrademarks();
-	var ocassion = getFilterOcassions();
+	var colors = getFilterColors();
+	var trademarks = getFilterTrademarks();
+	var ocassions = getFilterOcassions();
 
 	pageNum = 0;
 
+
 	var jsonFilters = '';
-		if(color != undefined)
-		jsonFilters += '{	"id": ' + 4 + ',	"value": "' + color + '"},';
+		for(var j = 0; colors != undefined && colors[j] != undefined;  j++){
+			jsonFilters += '{	"id": ' + 4 + ',	"value": "' + colors[j] + '"},';
+		}
 
-		if(trademark != undefined)
-		jsonFilters += '{	"id": ' + 9 + ',	"value": "' + trademark + '"},';
+		for(var j = 0; trademarks != undefined && trademarks[j] != undefined;  j++){
+			jsonFilters += '{	"id": ' + 9 + ',	"value": "' + trademarks[i] + '"},';
+		}
 
-		if(ocassion != undefined)
-		jsonFilters += '{	"id": ' + 3 + ',	"value": "' + ocassion + '"},';
+		for(var j = 0; ocassions != undefined && ocassions[j] != undefined; j++){
+			jsonFilters += '{	"id": ' + 3 + ',	"value": "' + ocassions[j] + '"},';
+		}
 
 	var search = window.location.search.split("?")[1];
 	search = search.split(";");
@@ -177,6 +250,7 @@ function applyFilter(){
 	}
 
 
+
 	reloadWithFilters(jsonFilters);
 }
 
@@ -191,32 +265,63 @@ function reloadWithFilters(filt){
 }
 
 function getFilterColors(){
-	var e = document.getElementById("color");
-    var ret = e.options[e.selectedIndex].text;
-    if(ret != "Color"){
-		$("#color").hide();
-		document.getElementById("ocasionTitle").innerHTML = ret;
-    	return ret;
-    }
-    return undefined;
+
+	var id;
+
+	var colors = [];
+
+	for(var j = 0; (id = document.getElementById("color" + j)) != null; j++){
+		if(document.getElementById("color" + j).checked == true){
+			var color = JSON.parse(sessionStorage.getItem("colores"))[j];
+			colors.push(color);
+		}
+	}
+	return colors;
 }
 
 function getFilterTrademarks(){
-	var e = document.getElementById("trademark");
-    var ret = e.options[e.selectedIndex].text;
-    if(ret != "Marca"){
-    	return ret;
-    }
-    return undefined;
+
+
+
+
+
+	var id;
+
+	var trademarks = [];
+
+	for(var j = 0; (id = document.getElementById("trademarks" + j)) != null; j++){
+		if(document.getElementById("trademark" + j).checked == true){
+			var trademarks = JSON.parse(sessionStorage.getItem("marcas"))[j];
+			trademarks.push(color);
+		}
+	}
+
+	return trademarks;
+
+
+
 }
 
 function getFilterOcassions(){
-	var e = document.getElementById("ocasion");
-    var ret = e.options[e.selectedIndex].text;
-    if(ret != "Ocasión"){
-    	return ret;
-    }
-    return undefined;
+
+
+
+
+
+	var id;
+
+	var occassions = [];
+
+	for(var j = 0; (id = document.getElementById("ocasion" + j)) != null; j++){
+		if(document.getElementById("ocasion" + j).checked == true){
+			var ocasion = JSON.parse(sessionStorage.getItem("ocasion"))[j];
+			occassions.push(ocasion);
+		}
+	}
+
+	return occassions;
+
+
 }
 
 
