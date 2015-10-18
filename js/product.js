@@ -131,7 +131,7 @@ function addFav(){
 
 		swal({   title: "Se ha agregado a la lista de deseos",
 			type: "success",
-			confirmButtonText: "Cerrrar"
+			confirmButtonText: "Cerrar"
 		});
 	}
 }
@@ -144,7 +144,7 @@ function add(s){
     if(optionColor == "Color"){
 		swal({   title: "Elija un color",
 			type: "error",
-			confirmButtonText: "Cerrrar"
+			confirmButtonText: "Cerrar"
 		});
     	return -1;
     }
@@ -153,7 +153,7 @@ function add(s){
     if(optionTalle == "Talle"){
 		swal({   title: "Elija un talle",
 			type: "error",
-			confirmButtonText: "Cerrrar"
+			confirmButtonText: "Cerrar"
 		});
     	return -1;
     }
@@ -178,7 +178,7 @@ function add(s){
     	 	if(s == "wishList"){
 				swal({   title: "El producto ya se encuentra en la lista de deseos",
 					type: "error",
-					confirmButtonText: "Cerrrar"
+					confirmButtonText: "Cerrar"
 				});
 				return -1;
     	 	}
@@ -213,7 +213,7 @@ function addCarrito(){
 
 		swal({   title: "Se ha agregado al carrito",
 			type: "success",
-			confirmButtonText: "Cerrrar"
+			confirmButtonText: "Cerrar"
 		});
 	}
 }
