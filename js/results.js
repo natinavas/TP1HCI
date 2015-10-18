@@ -311,8 +311,12 @@ function continueLoading(){
 			}
 			var prodName = data.products[i].name;
 			if(data.products[i].name.length > 21){
-				prodName = data.products[i].name.slice(0,19);
-				prodName += "..."
+				prodName = data.products[i].name.slice(0,17);
+				prodName += "...";
+			}
+			if(marca.length > 15){
+				marca = marca.slice(0,13);
+				marca += "...";
 			}
 
 			var prod = 
