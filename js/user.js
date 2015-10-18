@@ -70,7 +70,12 @@
 			}else{
 				show_error(error);
 			}
-		});
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+	        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+	            type: "error",
+	            confirmButtonText: "Cerrar"
+	        });
+	    });
 			
 	}
 		
