@@ -44,22 +44,19 @@
             <form id="contact" method="post" class="form" role="form">
                 <div class="row">
                     <div class="col-xs-6 col-md-6 form-group">
-                        <input class="form-control" id="name" name="name" placeholder="Nombre" type="text" required autofocus />
+                        <input class="form-control" id="contactName" name="name" placeholder="Nombre" type="text" required autofocus />
                     </div>
                     <div class="col-xs-6 col-md-6 form-group">
-                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required />
+                        <input class="form-control" id="contactEmail" name="email" placeholder="Email" type="email" required />
                     </div>
                 </div><br>
-                <textarea class="form-control" id="message" name="message" placeholder="Mensaje" rows="5"></textarea>
+                <textarea class="form-control" id="contactMessage" name="message" placeholder="Mensaje" rows="5"></textarea>
                 <div class="row">
                     <div class="col-xs-12 col-md-12 form-group">
                         <br>
-                        <button class="botonConfig" type="submit">Enviar</button>
+                        <button class="botonConfig" id="enviarMsj">Enviar</button>
                         <br>
                         <br>
-                        <div class="alert alert-success" id="enviado" role="alert">
-                            <p>Su mensaje fue enviado con exito!</p>
-                        </div>
             </form>
             </div>
             </form>
@@ -104,7 +101,7 @@
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/navBarMenus.js"></script>
 	<script src="js/header.js"></script>
-
+	<script src="js/contacto.js"></script>
     <script src="js/sweetalert.min.js"></script>
 </body>
 

@@ -175,7 +175,48 @@
 		type: "error",
 		confirmButtonText: "Cerrar"
 	});
-	}else{
+	}else if(error.code == 13){
+		swal({title: "Se requieren los datos de la tarjeta de crédito.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code == 102){
+		swal({title: "El token de autenticación es inválido.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code== 134){
+		swal({title: "Los datos de la tarjeta de crédito son inválidos.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code == 135){
+		swal({title: "El número es inválido.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code == 136){
+		swal({title: "La fecha de expiración es inválida.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code == 137){
+		swal({title: "El código de seguridad es inválido.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}else if(error.code == 203){
+		swal({title: "El número ya se encuentra en uso",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
+	}
+	
+	
+	
+	
+	
+	else{
 	swal({title: error.message,
 		type: "error",
 		confirmButtonText: "Cerrar"

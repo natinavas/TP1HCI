@@ -16,7 +16,7 @@
 		if (notSignedIn()) {
 			$("#navbarContent").append(notLoggedInButtons()); // me parece que navbarContent no existe en pagPrinipal.html
 			document.getElementById("sign-in").addEventListener("click", function() {
-				signIn()
+				signIn();
 			});
 			document.getElementById("registrarse").addEventListener("click", function() {
 				register(); 
@@ -25,7 +25,7 @@
 		} else {
 			$("#navbarContent").append(loggedInButtons());
 			document.getElementById("cerrarSesion").addEventListener("click", function() {
-				signOut()
+				signOut();
 			});
 		}
 	}
