@@ -68,7 +68,7 @@
 			if(error==undefined){
 				location.reload();
 			}else{
-				showError(error);
+				show_error(error);
 			}
 		});
 			
@@ -79,8 +79,7 @@
 	request.dataType="jsonp";*/
 	}
 
-	function showError(error) {
-		alert("entra a show error");
+	function show_error(error) {
 	if(error.code == 101){
 		swal({title: "El usuario es inválido y/o la contraseña no coincide con la del usuario.",
 		type: "error",
@@ -176,13 +175,8 @@
 		type: "error",
 		confirmButtonText: "Cerrar"
 	});
-	}
-
-
-
-
-	else{
-	swal({title: "HOLAAA",
+	}else{
+	swal({title: error.message,
 		type: "error",
 		confirmButtonText: "Cerrar"
 	});
@@ -217,8 +211,7 @@
 		location.reload();
 				
 	}else{
-		alert(error.code);
-		showError(error);
+		show_error(error);
 	}
 	});
 	}
@@ -251,7 +244,7 @@
 		$("#direcciones").append(ret);
 				
 	}else{
-		showError(error);
+		show_error(error);
 	}
 	});
 		
@@ -279,7 +272,7 @@
 		}
 		$("#tarjetas").append(ret);
 	}else{
-		showError(error);
+		show_error(error);
 	}
 		
 	});
@@ -354,7 +347,7 @@
 			});
 			location.reload();
 		}else{
-			showError(error);
+			show_error(error);
 		}
 	});
 	}
@@ -425,7 +418,7 @@
 	if(error == undefined){
 	window.location.reload();
 	}else{
-	showError(error);
+	show_error(error);
 	}
 		
 	});
@@ -489,7 +482,7 @@
 	$("#8char").removeClass("glyphicon-remove");
 	$("#8char").addClass("glyphicon-ok");
 	$("#8char").css("color","#00A41E");
-	}else{ß
+	}else{
 	$("#8char").removeClass("glyphicon-ok");
 	$("#8char").addClass("glyphicon-remove");
 	$("#8char").css("color","#FF0004");
