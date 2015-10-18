@@ -13,7 +13,10 @@ $.ajax(request).done(function(data) {
         addOffers();
     }
 }).fail(function (jqXHR, textStatus, errorThrown) {
-        alert("no tenes conexion :(");
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
     });
 
 

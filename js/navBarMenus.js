@@ -58,7 +58,12 @@ function loadNavBarFMClothes(num, categ, gender){
 		for(i=0; i<c.subcategories.length; i++){
 			document.getElementById(categ + g).innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender='+ gHref +';age=Adulto">'+ c.subcategories[i].name +'</a></li>';
 		}		
-	});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
 }
 
 function loadRopaNinios(){
@@ -72,7 +77,12 @@ function loadRopaNinios(){
 			for(i=0; i<c.subcategories.length; i++){
 				document.getElementById("ropaNinios").innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Hombres;age=Infantil">'+ c.subcategories[i].name +'</a></li>';
 			}
-		});
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+	        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+	            type: "error",
+	            confirmButtonText: "Cerrar"
+	        });
+	    });
 	}
 }
 
@@ -88,7 +98,12 @@ function loadRopaNinias(){
 			for(i=0; i<c.subcategories.length; i++){
 				document.getElementById("ropaNinias").innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';gender=Mujeres;age=Infantil">'+ c.subcategories[i].name +'</a></li>';
 			}
-		});
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+	        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+	            type: "error",
+	            confirmButtonText: "Cerrar"
+	        });
+	    });
 	}
 }
 
@@ -103,6 +118,11 @@ function loadRopaBebes(){
 			for(i=0; i<c.subcategories.length; i++){
 				document.getElementById("ropaBebes").innerHTML += '<li><a href="resultadosBusqueda.html?subcategory='+ c.subcategories[i].id +';age=Bebe">'+ c.subcategories[i].name +'</a></li>';
 			}
-		});
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+	        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+	            type: "error",
+	            confirmButtonText: "Cerrar"
+	        });
+	    });
 	}
 }

@@ -78,6 +78,11 @@ $(document).ready(function () {
                     nextTab($active);
 
 
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+                        type: "error",
+                        confirmButtonText: "Cerrar"
+                    });
                 });
 
 
@@ -128,7 +133,12 @@ $(document).ready(function () {
                 $active.addClass('disabled');
                 nextTab($active);
                 localStorage.removeItem("carrito");
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
         });
+    });
 
     });
 
@@ -271,6 +281,11 @@ $(document).ready(function () {
 
 
 
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
     });
 
 
@@ -318,6 +333,11 @@ $(document).ready(function () {
             showError(error);
         }
     
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
     });
 
 
@@ -375,6 +395,11 @@ function showAddresses(){
                 showError(error);
             }
             sessionStorage.setItem("addresses", JSON.stringify(addresses));
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+                type: "error",
+                confirmButtonText: "Cerrar"
+            });
         });
         
     }
@@ -414,6 +439,11 @@ function addItemToCart(orderData, item){
     $.ajax(request).done( function(data) {
        // alert(JSON.stringify(data.orderItem));
        // alert("cantidad : " + JSON.stringify(data.orderItem.quantity));
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
     });
 
 }

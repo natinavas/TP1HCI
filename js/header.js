@@ -125,7 +125,12 @@
 		} else {
 			showError(error);
 		}
-	});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
 	}
 
 	function deleteAccount() {
@@ -150,7 +155,12 @@
 		}else{
 			showError(error);
 		}
-	});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
 		
 	}
 	
@@ -233,7 +243,12 @@
 				showError(error);
 			
 			}
-		});
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+	        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+	            type: "error",
+	            confirmButtonText: "Cerrar"
+	        });
+	    });
 	}
 	}
 	}
@@ -259,7 +274,12 @@
 	} else {
 	showError(error);
 	}
-	});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
 	}
 		
 	function validateEmail(email) {

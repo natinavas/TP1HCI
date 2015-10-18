@@ -45,7 +45,12 @@ function loadNinias(){
 
 		$("#ninias").append('</div>');		
 
-	});		
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });		
 }
 
 
@@ -92,7 +97,12 @@ function loadNinios(){
 
 		$("#ninios").append('</div>');		
 
-	});		
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });	
 }
 
 function loadBebes(){
@@ -138,5 +148,10 @@ function loadBebes(){
 
 		$("#bebes").append('</div>');		
 
-	});		
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });	
 }

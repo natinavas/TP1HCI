@@ -157,7 +157,7 @@ function finalizar(){
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	if(sessionStorage.getItem("loggedUser") == null || sessionStorage.getItem("loggedUser") == undefined){
 		swal({   title: "Error!",
-			text: "Usted debe iniciar sesión para finalizar su compra",
+			text: "Debe iniciar sesión para finalizar su compra",
 			type: "error",
 			confirmButtonText: "Cerrrar"
 		});

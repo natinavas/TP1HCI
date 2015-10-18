@@ -47,7 +47,12 @@ function loadIndumentaria(){
 
 		$("#indumentaria").append('</div>');		
 
-	});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
 }
 
 
@@ -95,7 +100,12 @@ function loadCalzado(){
 
 		$("#calzado").append('</div>');		
 
-	});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
 }
 
 function loadAccesorios(){
@@ -142,5 +152,10 @@ function loadAccesorios(){
 
 		$("#accesorios").append('</div>');		
 
-	});
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
 }
