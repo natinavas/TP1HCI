@@ -43,7 +43,7 @@
 	}
 
 	function notLoggedInButtons() {
-		var buttons = '<li><a href="#"  data-toggle="modal" data-target="#myModal" >Registrarse</a></li>' 
+		var buttons = '<li><a href="#"  data-toggle="modal" class="registrarseA" data-target="#myModal" >Registrarse</a></li>' 
 		+ '<li class="divider-vertical"></li>' 
 		+ '<li class="dropdown">' 
 		+ '<a class="dropdown-toggle" href="#" data-toggle="dropdown">Iniciar Sesión<strong class="caret"></strong></a>' 

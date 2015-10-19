@@ -24,6 +24,18 @@ ul li:hover ul.dropdown2 {
     /* Display the dropdown */
 }
 
+.registrarse {
+  margin-top: 15px;
+}
+
+.registrarseA {
+  margin-right: 35px;
+}
+
+ul.registrarse li {
+  display: inline;
+}
+
 .olvidoC{
   display: block;
   margin-top: 5px;
