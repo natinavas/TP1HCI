@@ -106,11 +106,10 @@ function setFilters(data){
 				for(var j = 0; data.filters[i].values[j] != undefined; j ++){
 
 					document.getElementById("marcaPanel").innerHTML += '<div class="checkbox text-left">'
-					+ '<label><input id="trademark' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
+					+ '<label><input id="trademark' + j + '"type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
 					+ '</div>';
 
 					marcas[j] = data.filters[i].values[j];
-					//alert(marcas[j]);
 				}
 				break;
 			case 3:
@@ -212,7 +211,7 @@ function applyFilter(){
 		}
 
 		for(var j = 0; trademarks != undefined && trademarks[j] != undefined;  j++){
-			jsonFilters += '{	"id": ' + 9 + ',	"value": "' + trademarks[i] + '"},';
+			jsonFilters += '{	"id": ' + 9 + ',	"value": "' + trademarks[j] + '"},';
 		}
 
 		for(var j = 0; ocassions != undefined && ocassions[j] != undefined; j++){
@@ -289,7 +288,8 @@ function getFilterTrademarks(){
 
 	var trademarks = [];
 
-	for(var j = 0; (id = document.getElementById("trademarks" + j)) != null; j++){
+	for(var j = 0; (id = document.getElementById("trademark" + j)) != null; j++){
+
 		if(document.getElementById("trademark" + j).checked == true){
 			var trademark = JSON.parse(sessionStorage.getItem("marcas"))[j];
 			trademarks.push(trademark);
