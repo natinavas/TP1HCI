@@ -18,7 +18,6 @@
 		confirmButtonText: "Cerrar"
 	});
 	}else if( msg.length < 15){
-		alert("hola");
 		swal({   title: "Por favor ingrese mensaje con al menos 15 caracteres",
 		type: "error",
 		confirmButtonText: "Cerrar"
@@ -27,12 +26,11 @@
 		swal({   title: "Su mensaje ha sido enviado",
 		type: "success",
 		confirmButtonText: "Cerrar"
-	});
-	document.getElementById("contactName").value ="";
-	document.getElementById("contactEmail").value ="";
-	document.getElementById("contactMessage").value ="";
-	}
-	
+		});
+		document.getElementById("contactName").value ="";
+		document.getElementById("contactEmail").value ="";
+		document.getElementById("contactMessage").value ="";
+		}
 	}
 
 
