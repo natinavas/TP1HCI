@@ -14,19 +14,89 @@ $(document).ready(function () {
 
 
     $('#firstStep').click(function (e) {
+		var selected = false;
+		
+		if(document.getElementById("nuevaDireccion").checked){
+			
+			selected = true;
+			var newAddress= {
+			name: document.getElementById("nombreD").value,
+			street: document.getElementById("calleD").value,
+			number: document.getElementById("numeroD").value,
+			province: document.getElementById("provinciaD").value,
+			//	city: document.getElementById("provinciaD").value,
+			zipCode: document.getElementById("cpD").value,
+			phoneNumber: document.getElementById("telD").value
+			};
+			//alert("new address:" + JSON.stringify(newAddress));
+	
+			var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+			var request=new Object();
+			request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAddress&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&address=" + JSON.stringify(newAddress);
+			request.dataType = "jsonp";
+			$.ajax(request).done(function(data) { //funcion de agregar nueva direccion
+				
+				error=data.error;
+				//console.log("data: " + JSON.stringify(data));
+			
+				if(error==undefined){
+					
+                   var s = '';
+				   alert(JSON.stringify(data));
+				   alert(JSON.stringify(data.address));
+                    s += '<br/>' + data.address.name
+                    + '<br/>' + data.address.street + ' ' + data.address.number
+                    + '<br/>Código Postal : ' + data.address.zipCode;
+
+                    document.getElementById("receptor").innerHTML = s;
+					
+					
+					
+					alert("primer request");
+	                var request2 = new Object();
+	                request2.timeout = 7000;
+	                request2.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=ChangeOrderAddress&username=" + username + "&authentication_token=" + authenticationToken + "&order=" + JSON.stringify(newAddress);
+	                request2.dataType="jsonp";
+	                //console.log(request.url);
+	                
+					alert("antes del segundo request");
+					$.ajax(request2).done( function(data) {
+	                   // alert(JSON.stringify(data));
+					   alert("despues del segunod requiest");
+
+					  
+						alert("funcionaria");
+	                    var $active = $('.wizard .nav-tabs li.active');
+	                    $active.next().removeClass('disabled');
+	                    nextTab($active);
+						alert("asdfasdf");
+						return;
 
 
+	                }).fail(function (jqXHR, textStatus, errorThrown) {
+	                    swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+	                        type: "error",
+	                        confirmButtonText: "Cerrar"
+	                    });
+	                });
+				
+				
+				}else{
+					showError(error);
+				}
+				});
+			
+			}
+	
 
+		else{
         var addresses = JSON.parse(sessionStorage.getItem("addresses"));
-
-
-            //alert(addresses);
-
 
 
         for(var i = 0; addresses != undefined && addresses[i] != undefined; i++){
 
             if(document.getElementById("dir" + JSON.parse(addresses[i]).id).checked){
+				selected=true;
 
                 var selectedAdress = JSON.parse(addresses[i]);
 
@@ -91,13 +161,18 @@ $(document).ready(function () {
 
 
             }
+			
+		}
         }
-
+		
+		if(!selected){
         swal({   title: "Error!",
             text: "Debe seleccionar una opción",
             type: "error",
             confirmButtonText: "Cerrrar"
         });
+		}
+       
 
     });
 
@@ -144,7 +219,132 @@ $(document).ready(function () {
 
 
     $("#second-step").click(function (e) {
+		
+		var checked = false;
 
+
+		
+		if(document.getElementById('nuevaTarjeta2').checked){
+			checked = true;
+			
+			if (document.getElementById('amex').checked) {
+			//alert("la tarj es amex");
+			if(!validateAmex()){
+			//alert("la tarjeta es amex");
+			swal({   title: "Por favor ingrese información válida",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}
+			}else if(document.getElementById('diners').checked){
+			if(!validateDiners()){
+			//alert("la tarjeta es diners");
+			swal({   title: "Por favor ingrese información válida",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}
+			}else if(document.getElementById('master').checked){
+			if(!validateMaster()){
+			//alert("la tarjeta es master");
+			swal({   title: "Por favor ingrese información válida",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}
+			}else if(document.getElementById('visa').checked){
+			if(!validateVisa()){
+			//alert("la tarjeta es visa");
+			swal({   title: "Por favor ingrese información válida",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}
+			}else{
+			swal({   title: "Por favor elija su tipo de tarjeta",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}
+		
+		
+			var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+			var tarjeta = {
+			number : document.getElementById("numeroTarjeta").value,
+			expirationDate: "0216",
+			securityCode: document.getElementById("secCode").value
+			};
+		
+		
+			var request = new Object();
+			request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateCreditCard&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&credit_card="+JSON.stringify(tarjeta);
+			request.dataType = "jsonp";
+			console.log(request.url);
+			
+            var s = '';
+
+            var num = '';
+
+            for(var j = 0; j < tarjeta.number.length - 4; j++){
+                num += '*';
+            }
+			alert("jiopajsdiofasdf2");
+            num += tarjeta.number.substring(tarjeta.number.length - 4, tarjeta.number.length);
+
+            s += '<br/>Tarjeta ' + (i + 1)
+            + '<br/>' + num
+            + '<br/>Fecha de vencimiento: ' + tarjeta.expirationDate.substring(0,2) + '/' + tarjeta.expirationDate.substring(2,4);
+			
+			alert("jiopajsdiofasdf");
+            document.getElementById("metodoPago").innerHTML = s;
+			
+			
+			
+	        var orderId = parseInt(sessionStorage.getItem("orderId"));
+	        var address = JSON.parse(sessionStorage.getItem("address"));
+	            //alert(addresses);
+
+	        var finalOrder = new Object();
+	        finalOrder.id = orderId;
+	        finalOrder.address = address;
+			
+			
+            var creditCard = new Object();
+            creditCard.id = tarjeta.id;
+            finalOrder.creditCard = creditCard;
+
+
+
+
+
+            sessionStorage.setItem("finalOrder", JSON.stringify(finalOrder));
+
+            var $active = $('.wizard .nav-tabs li.active');
+            $active.next().removeClass('disabled');
+            nextTab($active);
+			alert("jiopajsdiofasdf3");
+			$.ajax(request).done(function(data) {
+				error = data.error;
+				if(error == undefined){ //agrego la tarjeta a la orden
+
+                   
+
+
+                    return;
+					
+					
+					
+					
+				}else{
+					show_error(error);
+					alert(error.code);
+				}
+			});
+			
+			
+		}else{
+		
+		
         var creditCards = JSON.parse(sessionStorage.getItem("creditCards"));
 
 
@@ -170,6 +370,7 @@ $(document).ready(function () {
         else{
             for(var i = 0; creditCards != undefined && creditCards[i] != undefined; i++){
                 if(document.getElementById("card" + JSON.parse(creditCards[i]).id).checked){
+					checked = true;
 
                     var selectedCard = JSON.parse(creditCards[i]);
 
@@ -207,12 +408,15 @@ $(document).ready(function () {
                 }
             }
         }
-
-        swal({   title: "Error!",
-            text: "Debe seleccionar una opción",
-            type: "error",
-            confirmButtonText: "Cerrrar"
-        });
+	}
+	if(!checked){
+    swal({   title: "Error!",
+        text: "Debe seleccionar una opción",
+        type: "error",
+        confirmButtonText: "Cerrrar"
+    });
+	}
+       
 
     });
 
@@ -472,4 +676,59 @@ function nextTab(elem) {
 }
 function prevTab(elem) {
     $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+
+
+
+
+function validateMaster(){
+var numTarjeta = document.getElementById("numeroTarjeta").value;
+var numSeguridad = document.getElementById("secCode").value;
+	
+var regSecCode = /^[0-9]{3}$/;
+var regTar = /5[1-4][0-9]{14}$/;
+	
+//alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
+return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
+	
+}
+
+function validateVisa(){
+var numTarjeta = document.getElementById("numeroTarjeta").value;
+var numSeguridad = document.getElementById("secCode").value;
+	
+var regSecCode = /^[0-9]{3}$/;
+var regTar1 = /4[0-9]{12}$/;
+var regTar2 = /4[0-9]{15}$/;
+	
+//alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta)));
+return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
+	
+}
+
+function validateDiners(){
+	
+var numTarjeta = document.getElementById("numeroTarjeta").value;
+var numSeguridad = document.getElementById("secCode").value;
+	
+var regSecCode = /^[0-9]{3}$/;
+var regTar = /36[0-9]{14}$/;
+	
+//alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
+return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
+	
+}
+
+function validateAmex(){
+	
+var numTarjeta = document.getElementById("numeroTarjeta").value;
+var numSeguridad = document.getElementById("secCode").value;
+	
+var regSecCode = /^[0-9]{4}$/;
+var regTar1 = /34[0-9]{13}$/;
+var regTar2 = /37[0-9]{13}$/;
+	
+//alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta)));
+return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
+	
 }

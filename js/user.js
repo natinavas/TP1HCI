@@ -488,7 +488,7 @@
 	var regTar2 = /4[0-9]{15}$/;
 		
 	//alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta)));
-	return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta));
+	return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
 		
 	}
 	
@@ -572,11 +572,6 @@ function showOrders(){
 
 
 			for(i = 0; data.orders != undefined && data.orders[i] != undefined; i++){
-
-
-
-
-
 
 				var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
