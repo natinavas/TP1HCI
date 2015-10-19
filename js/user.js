@@ -403,9 +403,9 @@
 	function addCard(){
 		
 	if (document.getElementById('amex').checked) {
-	alert("la tarj es amex");
+	//alert("la tarj es amex");
 	if(!validateAmex()){
-	alert("la tarjeta es amex");
+	//alert("la tarjeta es amex");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
@@ -413,7 +413,7 @@
 	}
 	}else if(document.getElementById('diners').checked){
 	if(!validateDiners()){
-	alert("la tarjeta es diners");
+	//alert("la tarjeta es diners");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
@@ -421,7 +421,7 @@
 	}
 	}else if(document.getElementById('master').checked){
 	if(!validateMaster()){
-	alert("la tarjeta es master");
+	//alert("la tarjeta es master");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
@@ -429,14 +429,14 @@
 	}
 	}else if(document.getElementById('visa').checked){
 	if(!validateVisa()){
-	alert("la tarjeta es visa");
+	//alert("la tarjeta es visa");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
 	});
 	}
 	}else{
-	swal({   title: "Por favor ingrese información válida",
+	swal({   title: "Por favor elija su tipo de tarjeta",
 	type: "error",
 	confirmButtonText: "Cerrar"
 	});
