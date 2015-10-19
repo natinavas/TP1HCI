@@ -141,7 +141,7 @@
 	function signOut() {
 		
 	var user = JSON.parse(sessionStorage.getItem("loggedUser"));
-	alert(JSON.stringify(user.authenticationToken));
+	//alert(JSON.stringify(user.authenticationToken));
 		
 	var request = new Object();
 	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=SignOut&username=" + user.account.username + "&authentication_token=" 					+user.authenticationToken;
@@ -151,6 +151,7 @@
 		if(error == undefined){
 			sessionStorage.removeItem("loggedUser");
 			localStorage.removeItem("carrito");
+			localStorage.removeItem("wishList");
 			location.replace("index.html");
 		}else{
 			showError(error);
