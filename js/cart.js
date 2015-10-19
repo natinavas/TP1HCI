@@ -155,7 +155,6 @@ function addItemToFav(number){
 }
 
 function finalizar(){
-	localStorage.removeItem("wishList");
 	var carrito = JSON.parse(localStorage.getItem("carrito"));
 	if(sessionStorage.getItem("loggedUser") == null || sessionStorage.getItem("loggedUser") == undefined){
 		swal({   title: "Error!",
