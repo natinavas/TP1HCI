@@ -18,6 +18,19 @@
 			document.getElementById("sign-in").addEventListener("click", function() {
 				signIn();
 			});
+			document.getElementById("loginUser").addEventListener("keypress", function(){
+			if(event.keyCode == 13){
+				signIn();
+			}
+			});
+			document.getElementById("loginPassword").addEventListener("keypress", function(){
+			if(event.keyCode == 13){
+				signIn();
+			}
+			});
+
+
+
 			document.getElementById("registrarse").addEventListener("click", function() {
 				register(); 
 			});
@@ -66,7 +79,7 @@
 		+ '<li><a href="usuario.html"><i class="glyphicon glyphicon-user" style = "color:black"></i><h7 style = "color:black">Mi Usuario</h7></a></li>' 
 		+ '<li><a href="contacto.html"><i class="glyphicon glyphicon-envelope" style = "color:black"></i><h7 style = "color:black"> Contacto</h7></a></li>' 
 		+ '<li class="divider"></li>' 
-		+ '<li><a><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 id="cerrarSesion" style = "color:black">Cerrar Sesión</h7></a></li>' 
+		+ '<li><a href="#"><i class="glyphicon glyphicon-off" style = "color:black"></i><h7 id="cerrarSesion" style = "color:black">Cerrar Sesión</h7></a></li>' 
 		+ '</form>' + '</div>' + '</li>'
 		return buttons;
 	}
