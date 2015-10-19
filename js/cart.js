@@ -36,7 +36,6 @@ function loadProduct(i){
 	var image = JSON.parse(cart[i]).image;
 	var price = JSON.parse(cart[i]).price;
 
-	alert("price: " + price);
 
 	var marca = JSON.parse(cart[i]).marca;
 
@@ -100,7 +99,6 @@ function loadProduct(i){
 	document.getElementById("total").innerHTML = "$" + parseFloat(total).toFixed(2);
 
 
-	alert("$" + parseFloat(total).toFixed(2));
 
 	sessionStorage.setItem("subtotal", "$" + parseFloat(subtotal).toFixed(2));
 	sessionStorage.setItem("costoEnvio", "$" + costoEnvio);
