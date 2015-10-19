@@ -43,7 +43,8 @@
 	}
 
 	function notLoggedInButtons() {
-		var buttons = '<li><a href="#"  data-toggle="modal" class="registrarseA" data-target="#myModal" >Registrarse</a></li>' 
+		var buttons = '<ul class="nav navbar-nav navbar-right registrarse">'
+		+'<li><a href="#"  data-toggle="modal" class="registrarseA registrarseP" data-target="#myModal" >Registrarse</a></li>' 
 		+ '<li class="divider-vertical"></li>' 
 		+ '<li class="dropdown">' 
 		+ '<a class="dropdown-toggle" href="#" data-toggle="dropdown">Iniciar Sesión<strong class="caret"></strong></a>' 
@@ -53,15 +54,14 @@
 		+ '<input style="margin-bottom: 15px;" type="password" placeholder="Contraseña" id="loginPassword" name="password">' 
 		+ '<input class="btn btn-primary btn-block" id="sign-in" value="Iniciar Sesión">' 
 		+ '<a data-toggle="modal" data-target="#cont" href="#"><span class="olvidoC">¿Olvidaste tu contraseña?</span></a>' 
-		+ '</form>' + '</div>' + '</li>';
+		+ '</form>' + '</div>' + '</li>' + '</ul>';
 		return buttons;
 	}
 
 	function loggedInButtons() {
-		var buttons = '<li class="divider-vertical"></li>' 
-		+ ' <li class="dropdown"><br/>' 
+		var buttons = ' <li class="dropdown" style="margin-left: 40px;margin-top: 15px;">' 
 		+ '<a class="dropdown-toggle" href="#" data-toggle="dropdown">Mi Cuenta<strong class="caret"></strong></a>' 
-		+ '<div class="dropdown-menu" style="padding: 15px; padding-bottom: 9px;">' 
+		+ '<div class="dropdown-menu" style="padding: 15px; padding-bottom: 9px; margin-top: 15px;">' 
 		+ '<form method="post" action="login" accept-charset="UTF-8">' 
 		+ '<li><a href="usuario.html"><i class="glyphicon glyphicon-user" style = "color:black"></i><h7 style = "color:black">Mi Usuario</h7></a></li>' 
 		+ '<li><a href="contacto.html"><i class="glyphicon glyphicon-envelope" style = "color:black"></i><h7 style = "color:black"> Contacto</h7></a></li>' 

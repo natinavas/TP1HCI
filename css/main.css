@@ -23,13 +23,13 @@ ul li:hover ul.dropdown2 {
     display: block;
     /* Display the dropdown */
 }
-
+/*
 .registrarse {
   margin-top: 15px;
-}
+}*/
 
 .registrarseA {
-  margin-right: 35px;
+  padding: 0px;
 }
 
 ul.registrarse li {
