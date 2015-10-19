@@ -466,7 +466,7 @@
 
 
 		document.getElementById("subtotal").innerHTML += sessionStorage.getItem("subtotal");
-		document.getElementById("costoEnvio").innerHTML += sessionStorage.getItem("costoEnvio");
+		document.getElementById("costoEnvio").innerHTML += sessionStorage.getItem("costoEnvio") + ".00";
 		document.getElementById("totalPrecio").innerHTML += sessionStorage.getItem("total");
 
 
@@ -498,13 +498,15 @@
 
 		var creditCards = [];
 
-		if(myCards[0] == undefined){
-			ret += '<h5>Su cuenta no tiene tarjetas de crédito registradas</h5><br/>'
-			+ '<h5>Para añadir una diríjase a Mi Cuenta -> Mi Usuario ->  '
-			+ '<span class="glyphicon glyphicon-credit-card"  style="color:black"></span>'
-			+ '  -> Agregar Nueva Tarjeta<h5/>';
-		}else{
-		for(i=0; myCards[i] != undefined; i++){
+
+		for(i=0; myCards != undefined && myCards[i] != undefined; i++){
+
+			if(i == 6){
+				ret += '<br/><br/>';
+			}
+
+
+
 			ret +='<label class="radio-inline"><input type="radio" id="card' + myCards[i].id + '" name="optradio"></input>';
 			ret +='<h3> Tarjeta ' + (i+1) + ':</h3><h4>' + myCards[i].number
 			+ '</h4>'
@@ -513,7 +515,6 @@
 
 			creditCards.push(JSON.stringify(myCards[i]));
 
-		}
 		}
 		document.getElementById("medioPago").innerHTML += ret;
 		sessionStorage.setItem("creditCards", JSON.stringify(creditCards));
@@ -552,16 +553,14 @@
 		var ret= '';
 		adr = data.addresses;
 
-		if(adr[0] == undefined){
-			ret += '<h5>Debe agregar direcciones de envío a su cuenta para continuar</h5><br/>'
-			+ '<h5>Diríjase a Mi Cuenta -> Mi Usuario ->  '
-			+ '<span class="glyphicon glyphicon-home"  style="color:black"></span>'
-			+ '  -> Agregar Nueva Dirección<h5/>';
-		}
 
 
 		//alert(JSON.stringify(adr[0]));
 		for (i=0; adr[i] != undefined && adr[i] != null; i++){
+
+			if(i == 5){
+				ret += '<br/><br/>';
+			}
 
 			var miDir = adr[i];
 
@@ -640,9 +639,9 @@
 
 				var s = '<tr>'
 				+ '<td>' + product.name + '</td>'
-				+ '<td class="text-center">' + product.price + '</td>'
+				+ '<td class="text-center">$' + product.price + '</td>'
 				+ '<td class="text-center">' + product.quantity + '</td>'
-				+ '<td class="text-right">' + (product.price * product.quantity) + '</td>'
+				+ '<td class="text-right">$' + parseFloat(product.price * product.quantity).toFixed(2) + '</td>'
 				+ '</tr>';
 
 				document.getElementById("products").innerHTML = s + content;

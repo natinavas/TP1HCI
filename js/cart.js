@@ -35,12 +35,19 @@ function loadProduct(i){
 	var name = JSON.parse(cart[i]).name;
 	var image = JSON.parse(cart[i]).image;
 	var price = JSON.parse(cart[i]).price;
+
+	alert("price: " + price);
+
 	var marca = JSON.parse(cart[i]).marca;
 
 	cantidad += parseInt(quantity);
-	subtotal += price * quantity;
+	subtotal += (price * quantity);
 	costoEnvio += Math.round((price * quantity)/20);
-	total += (price * quantity) + Math.round((price * quantity)/20);
+	total = total + (price * quantity) + Math.round((price * quantity) / 20)
+
+
+
+
 
 	var number = i;
 
@@ -88,14 +95,16 @@ function loadProduct(i){
 
 
 	document.getElementById("cantidad").innerHTML = cantidad;
-	document.getElementById("subtotal").innerHTML = "$" + subtotal;
+	document.getElementById("subtotal").innerHTML = "$" + parseFloat(subtotal).toFixed(2);
 	document.getElementById("costoEnvio").innerHTML = "$" + costoEnvio;
-	document.getElementById("total").innerHTML = "$" + total;
+	document.getElementById("total").innerHTML = "$" + parseFloat(total).toFixed(2);
 
 
-	sessionStorage.setItem("subtotal", "$" + subtotal);
+	alert("$" + parseFloat(total).toFixed(2));
+
+	sessionStorage.setItem("subtotal", "$" + parseFloat(subtotal).toFixed(2));
 	sessionStorage.setItem("costoEnvio", "$" + costoEnvio);
-	sessionStorage.setItem("total", "$" + total);
+	sessionStorage.setItem("total", "$" + parseFloat(total).toFixed(2));
 
 
 
