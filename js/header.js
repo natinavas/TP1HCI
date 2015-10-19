@@ -181,7 +181,7 @@
 	function register(){
 	var id=document.getElementById("dni").value;
 	if(!validateId(id)){
-		swal({   title: "Su número de DNI debe tener hasta ocho numeros",
+		swal({   title: "Su número de DNI debe tener ocho numeros",
 		type: "error",
 		confirmButtonText: "Cerrar"
 	});
