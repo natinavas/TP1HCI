@@ -3,6 +3,7 @@
 	personalInformation();
 	showAddresses();
 	showCards();
+	showOrders();
 	
 	
 
@@ -552,4 +553,129 @@
 	}
 	});
 	
-	
+
+
+function showOrders(){
+
+
+	var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+	var request = new Object();
+	request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetAllOrders&username=" + user.account.username + "&authentication_token=" + user.authenticationToken;
+	request.dataType = "jsonp";
+	console.log(request.url);
+
+
+	$.ajax(request).done(function(data) {
+		error=data.error;
+		if(error==undefined){
+
+
+			for(i = 0; data.orders != undefined && data.orders[i] != undefined; i++){
+
+
+
+
+
+
+				var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+				var request = new Object();
+				request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetOrderById&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&id=" + data.orders[i].id;
+				request.dataType = "jsonp";
+				console.log(request.url);
+
+				$.ajax(request).done(function(data) {
+					error=data.error;
+					if(error==undefined){
+
+
+						var items = new Object();
+						var price = 0;
+						if(items != undefined){
+							items = data.order.items;
+						}
+
+						for(var i = 0; items != undefined && items[i] != undefined; i++){
+							price = parseFloat(price + (items[i].price * items[i].quantity) + Math.round(((items[i].price * items[i].quantity) / 20))).toFixed(2);
+						}
+
+
+
+					var address = "no definida";
+					var status = "";
+					var color = "";
+					var deliveredDate = "no definida";
+
+					if(data.order.deliveredDate != null){
+						deliveredDate = data.order.deliveredDate.toString();
+					}
+
+					switch(data.order.status){
+						case '1':
+							status = "Creada";
+							color = "warning"
+							break;
+						case '2':
+							status = "Confirmada";
+							color = "info"
+							break;
+						case '3':
+							status = "Transportada";
+							color = "warning";
+							break;
+						case '4':
+							status = "Entregada";
+							color = "success";
+							break;
+					}
+
+
+					if(data.order.address != null)
+						address = data.order.address.name;
+
+
+					var s = '<div class="row">'
+					+ '<div class="col-md-12">'
+					+ 	'<div class="pull-right"><label class="label label-' + color + '">' + status + '</label> </div>'
+					+ 	'<span><strong>NUMERO DE ORDEN: ' + data.order.id + '</strong></span><br/>'
+					+	'ORDEN REALIZADA EL: ' + data.order.receivedDate +  '<br/>'
+					+	'DIRECCION DE ENVIO: ' + address + '<br/>'
+					+	'FECHA DE ENTREGA: ' + deliveredDate + '<br/>'
+					+	'PRECIO TOTAL: ' + price
+					+ '<br/>'
+					+ '<br/>'
+					+ '</div>';
+
+
+					document.getElementById("orders").innerHTML += s;
+
+
+
+					}else{
+						show_error(error);
+					}
+				}).fail(function (jqXHR, textStatus, errorThrown) {
+			        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+			            type: "error",
+			            confirmButtonText: "Cerrar"
+			        });
+			    });
+
+
+
+			}
+		}else{
+			show_error(error);
+		}
+	}).fail(function (jqXHR, textStatus, errorThrown) {
+        swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+            type: "error",
+            confirmButtonText: "Cerrar"
+        });
+    });
+
+
+}
+
+
