@@ -499,13 +499,11 @@
 		var creditCards = [];
 
 		if(myCards[0] == undefined){
-		ret += '<h5>Su cuenta no tiene tarjetas de crédito registradas</h5><br/>'
-		+ '<h5>Para añadir una diríjase a Mi Cuenta -> Mi Usuario ->  '
-		+ '<span class="glyphicon glyphicon-credit-card"  style="color:black"></span>'
-		+ '  -> Agregar Nueva Tarjeta<h5/>';
-		}
-
-		else{
+			ret += '<h5>Su cuenta no tiene tarjetas de crédito registradas</h5><br/>'
+			+ '<h5>Para añadir una diríjase a Mi Cuenta -> Mi Usuario ->  '
+			+ '<span class="glyphicon glyphicon-credit-card"  style="color:black"></span>'
+			+ '  -> Agregar Nueva Tarjeta<h5/>';
+		}else{
 		for(i=0; myCards[i] != undefined; i++){
 			ret +='<label class="radio-inline"><input type="radio" id="card' + myCards[i].id + '" name="optradio"></input>';
 			ret +='<h3> Tarjeta ' + (i+1) + ':</h3><h4>' + myCards[i].number
@@ -520,13 +518,13 @@
 		document.getElementById("medioPago").innerHTML += ret;
 		sessionStorage.setItem("creditCards", JSON.stringify(creditCards));
 		}else{
-		show_error(error);
+			show_error(error);
 		}
     
 		}).fail(function (jqXHR, textStatus, errorThrown) {
-		swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
-		type: "error",
-		confirmButtonText: "Cerrar"
+			swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+			type: "error",
+			confirmButtonText: "Cerrar"
 		});
 		});
 
@@ -638,226 +636,219 @@
 
 			function loadProduct(product){
 
-			var content = document.getElementById("products").innerHTML;
+				var content = document.getElementById("products").innerHTML;
 
-			var s = '<tr>'
-			+ '<td>' + product.name + '</td>'
-			+ '<td class="text-center">' + product.price + '</td>'
-			+ '<td class="text-center">' + product.quantity + '</td>'
-			+ '<td class="text-right">' + (product.price * product.quantity) + '</td>'
-			+ '</tr>';
+				var s = '<tr>'
+				+ '<td>' + product.name + '</td>'
+				+ '<td class="text-center">' + product.price + '</td>'
+				+ '<td class="text-center">' + product.quantity + '</td>'
+				+ '<td class="text-right">' + (product.price * product.quantity) + '</td>'
+				+ '</tr>';
 
-			document.getElementById("products").innerHTML = s + content;
+				document.getElementById("products").innerHTML = s + content;
 
 
 		}
-
-
-
 
 		function nextTab(elem) {
-		$(elem).next().find('a[data-toggle="tab"]').click();
+			$(elem).next().find('a[data-toggle="tab"]').click();
 		}
 		function prevTab(elem) {
-		$(elem).prev().find('a[data-toggle="tab"]').click();
+			$(elem).prev().find('a[data-toggle="tab"]').click();
 		}
 
 
 
 
 		function validateMaster(){
-		var numTarjeta = document.getElementById("numeroTarjeta").value;
-		var numSeguridad = document.getElementById("secCode").value;
+			var numTarjeta = document.getElementById("numeroTarjeta").value;
+			var numSeguridad = document.getElementById("secCode").value;
 	
-		var regSecCode = /^[0-9]{3}$/;
-		var regTar = /5[1-4][0-9]{14}$/;
+			var regSecCode = /^[0-9]{3}$/;
+			var regTar = /5[1-4][0-9]{14}$/;
 	
-		//alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
-		return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
+			return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
 	
 		}
 
 		function validateVisa(){
-		var numTarjeta = document.getElementById("numeroTarjeta").value;
-		var numSeguridad = document.getElementById("secCode").value;
+				var numTarjeta = document.getElementById("numeroTarjeta").value;
+				var numSeguridad = document.getElementById("secCode").value;
 	
-		var regSecCode = /^[0-9]{3}$/;
-		var regTar1 = /4[0-9]{12}$/;
-		var regTar2 = /4[0-9]{15}$/;
+				var regSecCode = /^[0-9]{3}$/;
+				var regTar1 = /4[0-9]{12}$/;
+				var regTar2 = /4[0-9]{15}$/;
 	
-		//alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| reTar2.test(numTarjeta)));
-		return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
+				return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
 	
 		}
 
 		function validateDiners(){
 	
-		var numTarjeta = document.getElementById("numeroTarjeta").value;
-		var numSeguridad = document.getElementById("secCode").value;
+			var numTarjeta = document.getElementById("numeroTarjeta").value;
+			var numSeguridad = document.getElementById("secCode").value;
 	
-		var regSecCode = /^[0-9]{3}$/;
-		var regTar = /36[0-9]{14}$/;
+			var regSecCode = /^[0-9]{3}$/;
+			var regTar = /36[0-9]{14}$/;
 	
-		//alert(regSecCode.test(numSeguridad) && regTar.test(numTarjeta));
-		return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
+			return regSecCode.test(numSeguridad) && regTar.test(numTarjeta);
 	
 		}
 
 		function validateAmex(){
 	
-		var numTarjeta = document.getElementById("numeroTarjeta").value;
-		var numSeguridad = document.getElementById("secCode").value;
+			var numTarjeta = document.getElementById("numeroTarjeta").value;
+			var numSeguridad = document.getElementById("secCode").value;
 	
-		var regSecCode = /^[0-9]{4}$/;
-		var regTar1 = /34[0-9]{13}$/;
-		var regTar2 = /37[0-9]{13}$/;
+			var regSecCode = /^[0-9]{4}$/;
+			var regTar1 = /34[0-9]{13}$/;
+			var regTar2 = /37[0-9]{13}$/;
 	
-		//alert(regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta)));
-		return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
+			return regSecCode.test(numSeguridad) && (regTar1.test(numTarjeta)|| regTar2.test(numTarjeta));
 	
 		}
 
 
 
 		function show_error(error) {
-		if(error.code == 101){
-		swal({title: "El usuario es inválido y/o la contraseña no coincide con la del usuario.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 2){
-		swal({title: "Se requiere un nombre de usuario.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 3){
-		swal({title: "Se requiere la actual contraseña del usuario la cual no fue suministrada.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 5){
-		swal({title: "Se requiere la nueva contraseña del usuario la cual no fue suministrada.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 104){
-		swal({title: "El nombre de usuario es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 105){
-		swal({ title: "La contraseña del usuario (actual o nueva) es inválida.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 999){
-		swal({title: "Se produjo un error inesperado procesando la solicitud.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 9){
-		swal({title: "Se requieren los datos de la dirección de envío.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 114){
-		swal({title: "Los datos de la dirección de envío son inválidos.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 115){
-		swal({title: "El nombre es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 116){
-		swal({title: "El nombre de la calle es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 117){
-		swal({title: "La altura de la calle es inválida.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 118){
-		swal({title: "El piso es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 119){
-		swal({title: "La puerta es inválida.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 120){
-		swal({title: "La provincia es inválida.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 121){
-		swal({title: "La ciudad es inválida.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 122){
-		swal({title: "El código postal es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 123){
-		swal({title: "El número de teléfono es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 202){
-		swal({title: "El nombre ya se encuentra en uso.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 13){
-		swal({title: "Se requieren los datos de la tarjeta de crédito.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 102){
-		swal({title: "El token de autenticación es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code== 134){
-		swal({title: "Los datos de la tarjeta de crédito son inválidos.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 135){
-		swal({title: "El número es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 136){
-		swal({title: "La fecha de expiración es inválida.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 137){
-		swal({title: "El código de seguridad es inválido.",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}else if(error.code == 203){
-		swal({title: "El número ya se encuentra en uso",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}
+			if(error.code == 101){
+			swal({title: "El usuario es inválido y/o la contraseña no coincide con la del usuario.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 2){
+			swal({title: "Se requiere un nombre de usuario.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 3){
+			swal({title: "Se requiere la actual contraseña del usuario la cual no fue suministrada.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 5){
+			swal({title: "Se requiere la nueva contraseña del usuario la cual no fue suministrada.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 104){
+			swal({title: "El nombre de usuario es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 105){
+			swal({ title: "La contraseña del usuario (actual o nueva) es inválida.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 999){
+			swal({title: "Se produjo un error inesperado procesando la solicitud.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 9){
+			swal({title: "Se requieren los datos de la dirección de envío.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 114){
+			swal({title: "Los datos de la dirección de envío son inválidos.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 115){
+			swal({title: "El nombre es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 116){
+			swal({title: "El nombre de la calle es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 117){
+			swal({title: "La altura de la calle es inválida.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 118){
+			swal({title: "El piso es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 119){
+			swal({title: "La puerta es inválida.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 120){
+			swal({title: "La provincia es inválida.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 121){
+			swal({title: "La ciudad es inválida.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 122){
+			swal({title: "El código postal es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 123){
+			swal({title: "El número de teléfono es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 202){
+			swal({title: "El nombre ya se encuentra en uso.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 13){
+			swal({title: "Se requieren los datos de la tarjeta de crédito.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 102){
+			swal({title: "El token de autenticación es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code== 134){
+			swal({title: "Los datos de la tarjeta de crédito son inválidos.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 135){
+			swal({title: "El número es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 136){
+			swal({title: "La fecha de expiración es inválida.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 137){
+			swal({title: "El código de seguridad es inválido.",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}else if(error.code == 203){
+			swal({title: "El número ya se encuentra en uso",
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}
 
-		else{
-		swal({title: error.message,
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		}
+			else{
+			swal({title: error.message,
+			type: "error",
+			confirmButtonText: "Cerrar"
+			});
+			}
 
 		}
 
