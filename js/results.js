@@ -110,7 +110,7 @@ function setFilters(data){
 					+ '</div>';
 
 					marcas[j] = data.filters[i].values[j];
-
+					//alert(marcas[j]);
 				}
 				break;
 			case 3:
@@ -291,8 +291,8 @@ function getFilterTrademarks(){
 
 	for(var j = 0; (id = document.getElementById("trademarks" + j)) != null; j++){
 		if(document.getElementById("trademark" + j).checked == true){
-			var trademarks = JSON.parse(sessionStorage.getItem("marcas"))[j];
-			trademarks.push(color);
+			var trademark = JSON.parse(sessionStorage.getItem("marcas"))[j];
+			trademarks.push(trademark);
 		}
 	}
 
@@ -314,7 +314,7 @@ function getFilterOcassions(){
 
 	for(var j = 0; (id = document.getElementById("ocasion" + j)) != null; j++){
 		if(document.getElementById("ocasion" + j).checked == true){
-			var ocasion = JSON.parse(sessionStorage.getItem("ocasion"))[j];
+			var ocasion = JSON.parse(sessionStorage.getItem("ocasiones"))[j];
 			occassions.push(ocasion);
 		}
 	}
