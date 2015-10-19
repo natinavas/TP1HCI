@@ -217,10 +217,6 @@
 	});
 	}
 	
-	
-	
-	
-	
 	else{
 	swal({title: error.message,
 		type: "error",
@@ -301,7 +297,7 @@
 	var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
 	var request= new Object();
-	request.url ="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllCreditCards&username="+user.account.username +"&authentication_token="+user.authenticationToken+"&page_size=" + 10;
+	request.url ="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllCreditCards&username="+user.account.username +"&authentication_token="+user.authenticationToken+"&page_size=" + 20;
 	request.dataType = "jsonp";
 	//alert(request.url);
 		
@@ -406,9 +402,9 @@
 	function addCard(){
 		
 	if (document.getElementById('amex').checked) {
-	//alert("la tarj es amex");
+	alert("la tarj es amex");
 	if(!validateAmex()){
-	//alert("la tarjeta es amex");
+	alert("la tarjeta es amex");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
@@ -416,7 +412,7 @@
 	}
 	}else if(document.getElementById('diners').checked){
 	if(!validateDiners()){
-	//alert("la tarjeta es diners");
+	alert("la tarjeta es diners");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
@@ -424,7 +420,7 @@
 	}
 	}else if(document.getElementById('master').checked){
 	if(!validateMaster()){
-	//alert("la tarjeta es master");
+	alert("la tarjeta es master");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
@@ -432,7 +428,7 @@
 	}
 	}else if(document.getElementById('visa').checked){
 	if(!validateVisa()){
-	//alert("la tarjeta es visa");
+	alert("la tarjeta es visa");
 	swal({   title: "Por favor ingrese información válida",
 	type: "error",
 	confirmButtonText: "Cerrar"
@@ -458,15 +454,15 @@
 	request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateCreditCard&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&credit_card="+JSON.stringify(tarjeta);
 	request.dataType = "jsonp";
 	console.log(request.url);
+	
 	$.ajax(request).done(function(data) {
-	error = data.error;
-			
-	if(error == undefined){
-	window.location.reload();
-	}else{
-	show_error(error);
-	}
-		
+		error = data.error;
+		if(error == undefined){
+			location.reload();
+		}else{
+			show_error(error);
+			alert(error.code);
+		}
 	});
 	}
 	
@@ -513,7 +509,7 @@
 	var numTarjeta = document.getElementById("numeroTarjeta").value;
 	var numSeguridad = document.getElementById("secCode").value;
 		
-	var regSecCode = /^[0-9]{3}$/;
+	var regSecCode = /^[0-9]{4}$/;
 	var regTar1 = /34[0-9]{13}$/;
 	var regTar2 = /37[0-9]{13}$/;
 		
