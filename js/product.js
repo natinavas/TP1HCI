@@ -55,6 +55,7 @@ $.ajax(request).done( function(data) {
 
 	for(j = 0; data.product.attributes[j] != undefined; j++){
 		if(data.product.attributes[j].name == "Color"){
+			document.getElementById("Color").innerHTML = '<option>Color</option>';
 			for(i = 0; data.product.attributes[j].values[i] != undefined; i++)
 				document.getElementById("Color").innerHTML += '<option>'+ data.product.attributes[j].values[i] +'</option>';
 		}
@@ -62,6 +63,7 @@ $.ajax(request).done( function(data) {
 
 	for(j = 0; (data.product.attributes[j] != undefined); j++){
 		if(data.product.attributes[j].name.split("-")[0] == "Talle"){
+			document.getElementById("Talles").innerHTML = '<option>Talle</option>';
 			for(i  = 0; data.product.attributes[j].values[i] !=  undefined; i++){
 			document.getElementById("Talles").innerHTML += '<option>'+ data.product.attributes[j].values[i] +'</option>';
 			}
