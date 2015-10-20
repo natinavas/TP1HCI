@@ -42,7 +42,7 @@ function loadProduct(i){
 	cantidad += parseInt(quantity);
 	subtotal += (price * quantity);
 	costoEnvio += Math.round((price * quantity)/20);
-	total = total + (price * quantity) + Math.round((price * quantity) / 20)
+	total = total + (price * quantity) + Math.round((price * quantity) / 20);
 
 
 

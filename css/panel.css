@@ -75,3 +75,28 @@ div.imgWrapper img {
     background: #99db76;
   border: #99db76;
 }
+
+
+
+.buttonPanelRemove {
+
+    padding: 10px 30px 10px 30px;
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #FFF;
+    background: #db4c4c;
+  border: #db4c4c;
+}
+.buttonPanelRemove:hover{
+
+    padding: 10px 30px 10px 30px;
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Arial;
+    color: #FFF;
+    background: #99db76;
+  border: #99db76;
+}
