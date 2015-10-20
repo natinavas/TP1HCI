@@ -256,6 +256,10 @@ function removeFilters(){
 	removeFilterInPanel("marcaPanel", "trademark");
 	removeFilterInPanel("colorPanel", "color");
 	removeFilterInPanel("ocasionPanel", "ocasion");
+	document.getElementById("inputOfertas").checked = false;
+	document.getElementById("inputNuevo").checked = false;
+
+	applyFilter();
 }
 
 function removeFilterInPanel(panel, checkbox){
