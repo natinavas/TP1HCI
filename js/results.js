@@ -128,72 +128,12 @@ function setFilters(data){
 
 				}
 				break;
-			}
-
-			sessionStorage.setItem("colores",JSON.stringify(colores));
-			sessionStorage.setItem("marcas",JSON.stringify(marcas));
-			sessionStorage.setItem("ocasiones",JSON.stringify(ocasiones));
 		}
 
-
-
-
-
-
-/*
-	var i = 0;
-	for(i =0 ; data.filters != undefined && data.filters[i] != undefined; i++){
-		switch(data.filters[i].id){
-			case 4:
-				var e = document.getElementById("color");
-			    var selection = e.options[e.selectedIndex].text;
-
-			    if(selection != "Color"){
-					$("#colorTitle").show();
-					$("#removecolor").show();
-				}
-				else{
-					document.getElementById("color").innerHTML = '<option>'+ 'Color' +'</option>';
-					for(var j = 0; data.filters[i].values[j] != undefined; j ++){
-						document.getElementById("color").innerHTML += '<option>'+ data.filters[i].values[j] +'</option>';
-					}
-				}
-				break;
-			case 9:
-				var e = document.getElementById("trademark");
-			    var selection = e.options[e.selectedIndex].text;
-
-			    if(selection != "Marca"){
-					$("#trademarkTitle").show();
-					$("#removetrademark").show();
-			    }
-			    else{
-			    	document.getElementById("trademark").innerHTML = '<option>'+ 'Marca' +'</option>';
-					for(var j = 0; data.filters[i].values[j] != undefined; j ++){
-						document.getElementById("trademark").innerHTML += '<option>'+ data.filters[i].values[j] +'</option>';
-					}
-				}
-				break;
-			case 3:
-				var e = document.getElementById("ocasion");
-			    var selection = e.options[e.selectedIndex].text;
-
-			    if(selection != "Ocasión"){
-					$("#ocasionTitle").show();
-					$("#removeocasion").show();
-			    }
-			    else{
-			    	document.getElementById("ocasion").innerHTML = '<option>'+ 'Ocasión' +'</option>';
-					for(var j = 0; data.filters[i].values[j] != undefined; j ++){
-						document.getElementById("ocasion").innerHTML += '<option>'+ data.filters[i].values[j] +'</option>';
-					}
-				}
-				break;
-			default:
-				break;
-		}
+		sessionStorage.setItem("colores",JSON.stringify(colores));
+		sessionStorage.setItem("marcas",JSON.stringify(marcas));
+		sessionStorage.setItem("ocasiones",JSON.stringify(ocasiones));
 	}
-	*/
 }
 
 
@@ -280,10 +220,6 @@ function getFilterColors(){
 
 function getFilterTrademarks(){
 
-
-
-
-
 	var id;
 
 	var trademarks = [];
@@ -297,16 +233,9 @@ function getFilterTrademarks(){
 	}
 
 	return trademarks;
-
-
-
 }
 
 function getFilterOcassions(){
-
-
-
-
 
 	var id;
 
@@ -320,23 +249,22 @@ function getFilterOcassions(){
 	}
 
 	return occassions;
-
-
 }
 
 
+function removeFilters(){
+	removeFilterInPanel("marcaPanel", "trademark");
+	removeFilterInPanel("colorPanel", "color");
+	removeFilterInPanel("ocasionPanel", "ocasion");
+}
 
+function removeFilterInPanel(panel, checkbox){
+	var i;
+	for(i=0; i < document.getElementById(panel).childElementCount; i++){
+		document.getElementById(checkbox + i).checked = false;
+	}
 
-
-
-
-
-//results.js
-
-
-
-
-
+}
 
 
 
