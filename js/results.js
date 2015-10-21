@@ -404,7 +404,7 @@ function continueLoading(){
 			                    '<br/>'+
 								'<font size="2" style="color:grey">Marca: '+marca+'</font>'+
 			                    '<br/>'+
-								'<font size="2" style="color:grey">$'+data.products[i].price+'</font>'+
+								'<font size="2" style="color:grey"><b>$'+data.products[i].price+'</b></font>'+
 			                '</div>'+
 			            '</a>'+
 		            '</div>'+
@@ -432,7 +432,7 @@ function continueLoading(){
         });
     });
 
-	document.getElementById('loadMoreButton').innerHTML = "CARGAR MAS";
+	document.getElementById('loadMoreButton').innerHTML = "VER MAS";
 }
 
 function loadMore(){

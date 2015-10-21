@@ -100,6 +100,11 @@
 		type: "error",
 		confirmButtonText: "Cerrar"
 	});
+	}else if(error.code == 201){
+		swal({   title: "El DNI ya se encuentra en uso.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
 	}else if(error.code == 999){
 		swal({   title: "Se produjo un error inesperado procesando la solicitud.",
 		type: "error",

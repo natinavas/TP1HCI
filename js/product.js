@@ -39,7 +39,7 @@ $.ajax(request).done( function(data) {
 	localStorage.setItem("product", JSON.stringify(data));
 	document.getElementById("nameProd").innerHTML = data.product.name;
 	document.getElementById("mainPicture").src = data.product.imageUrl[0];
-	document.getElementById("price").innerHTML = "$" + data.product.price;
+	document.getElementById("price").innerHTML = '<b>$' + data.product.price + '</b>';
 
 	var i =  0, j = 0;
 

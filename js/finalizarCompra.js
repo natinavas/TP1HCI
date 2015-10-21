@@ -132,7 +132,6 @@
 
 		$("#last-step").click(function (e) {
 
-			alert("voy a crear");
 
 
 
@@ -150,18 +149,11 @@
 		request.dataType="jsonp";
 		console.log(request.url);
 		$.ajax(request).done( function(data) {
-		alert("cree la orden");
-		alert(JSON.stringify(data));
 
 		finalOrder = JSON.parse(sessionStorage.getItem("finalOrder"));
 
 
 
-		alert(JSON.stringify(finalOrder));
-
-		alert("order");
-
-		alert(JSON.stringify(data.order.id));
 
 		finalOrder.id = data.order.id;
 
@@ -175,7 +167,6 @@
 		addItemToCart(data, JSON.parse(carrito[i]));
 		}
 
-		alert("llamo a confirmar");
 		confirmOrder(finalOrder);
 
 
@@ -567,10 +558,7 @@
 function confirmOrder(finalOrder){
 
 
-	alert("voy a confirmar");
 
-
-	alert(JSON.stringify(finalOrder));
 
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
@@ -578,7 +566,6 @@ function confirmOrder(finalOrder){
 
 		var authenticationToken = user.authenticationToken;
 
-		alert("lalalal");
 
 
 		var request = new Object();
@@ -592,7 +579,6 @@ function confirmOrder(finalOrder){
 		$.ajax(request).done( function(data) {
 
 
-		alert(JSON.stringify(data));
 
 		var $active = $('.wizard .nav-tabs li.active');
 		$active.next().removeClass('disabled');
