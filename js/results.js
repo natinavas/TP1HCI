@@ -77,8 +77,15 @@ function setFilters(data){
 	var ocasiones = [];
 
 
-	var i = 0;
-	for(i =0 ; data.filters != undefined && data.filters[i] != undefined; i++){
+	var filt = sessionStorage.getItem("actualFilters");
+
+	var actualFilters;
+
+	if(filt != ""){
+		actualFilters = JSON.parse("[" + filt.slice(0,filt.length - 1) + "]");
+	}
+
+	for(var i =0 ; data.filters != undefined && data.filters[i] != undefined; i++){
 
 		switch(data.filters[i].id){
 			case 4:
@@ -90,7 +97,7 @@ function setFilters(data){
 
 
 					document.getElementById("colorPanel").innerHTML += '<div class="checkbox text-left">'
-					+ '<label><input id="color' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
+					+ '<label id="labelcolor' + j + '"><input id="color' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
 					+ '</div>';
 
 					colores[j] = data.filters[i].values[j];
@@ -106,7 +113,7 @@ function setFilters(data){
 				for(var j = 0; data.filters[i].values[j] != undefined; j ++){
 
 					document.getElementById("marcaPanel").innerHTML += '<div class="checkbox text-left">'
-					+ '<label><input id="trademark' + j + '"type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
+					+ '<label id="labeltrademark' + j + '"><input id="trademark' + j + '"type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
 					+ '</div>';
 
 					marcas[j] = data.filters[i].values[j];
@@ -120,7 +127,7 @@ function setFilters(data){
 				for(var j = 0; data.filters[i].values[j] != undefined; j ++){
 
 					document.getElementById("ocasionPanel").innerHTML += '<div class="checkbox text-left">'
-					+ '<label><input id="ocasion' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
+					+ '<label id="labelocasion' + j + '"><input id="ocasion' + j + '" type="checkbox" value="">' + data.filters[i].values[j] + '</label>'
 					+ '</div>';
 
 
@@ -130,12 +137,42 @@ function setFilters(data){
 				break;
 		}
 
+
+
+
 		sessionStorage.setItem("colores",JSON.stringify(colores));
 		sessionStorage.setItem("marcas",JSON.stringify(marcas));
 		sessionStorage.setItem("ocasiones",JSON.stringify(ocasiones));
 	}
+
+
+
+		for(var i = 0; actualFilters != undefined && actualFilters[i] != undefined; i++){
+
+			switch(actualFilters[i].id){
+				case 4:
+					checkFilter(actualFilters[i], "color");
+					break;
+				case 9:
+					checkFilter(actualFilters[i], "trademark");
+					break;
+				case 3:
+					checkFilter(actualFilters[i], "ocasion");
+					break;
+				default:
+					break;
+			}
+		}
 }
 
+
+function checkFilter(filter, id){
+	for(var i = 0; document.getElementById("label" + id + i) != null; i++){
+		if(document.getElementById("label" + id + i).innerHTML.split(">")[1] == filter.value){
+			document.getElementById(id + i).checked = true;
+		}
+	}
+}
 
 function applyFilter(){
 	var colors = getFilterColors();
@@ -187,8 +224,6 @@ function applyFilter(){
 	if(jsonFilters.length == 1){
 		jsonFilters = "";
 	}
-
-
 
 	reloadWithFilters(jsonFilters);
 }
