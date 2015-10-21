@@ -49,26 +49,11 @@
 							+ '<br/>Código Postal : ' + data.address.zipCode;
 
 							document.getElementById("receptor").innerHTML = s;
-					
-							var request2 = new Object();
-							request2.timeout = 7000;
-							request2.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=ChangeOrderAddress&username=" + username + "&authentication_token=" + authenticationToken + "&order=" + JSON.stringify(newAddress);
-							request2.dataType="jsonp";
-							//console.log(request.url);
-	                
-							$.ajax(request2).done( function(data) {
-								var $active = $('.wizard .nav-tabs li.active');
-								$active.next().removeClass('disabled');
-								nextTab($active);
-								return;
 
-
-							}).fail(function (jqXHR, textStatus, errorThrown) {
-								swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
-								type: "error",
-								confirmButtonText: "Cerrar"
-							});
-						});
+							var $active = $('.wizard .nav-tabs li.active');
+							$active.next().removeClass('disabled');
+							nextTab($active);
+							return;
 				
 				
 					}else{
@@ -98,31 +83,16 @@
 						var authenticationToken = user.authenticationToken;
 
 
-						var orderId = parseInt(sessionStorage.getItem("orderId"));
 
 
 						//alert(orderId);
 
 						// alert( "dir id : " + addresses[i].split("dir")[1]);
 
-						var adr = new Object();
-						adr.id = orderId;
 						var address = new Object();
 						address.id = parseInt(JSON.parse(addresses[i]).id);
-						adr.address = address;
 
 						sessionStorage.setItem("address", JSON.stringify(address));
-
-						var request = new Object();
-						request.timeout = 7000;
-						request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=ChangeOrderAddress&username=" + username + "&authentication_token=" + authenticationToken + "&order=" + JSON.stringify(adr);
-
-
-						request.dataType="jsonp";
-						console.log(request.url);
-						$.ajax(request).done( function(data) {
-							// alert(JSON.stringify(data));
-
 
 							var s = '';
 
@@ -136,14 +106,6 @@
 							var $active = $('.wizard .nav-tabs li.active');
 							$active.next().removeClass('disabled');
 							nextTab($active);
-
-
-						}).fail(function (jqXHR, textStatus, errorThrown) {
-							swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
-							type: "error",
-							confirmButtonText: "Cerrar"
-						});
-					});
 
 
 
@@ -169,43 +131,75 @@
 
 
 		$("#last-step").click(function (e) {
-		var finalOrder = JSON.parse(sessionStorage.getItem("finalOrder"));
 
-		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+			alert("voy a crear");
 
-		var username = user.account.username;
 
-		var authenticationToken = user.authenticationToken;
 
+						var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+						var username = user.account.username;
+
+						var authenticationToken = user.authenticationToken;
 
 		var request = new Object();
 		request.timeout = 7000;
-		request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=ConfirmOrder&username=" + username + "&authentication_token=" + authenticationToken + "&order=" + JSON.stringify(finalOrder);
+		request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=CreateOrder&username=" + username  + "&authentication_token=" + authenticationToken;
 
-
-		//alert(JSON.stringify(finalOrder));
 
 		request.dataType="jsonp";
 		console.log(request.url);
 		$.ajax(request).done( function(data) {
+		alert("cree la orden");
+		alert(JSON.stringify(data));
 
-		//alert(JSON.stringify(data));
+		finalOrder = JSON.parse(sessionStorage.getItem("finalOrder"));
 
-		var $active = $('.wizard .nav-tabs li.active');
-		$active.next().removeClass('disabled');
-		$active.prev().prev().addClass('disabled');
-		$active.prev().addClass('disabled');
-		$active.addClass('disabled');
-		nextTab($active);
-		localStorage.removeItem("carrito");
+
+
+		alert(JSON.stringify(finalOrder));
+
+		alert("order");
+
+		alert(JSON.stringify(data.order.id));
+
+		finalOrder.id = data.order.id;
+
+		sessionStorage.setItem("finalOrder", finalOrder);
+
+		var carrito = JSON.parse(localStorage.getItem("carrito"));
+
+
+		for(var i = 0; carrito != undefined && carrito[i] != undefined; i++){
+		// alert("elemento de carrito: " + carrito[i]);
+		addItemToCart(data, JSON.parse(carrito[i]));
+		}
+
+		alert("llamo a confirmar");
+		confirmOrder(finalOrder);
+
+
 		}).fail(function (jqXHR, textStatus, errorThrown) {
-			swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
-			type: "error",
-			confirmButtonText: "Cerrar"
+		swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+		type: "error",
+		confirmButtonText: "Cerrar"
 		});
 		});
 
+
+
+
+
+
+
+
+
+
+
 		});
+
+
+
 
 
 		$("#second-step").click(function (e) {
@@ -256,6 +250,11 @@
 			confirmButtonText: "Cerrar"
 		});
 		}
+
+
+
+
+		
 		
 		
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
@@ -288,12 +287,10 @@
 			
 			
 			
-		var orderId = parseInt(sessionStorage.getItem("orderId"));
 		var address = JSON.parse(sessionStorage.getItem("address"));
 		//alert(addresses);
 
 		var finalOrder = new Object();
-		finalOrder.id = orderId;
 		finalOrder.address = address;
 			
 			
@@ -334,12 +331,10 @@
 		var creditCards = JSON.parse(sessionStorage.getItem("creditCards"));
 
 
-		var orderId = parseInt(sessionStorage.getItem("orderId"));
 		var address = JSON.parse(sessionStorage.getItem("address"));
 		//alert(addresses);
 
 		var finalOrder = new Object();
-		finalOrder.id = orderId;
 		finalOrder.address = address;
 
 		if(document.getElementById("efectivo").checked){
@@ -420,6 +415,19 @@
 		});
 
 
+		var carrito = JSON.parse(localStorage.getItem("carrito"));
+
+
+		for(var i = 0; carrito != undefined && carrito[i] != undefined; i++){
+		loadProduct(JSON.parse(carrito[i]));
+		}
+
+
+		document.getElementById("subtotal").innerHTML += sessionStorage.getItem("subtotal");
+		document.getElementById("costoEnvio").innerHTML += sessionStorage.getItem("costoEnvio") + ".00";
+		document.getElementById("totalPrecio").innerHTML += sessionStorage.getItem("total");
+
+
 
 		document.getElementById("total").innerHTML = sessionStorage.getItem("total")
 
@@ -440,43 +448,7 @@
 
 
 
-		var request = new Object();
-		request.timeout = 7000;
-		request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=CreateOrder&username=" + username  + "&authentication_token=" + authenticationToken;
 
-
-		request.dataType="jsonp";
-		console.log(request.url);
-		$.ajax(request).done( function(data) {
-		// alert("cree la orden");
-		// alert(JSON.stringify(data));
-
-		sessionStorage.setItem("orderId", JSON.stringify(data.order.id));
-
-		document.getElementById("date").innerHTML = '<br/>' + data.order.receivedDate.toString();
-		document.getElementById("pedido").innerHTML = 'Pedido # ' + data.order.id;
-		var carrito = JSON.parse(localStorage.getItem("carrito"));
-
-
-		for(var i = 0; carrito != undefined && carrito[i] != undefined; i++){
-		// alert("elemento de carrito: " + carrito[i]);
-		addItemToCart(data, JSON.parse(carrito[i]));
-		loadProduct(JSON.parse(carrito[i]));
-		}
-
-
-		document.getElementById("subtotal").innerHTML += sessionStorage.getItem("subtotal");
-		document.getElementById("costoEnvio").innerHTML += sessionStorage.getItem("costoEnvio") + ".00";
-		document.getElementById("totalPrecio").innerHTML += sessionStorage.getItem("total");
-
-
-
-		}).fail(function (jqXHR, textStatus, errorThrown) {
-		swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
-		type: "error",
-		confirmButtonText: "Cerrar"
-		});
-		});
 
 
 		request= new Object();
@@ -592,6 +564,52 @@
 		}
 
 
+function confirmOrder(finalOrder){
+
+
+	alert("voy a confirmar");
+
+
+	alert(JSON.stringify(finalOrder));
+
+		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+		var username = user.account.username;
+
+		var authenticationToken = user.authenticationToken;
+
+		alert("lalalal");
+
+
+		var request = new Object();
+		request.timeout = 7000;
+		request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=ConfirmOrder&username=" + username + "&authentication_token=" + authenticationToken + "&order=" + JSON.stringify(finalOrder);
+
+
+
+		request.dataType="jsonp";
+		console.log(request.url);
+		$.ajax(request).done( function(data) {
+
+
+		alert(JSON.stringify(data));
+
+		var $active = $('.wizard .nav-tabs li.active');
+		$active.next().removeClass('disabled');
+		$active.prev().prev().addClass('disabled');
+		$active.prev().addClass('disabled');
+		$active.addClass('disabled');
+		nextTab($active);
+		localStorage.removeItem("carrito");
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			swal({   title: "Ha ocurrido un error con la conexión. Por favor inténtelo luego",
+			type: "error",
+			confirmButtonText: "Cerrar"
+		});
+		});
+
+	}
+
 
 		function addItemToCart(orderData, item){
 
@@ -647,7 +665,7 @@
 				document.getElementById("products").innerHTML = s + content;
 
 
-		}
+			}
 
 		function nextTab(elem) {
 			$(elem).next().find('a[data-toggle="tab"]').click();

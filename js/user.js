@@ -592,7 +592,7 @@ function showOrders(){
 						}
 
 						for(var i = 0; items != undefined && items[i] != undefined; i++){
-							price = parseFloat(price + (items[i].price * items[i].quantity) + Math.round(((items[i].price * items[i].quantity) / 20))).toFixed(2);
+							price = price + (items[i].price * items[i].quantity) + Math.round(((items[i].price * items[i].quantity) / 20));
 						}
 
 
@@ -637,7 +637,7 @@ function showOrders(){
 					+	'ORDEN REALIZADA EL: ' + data.order.receivedDate +  '<br/>'
 					+	'DIRECCION DE ENVIO: ' + address + '<br/>'
 					+	'FECHA DE ENTREGA: ' + deliveredDate + '<br/>'
-					+	'PRECIO TOTAL: ' + price
+					+	'PRECIO TOTAL: $' + parseFloat(price).toFixed(2)
 					+ '<br/>'
 					+ '<br/>'
 					+ '</div>';
