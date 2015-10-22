@@ -95,6 +95,11 @@
 		type: "error",
 		confirmButtonText: "Cerrar"
 	});
+	}else if(error.code == 200){
+		swal({   title: "El nombre de usuario ya se encuentra en uso.",
+		type: "error",
+		confirmButtonText: "Cerrar"
+	});
 	}else if(error.code == 104){
 		swal({   title: "El nombre de usuario es inválido.",
 		type: "error",

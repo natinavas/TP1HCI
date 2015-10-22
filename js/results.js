@@ -230,7 +230,8 @@ function applyFilter(){
 
 function reloadWithFilters(filt){
 
-	document.getElementById('products').innerHTML = "";
+	$("#products").empty();
+
 	
 	sessionStorage.setItem("prevFilters", sessionStorage.getItem("actualFilters"));
 	sessionStorage.setItem("actualFilters", filt);
@@ -310,7 +311,10 @@ function removeFilterInPanel(panel, checkbox){
 
 function load(){
 
-		document.getElementById('loadMoreButton').innerHTML = "Cargando...";	
+		document.getElementById('loadMoreButton').innerHTML = "Cargando...";
+
+		$("#products").append('<center><img class="img-responsive" id="image" src="img/loading.gif"></center>');
+	
 
 	setTimeout(continueLoading,500);
 }
@@ -391,6 +395,7 @@ function continueLoading(){
 				marca += "...";
 			}
 
+
 			var prod = 
 		        '<div class="col-xs-3">'+
 		            '<div class="panel panel-default">'+
@@ -411,7 +416,9 @@ function continueLoading(){
 		        '</div>';
 		   
 
-
+		    if(i == 0){
+		    	$("#image").remove();
+		    }
 
 
 			document.getElementById('products').innerHTML += prod;
@@ -421,6 +428,10 @@ function continueLoading(){
 				document.getElementById('products').innerHTML += '</tr>';
 			}
 			
+		}
+
+		if(document.getElementById("image") != null){
+			$("#image").remove();
 		}
 
 	

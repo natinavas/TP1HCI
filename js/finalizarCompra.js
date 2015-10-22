@@ -1,4 +1,11 @@
 		$(document).ready(function () {
+
+			if(localStorage.getItem("carrito") == undefined){
+				document.getElementById("compra").innerHTML = '<h3>SU CARRITO ESTA VACIO</h3>'
+				+ '<br/>'
+				+ '<h3>PARA FINALIZAR SU COMPRA AÑADA PRODUCTOS AL CARRITO</h3>';
+				return;
+			}
 			//Initialize tooltips
 			$('.nav-tabs > li a[title]').tooltip();
     
@@ -28,22 +35,29 @@
 						zipCode: document.getElementById("cpD").value,
 						phoneNumber: document.getElementById("telD").value
 					};
-					//alert("new address:" + JSON.stringify(newAddress));
 	
 					var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 					var request=new Object();
 					request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateAddress&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&address=" + JSON.stringify(newAddress);
 					request.dataType = "jsonp";
+
+
 					$.ajax(request).done(function(data) { //funcion de agregar nueva direccion
+
 				
 						error=data.error;
 						//console.log("data: " + JSON.stringify(data));
 			
 						if(error==undefined){
+
+
+							var address = new Object();
+							address.id = parseInt(data.address.id);
+
+							sessionStorage.setItem("address", JSON.stringify(address));
+
 					
 							var s = '';
-							//alert(JSON.stringify(data));
-							//alert(JSON.stringify(data.address));
 							s += '<br/>' + data.address.name
 							+ '<br/>' + data.address.street + ' ' + data.address.number
 							+ '<br/>Código Postal : ' + data.address.zipCode;
@@ -75,7 +89,6 @@
 
 						var selectedAdress = JSON.parse(addresses[i]);
 
-						//alert(addresses[i] + " esta checked");
 						var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
 						var username = user.account.username;
@@ -84,10 +97,6 @@
 
 
 
-
-						//alert(orderId);
-
-						// alert( "dir id : " + addresses[i].split("dir")[1]);
 
 						var address = new Object();
 						address.id = parseInt(JSON.parse(addresses[i]).id);
@@ -135,11 +144,12 @@
 
 
 
-						var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
-						var username = user.account.username;
+		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 
-						var authenticationToken = user.authenticationToken;
+		var username = user.account.username;
+
+		var authenticationToken = user.authenticationToken;
 
 		var request = new Object();
 		request.timeout = 7000;
@@ -163,9 +173,9 @@
 
 
 		for(var i = 0; carrito != undefined && carrito[i] != undefined; i++){
-		// alert("elemento de carrito: " + carrito[i]);
 		addItemToCart(data, JSON.parse(carrito[i]));
 		}
+
 
 		confirmOrder(finalOrder);
 
@@ -203,9 +213,8 @@
 		checked = true;
 			
 		if (document.getElementById('amex').checked) {
-			//alert("la tarj es amex");
+
 			if(!validateAmex()){
-				//alert("la tarjeta es amex");
 				swal({   title: "Por favor ingrese información válida",
 				type: "error",
 				confirmButtonText: "Cerrar"
@@ -213,7 +222,6 @@
 		}
 		}else if(document.getElementById('diners').checked){
 			if(!validateDiners()){
-				//alert("la tarjeta es diners");
 				swal({   title: "Por favor ingrese información válida",
 				type: "error",
 				confirmButtonText: "Cerrar"
@@ -221,7 +229,6 @@
 		}
 		}else if(document.getElementById('master').checked){
 			if(!validateMaster()){
-				//alert("la tarjeta es master");
 				swal({   title: "Por favor ingrese información válida",
 				type: "error",
 				confirmButtonText: "Cerrar"
@@ -229,7 +236,6 @@
 		}
 		}else if(document.getElementById('visa').checked){
 			if(!validateVisa()){
-				//alert("la tarjeta es visa");
 				swal({   title: "Por favor ingrese información válida",
 				type: "error",
 				confirmButtonText: "Cerrar"
@@ -251,7 +257,7 @@
 		var user = JSON.parse(sessionStorage.getItem("loggedUser"));
 		var tarjeta = {
 		number : document.getElementById("numeroTarjeta").value,
-		expirationDate: "0216",
+		expirationDate: document.getElementById("mesTarjeta").value + document.getElementById("anoTarjeta").value,
 		securityCode: document.getElementById("secCode").value
 		};
 		
@@ -260,6 +266,12 @@
 		request.url = "http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=CreateCreditCard&username=" + user.account.username + "&authentication_token=" + user.authenticationToken + "&credit_card="+JSON.stringify(tarjeta);
 		request.dataType = "jsonp";
 		console.log(request.url);
+		$.ajax(request).done(function(data) {
+		error = data.error;
+		if(error == undefined){ //agrego la tarjeta a la orden
+
+
+
 			
 		var s = '';
 
@@ -279,14 +291,13 @@
 			
 			
 		var address = JSON.parse(sessionStorage.getItem("address"));
-		//alert(addresses);
 
 		var finalOrder = new Object();
 		finalOrder.address = address;
 			
 			
 		var creditCard = new Object();
-		creditCard.id = tarjeta.id;
+		creditCard.id = data.creditCard.id;
 		finalOrder.creditCard = creditCard;
 
 
@@ -295,14 +306,11 @@
 
 		sessionStorage.setItem("finalOrder", JSON.stringify(finalOrder));
 
+
+
 		var $active = $('.wizard .nav-tabs li.active');
 		$active.next().removeClass('disabled');
 		nextTab($active);
-		$.ajax(request).done(function(data) {
-		error = data.error;
-		if(error == undefined){ //agrego la tarjeta a la orden
-
-                   
 
 
 			return;
@@ -323,7 +331,6 @@
 
 
 		var address = JSON.parse(sessionStorage.getItem("address"));
-		//alert(addresses);
 
 		var finalOrder = new Object();
 		finalOrder.address = address;
@@ -362,7 +369,6 @@
 
 					document.getElementById("metodoPago").innerHTML = s;
 
-					//alert(addresses[i] + " esta checked");
 
 					var creditCard = new Object();
 					creditCard.id = JSON.parse(creditCards[i]).id;
@@ -446,7 +452,6 @@
 		request.url ="http://eiffel.itba.edu.ar/hci/service3/Account.groovy?method=GetAllCreditCards&username="+user.account.username +"&authentication_token="+user.authenticationToken+"&page_size=" + 10;
 		request.dataType = "jsonp";
 		console.log(request.url);
-		//  alert(request.url);
 
     
 		$.ajax(request).done(function(data) {
@@ -464,7 +469,7 @@
 
 		for(i=0; myCards != undefined && myCards[i] != undefined; i++){
 
-			if(i == 6){
+			if(i % 6 == 0){
 				ret += '<br/><br/>';
 			}
 
@@ -498,6 +503,9 @@
 
 
 		function showAddresses(){
+
+		$("#direcciones").append('<center><img class="img-responsive" id="imagedir" src="img/loading.gif"></center>');
+
 		var user= JSON.parse(sessionStorage.getItem("loggedUser"));
 
 		var addresses = [];
@@ -518,10 +526,9 @@
 
 
 
-		//alert(JSON.stringify(adr[0]));
 		for (i=0; adr[i] != undefined && adr[i] != null; i++){
 
-			if(i == 5){
+			if(i % 5 == 0){
 				ret += '<br/><br/>';
 			}
 
@@ -538,6 +545,7 @@
 			+ miDir.zipCode
 			+ '</h5><h5> Numero de Telefono: ' + miDir.phoneNumber + '</h5></div></label>';
 		}
+		$("#imagedir").remove();
 		$("#direcciones").append(ret);
 
             
@@ -567,7 +575,6 @@ function confirmOrder(finalOrder){
 		var authenticationToken = user.authenticationToken;
 
 
-
 		var request = new Object();
 		request.timeout = 7000;
 		request.url="http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=ConfirmOrder&username=" + username + "&authentication_token=" + authenticationToken + "&order=" + JSON.stringify(finalOrder);
@@ -577,6 +584,8 @@ function confirmOrder(finalOrder){
 		request.dataType="jsonp";
 		console.log(request.url);
 		$.ajax(request).done( function(data) {
+
+
 
 
 
@@ -615,7 +624,6 @@ function confirmOrder(finalOrder){
 			prod.product = product;
 			prod.quantity = item.quantity;
 
-			//alert("prod :" + JSON.stringify(prod));
 
 
 			request = new Object();
